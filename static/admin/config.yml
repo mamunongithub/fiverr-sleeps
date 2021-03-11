@@ -50,6 +50,14 @@ collections:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Body", name: "body", widget: "markdown"}
+      - file: "src/pages/sleeps/index.md"
+        label: "Sleeps"
+        name: "sleeps"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "sleeps-page"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Menu items", name: "menuitems", widget: "list", fields: [{label: "Title", name: "title"},{label: "Link", name: "link"}]}
+          - {label: "Body", name: "body", widget: "markdown"}
       - file: "src/pages/products/index.md"
         label: "Products Page"
         name: "products"
