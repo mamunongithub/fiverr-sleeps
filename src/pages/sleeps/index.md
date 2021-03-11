@@ -1,5 +1,5 @@
 ---
-templateKey: 'sleeps-page'
+templateKey: sleeps-page
 title: Dormez mieux, vivez heureux. Is this is only in memory?
 menuitems:
   - title: Blog
@@ -11,4 +11,10 @@ menuitems:
   - title: Contact
     link: /contact
 ---
-ok there
+# ok there
+
+* item 1
+* item 2
+* item 3
+
+> great
