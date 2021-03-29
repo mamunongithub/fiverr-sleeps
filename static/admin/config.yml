@@ -26,7 +26,16 @@ collections:
       - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
-
+  - name: "data"
+    label: "Header & Footer"
+    files:
+      - file: "src/data/header.md"
+        label: "Header"
+        name: "header"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "header-data"}
+          - {label: "Logo", name: logo, widget: image}
+          - {label: "Menu items", name: "menuitems", widget: "list", fields: [{label: "Title", name: "title"},{label: "Link", name: "link"}]}
   - name: "pages"
     label: "Pages"
     files:

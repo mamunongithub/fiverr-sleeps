@@ -1,20 +1,75 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
+import Img from "gatsby-image";
 
 import { ChevronRightIcon } from "../components/icons";
 import Layout from "../components/Layout";
-import Img1 from "../img/sleeps/matelas.png";
-import Img2 from "../img/sleeps/oreiller.png";
-import Img3 from "../img/sleeps/couette.png";
-import Img4 from "../img/sleeps/sommier.png";
-import ImgMobile1 from "../img/sleeps/matelas-mobile.png";
-import ImgMobile2 from "../img/sleeps/oreiller-mobile.png";
-import ImgMobile3 from "../img/sleeps/couette-mobile.png";
-import ImgMobile4 from "../img/sleeps/sommier-mobile.png";
+
 import Img5 from "../img/sleeps/matelas2.png";
 import Img6 from "../img/sleeps/sommeil-mini.png";
 
 export const SleepsPageTemplate = () => {
+  const data = useStaticQuery(graphql`
+    query SleepsPageImages {
+      matelas: file(relativePath: { eq: "sleeps/matelas.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      oreiller: file(relativePath: { eq: "sleeps/oreiller.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      couette: file(relativePath: { eq: "sleeps/couette.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      sommier: file(relativePath: { eq: "sleeps/sommier.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      matelasMobile: file(relativePath: { eq: "sleeps/matelas-mobile.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      oreillerMobile: file(relativePath: { eq: "sleeps/oreiller-mobile.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      couetteMobile: file(relativePath: { eq: "sleeps/couette-mobile.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      sommierMobile: file(relativePath: { eq: "sleeps/sommier-mobile.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <>
       <section className="hero">
@@ -29,33 +84,35 @@ export const SleepsPageTemplate = () => {
             Comparez des dizaines de marques pour trouver votre meilleur
           </strong>
         </div>
-        <div className="feature">
+      </section>
+      <section className="feature">
+        <div className="feature__wrapper">
           <div className="feature__desktop">
             <Link to="/">
-              <img src={Img1} alt="Stuff" />
+              <Img fluid={data?.matelas?.childImageSharp?.fluid} />
             </Link>
             <Link to="/">
-              <img src={Img2} alt="Stuff" />
+              <Img fluid={data?.oreiller?.childImageSharp?.fluid} />
             </Link>
             <Link to="/">
-              <img src={Img3} alt="Stuff" />
+              <Img fluid={data?.couette?.childImageSharp?.fluid} />
             </Link>
             <Link to="/">
-              <img src={Img4} alt="Stuff" />
+              <Img fluid={data?.sommier?.childImageSharp?.fluid} />
             </Link>
           </div>
           <div className="feature__mobile">
             <Link to="/">
-              <img src={ImgMobile1} alt="Stuff" />
+              <Img fluid={data?.matelasMobile?.childImageSharp?.fluid} />
             </Link>
             <Link to="/">
-              <img src={ImgMobile2} alt="Stuff" />
+              <Img fluid={data?.oreillerMobile?.childImageSharp?.fluid} />
             </Link>
             <Link to="/">
-              <img src={ImgMobile3} alt="Stuff" />
+              <Img fluid={data?.couetteMobile?.childImageSharp?.fluid} />
             </Link>
             <Link to="/">
-              <img src={ImgMobile4} alt="Stuff" />
+              <Img fluid={data?.sommierMobile?.childImageSharp?.fluid} />
             </Link>
           </div>
         </div>
@@ -79,7 +136,7 @@ export const SleepsPageTemplate = () => {
           </Link>
         </div>
       </section>
-      <section className="feature-article container">
+      <section className="container feature-article">
         <div className="feature-article__wrapper">
           <FeatureArticleItem
             subtitle="MARQUES DE LITERIE"

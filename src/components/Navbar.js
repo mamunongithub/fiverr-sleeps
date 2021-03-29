@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, useStaticQuery, graphql } from "gatsby";
 
 import { MenuIcon } from "./icons";
 import logo from "../img/sleeps/logo.png";
@@ -16,6 +16,22 @@ const navItems = [
 
 export default function Navbar() {
   const [open, setOpen] = React.useState(false);
+
+  const data = useStaticQuery(graphql`
+    query HeaderQuery {
+      allMarkdownRemark(
+        filter: { frontmatter: { templateKey: { eq: "header-data" } } }
+      ) {
+        nodes {
+          frontmatter {
+            templateKey
+          }
+        }
+      }
+    }
+  `);
+
+  console.log(data);
 
   return (
     <nav className="navbar" role="navigation" aria-label="main-navigation">
