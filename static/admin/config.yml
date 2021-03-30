@@ -36,6 +36,37 @@ collections:
           - {label: "Data Key", name: "dataKey", widget: "hidden", default: "navbar"}
           - {label: "Logo", name: logo, widget: image}
           - {label: "Menu items", name: "menuitems", widget: "list", fields: [{label: "Title", name: "title"},{label: "Link", name: "link"}]}
+      - file: "src/data/footer.md"
+        label: "Footer"
+        name: "footer"
+        fields:
+          - {label: "Data Key", name: "dataKey", widget: "hidden", default: "footer"}
+          - label: "Section One"
+            name: "section1"
+            widget: object
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: Description, name: description, widget: text}
+              - {label: "Social links", name: "socialLinks", widget: "object", fields: [{label: "Facebook", name: "facebook", widget: string},{label: "Youtube", name: "youtube", widget: string},{label: "Pinterest", name: "pinterest", widget: string},{label: "Linkedin", name: "linkedin", widget: string}]}
+          - label: "Section Two"
+            name: "section2"
+            widget: object
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: "Links", name: "links", widget: "list", fields: [{label: "Facebook", name: "facebook"},{label: "Youtube", name: "youtube"},{label: "Pinterest", name: "pinterest"},{label: "Linkedin", name: "linkedin"}]}
+          - label: "Section Three"
+            name: "section3"
+            widget: object
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: "Links", name: "links", widget: "list", fields: [{label: "Facebook", name: "facebook"},{label: "Youtube", name: "youtube"},{label: "Pinterest", name: "pinterest"},{label: "Linkedin", name: "linkedin"}]}
+          - label: "Section Four"
+            name: "section4"
+            widget: object
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: Description, name: description, widget: text}
+              - {label: "Button Text", name: buttonText, widget: string}
   - name: "pages"
     label: "Pages"
     files:
