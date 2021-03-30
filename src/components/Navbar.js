@@ -17,24 +17,24 @@ const navItems = [
 export default function Navbar() {
   const [open, setOpen] = React.useState(false)
 
-  const data = useStaticQuery(graphql`
-    query HeaderQuery {
-      allMarkdownRemark(
-        filter: { frontmatter: { dataType: { eq: "navbar" } } }
-      ) {
-        nodes {
-          frontmatter {
-            menuitems {
-              title
-              link
-            }
-          }
-        }
-      }
-    }
-  `)
+  // const data = useStaticQuery(graphql`
+  //   query HeaderQuery {
+  //     allMarkdownRemark(
+  //       filter: { frontmatter: { dataType: { eq: "navbar" } } }
+  //     ) {
+  //       nodes {
+  //         frontmatter {
+  //           menuitems {
+  //             title
+  //             link
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
 
-  console.log(data)
+  // console.log(data)
 
   return (
     <nav className="navbar" role="navigation" aria-label="main-navigation">
