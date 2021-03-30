@@ -53,13 +53,13 @@ collections:
             widget: object
             fields:
               - {label: Title, name: title, widget: string}
-              - {label: "Links", name: "links", widget: "list", fields: [{label: "Facebook", name: "facebook"},{label: "Youtube", name: "youtube"},{label: "Pinterest", name: "pinterest"},{label: "Linkedin", name: "linkedin"}]}
+              - {label: "Links", name: "links", widget: "list", fields: [{label: "Title", name: "title"},{label: "Link", name: "link"}]}
           - label: "Section Three"
             name: "section3"
             widget: object
             fields:
               - {label: Title, name: title, widget: string}
-              - {label: "Links", name: "links", widget: "list", fields: [{label: "Facebook", name: "facebook"},{label: "Youtube", name: "youtube"},{label: "Pinterest", name: "pinterest"},{label: "Linkedin", name: "linkedin"}]}
+              - {label: "Links", name: "links", widget: "list", fields: [{label: "Title", name: "title"},{label: "Link", name: "link"}]}
           - label: "Section Four"
             name: "section4"
             widget: object
