@@ -27,13 +27,13 @@ collections:
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
   - name: "data"
-    label: "Header & Footer"
+    label: "Navbar & Footer"
     files:
-      - file: "src/data/header.md"
-        label: "Header"
-        name: "header"
+      - file: "src/data/navbar.md"
+        label: "Navbar"
+        name: "navbar"
         fields:
-          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "header-data"}
+          - {label: "Data Key", name: "dataKey", widget: "hidden", default: "navbar"}
           - {label: "Logo", name: logo, widget: image}
           - {label: "Menu items", name: "menuitems", widget: "list", fields: [{label: "Title", name: "title"},{label: "Link", name: "link"}]}
   - name: "pages"

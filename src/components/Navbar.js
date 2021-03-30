@@ -1,37 +1,40 @@
-import React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
+import React from 'react'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 
-import { MenuIcon } from "./icons";
-import logo from "../img/sleeps/logo.png";
+import { MenuIcon } from './icons'
+import logo from '../img/sleeps/logo.png'
 
 const navItems = [
-  { name: "Avis Matelas", url: "/tag/avis-matelas" },
-  { name: "Meilleurs Matelas", url: "/tag/meilleurs-matelas" },
-  { name: "Comparatifs", url: "/tag/comparatifs" },
-  { name: "Literie", url: "/tag/literie" },
-  { name: "Guides", url: "/tag/guides" },
-  { name: "Simulateur", url: "/tag/simulateur" },
-  { name: "Sleeps", url: "/sleeps" },
-];
+  { name: 'Avis Matelas', url: '/tag/avis-matelas' },
+  { name: 'Meilleurs Matelas', url: '/tag/meilleurs-matelas' },
+  { name: 'Comparatifs', url: '/tag/comparatifs' },
+  { name: 'Literie', url: '/tag/literie' },
+  { name: 'Guides', url: '/tag/guides' },
+  { name: 'Simulateur', url: '/tag/simulateur' },
+  { name: 'Sleeps', url: '/sleeps' },
+]
 
 export default function Navbar() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
 
   const data = useStaticQuery(graphql`
     query HeaderQuery {
       allMarkdownRemark(
-        filter: { frontmatter: { templateKey: { eq: "header-data" } } }
+        filter: { frontmatter: { dataType: { eq: "navbar" } } }
       ) {
         nodes {
           frontmatter {
-            templateKey
+            menuitems {
+              title
+              link
+            }
           }
         }
       }
     }
-  `);
+  `)
 
-  console.log(data);
+  console.log(data)
 
   return (
     <nav className="navbar" role="navigation" aria-label="main-navigation">
@@ -44,7 +47,7 @@ export default function Navbar() {
             <MenuIcon />
           </button>
         </div>
-        <div className={`navbar__menu ${open ? "navbar__menu--open" : ""}`}>
+        <div className={`navbar__menu ${open ? 'navbar__menu--open' : ''}`}>
           {navItems.map(({ name, url }, index) => (
             <Link key={index} className="navbar__menu-item" to={url}>
               {name}
@@ -53,5 +56,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  );
+  )
 }
