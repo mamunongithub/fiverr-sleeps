@@ -1,17 +1,4 @@
 ---
-<<<<<<< HEAD
-templateKey: sleeps-page
-title: Dormez mieux, vivez heureux. Is this is only in memory?
-=======
-menuitems:
-  - title: Blog
-    link: /blog
-  - title: Tags
-    link: /tags
-  - title: About
-    link: /about
-  - title: Contact
-    link: /contact
 templateKey: sleeps-page
 title: Dormez mieux, vivez heureux.
 subtitle: Vous cherchez des conseils d'experts, fiables et impartiaux pour
@@ -42,12 +29,14 @@ section2:
 section3:
   contentList:
     - title: Des conseils d'experts
-      description: "Tests, comparatifs, guides d'achats : avec son équipe de testeurs
+      description:
+        "Tests, comparatifs, guides d'achats : avec son équipe de testeurs
         indépendants, Sleeps.fr est à votre service pour vous conseiller et vous
         aider à trouver gratuitement les meilleurs produits de literie du
         marché."
     - title: Des outils efficaces
-      description: Des comparatifs et des simulateurs vous aideront à choisir une
+      description:
+        Des comparatifs et des simulateurs vous aideront à choisir une
         literie adaptée à vos besoins et passer les meilleures nuits.
     - title: Un suivi personnalisé
       description: Vous avez une question ? Contactez directement notre équipe
@@ -69,5 +58,4 @@ section4:
       link: /tags/haut-de-gamme
   tagline: NOUS AVONS TESTÉ POUR VOUS
   title: Découvrez nos meilleurs choix matelas par catégorie.
->>>>>>> fbdebfa489a929683006d0d3cfa7e485aaee6c37
 ---
