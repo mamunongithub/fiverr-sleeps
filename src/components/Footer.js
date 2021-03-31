@@ -3,7 +3,9 @@ import { graphql, Link, useStaticQuery } from 'gatsby'
 
 import { FacebookIcon, YoutubeIcon, PinterestIcon, LinkedinIcon } from './icons'
 
-export function FooterTemplate({ section1, section2, section3, section4 }) {
+export function FooterTemplate({
+  data: { section1, section2, section3, section4 },
+}) {
   return (
     <footer className="footer">
       <div className="container footer__container">
@@ -75,7 +77,9 @@ export function FooterTemplate({ section1, section2, section3, section4 }) {
 }
 
 export default function Footer() {
-  const data = useStaticQuery(graphql`
+  const {
+    markdownRemark: { frontmatter },
+  } = useStaticQuery(graphql`
     query FooterQuery {
       markdownRemark(frontmatter: { dataKey: { eq: "footer" } }) {
         frontmatter {
@@ -112,18 +116,5 @@ export default function Footer() {
       }
     }
   `)
-  const {
-    section1,
-    section3,
-    section2,
-    section4,
-  } = data.markdownRemark.frontmatter
-  return (
-    <FooterTemplate
-      section1={section1}
-      section2={section2}
-      section3={section3}
-      section4={section4}
-    />
-  )
+  return <FooterTemplate data={frontmatter} />
 }

@@ -3,10 +3,36 @@ import { Link, useStaticQuery, graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { MenuIcon } from './icons'
 
-export default function Navbar() {
+export function NavbarTemplate({ data }) {
   const [open, setOpen] = React.useState(false)
 
-  const data = useStaticQuery(graphql`
+  return (
+    <nav className="navbar" role="navigation" aria-label="main-navigation">
+      <div className="container navbar__container">
+        <div className="navbar__brand">
+          <Link to="/sleeps" title="Logo">
+            <GatsbyImage image={getImage(data.logo)} alt="Logo" />
+          </Link>
+          <button className="navbar__button" onClick={() => setOpen(!open)}>
+            <MenuIcon />
+          </button>
+        </div>
+        <div className={`navbar__menu ${open ? 'navbar__menu--open' : ''}`}>
+          {data.menuitems.map(({ title, link }, index) => (
+            <Link key={index} className="navbar__menu-item" to={link}>
+              {title}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </nav>
+  )
+}
+
+export default function Navbar() {
+  const {
+    markdownRemark: { frontmatter },
+  } = useStaticQuery(graphql`
     query HeaderQuery {
       markdownRemark(frontmatter: { dataKey: { eq: "navbar" } }) {
         frontmatter {
@@ -23,31 +49,5 @@ export default function Navbar() {
       }
     }
   `)
-
-  return (
-    <nav className="navbar" role="navigation" aria-label="main-navigation">
-      <div className="container navbar__container">
-        <div className="navbar__brand">
-          <Link to="/" title="Logo">
-            <GatsbyImage
-              image={getImage(data.markdownRemark.frontmatter.logo)}
-              alt="Logo"
-            />
-          </Link>
-          <button className="navbar__button" onClick={() => setOpen(!open)}>
-            <MenuIcon />
-          </button>
-        </div>
-        <div className={`navbar__menu ${open ? 'navbar__menu--open' : ''}`}>
-          {data.markdownRemark.frontmatter.menuitems.map(
-            ({ title, link }, index) => (
-              <Link key={index} className="navbar__menu-item" to={link}>
-                {title}
-              </Link>
-            )
-          )}
-        </div>
-      </div>
-    </nav>
-  )
+  return <NavbarTemplate data={frontmatter} />
 }
