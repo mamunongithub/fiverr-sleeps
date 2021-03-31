@@ -1,27 +1,18 @@
-import React from "react";
-import { Link } from "gatsby";
+import React from 'react'
+import { graphql, Link, useStaticQuery } from 'gatsby'
 
-import {
-  FacebookIcon,
-  YoutubeIcon,
-  PinterestIcon,
-  LinkedinIcon,
-} from "./icons";
+import { FacebookIcon, YoutubeIcon, PinterestIcon, LinkedinIcon } from './icons'
 
-export default function Footer() {
+export function FooterTemplate({ section1, section2, section3, section4 }) {
   return (
     <footer className="footer">
       <div className="container footer__container">
         <div className="footer__section footer__section--social">
-          <h3 className="footer__title">À propos</h3>
-          <p>
-            Sleeps.fr est le leader de la comparaison de produits de literie sur
-            internet. Indépendant et 100% gratuit, notre mission est de vous
-            aider à passer les meilleures nuits.
-          </p>
+          <h3 className="footer__title">{section1.title}</h3>
+          <p>{section1.description}</p>
           <div className="footer__social-icons">
             <a
-              href="https://www.facebook.com/sleeps.fr/"
+              href={section1.socialLinks.facebook}
               target="_blank"
               rel="noreferrer"
             >
@@ -30,19 +21,19 @@ export default function Footer() {
             <a
               target="_blank"
               rel="noreferrer"
-              href="https://www.youtube.com/channel/UCBlW8CFQ3C0-DJhxskmSUAA"
+              href={section1.socialLinks.youtube}
             >
               <YoutubeIcon />
             </a>
             <a
-              href="https://www.pinterest.fr/sleeps_fr/"
+              href={section1.socialLinks.pinterest}
               target="_blank"
               rel="noreferrer"
             >
               <PinterestIcon />
             </a>
             <a
-              href="https://www.linkedin.com/company/sleeps/"
+              href={section1.socialLinks.linkedin}
               target="_blank"
               rel="noreferrer"
             >
@@ -51,40 +42,88 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer__section">
-          <h3 className="footer__title">Guides Literie</h3>
+          <h3 className="footer__title">{section2.title}</h3>
           <div className="footer__list">
-            <Link to="/tag/meilleurs-matelas">Meilleurs Matelas</Link>
-            <Link to="/tag/meilleurs-oreillers">Meilleurs Oreillers</Link>
-            <Link to="/tag/meilleurs-sommiers">Meilleurs Sommiers</Link>
-            <Link to="/tag/meilleures-couettes">Meilleures Couettes</Link>
-            <Link to="/tag/meilleurs-surmatelas">Meilleurs Surmatelas</Link>
-            <Link to="/tag/meilleurs-matelas bébé">Meilleurs Matelas Bébé</Link>
+            {section2.links.map(({ title, link }, index) => (
+              <Link key={index} to={link}>
+                {title}
+              </Link>
+            ))}
           </div>
         </div>
         <div className="footer__section">
-          <h3 className="footer__title">Plus d’infos</h3>
+          <h3 className="footer__title">{section3.title}</h3>
           <div className="footer__list">
-            <Link to="/blog">Le Blog</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/faq">FAQ</Link>
-            <Link to="/mentions-légales">Mentions Légales</Link>
-            <Link to="/politique-de-transparence">
-              Politique de Transparence
-            </Link>
+            {section3.links.map(({ title, link }, index) => (
+              <Link key={index} to={link}>
+                {title}
+              </Link>
+            ))}
           </div>
         </div>
         <div className="footer__section footer__section--newsletter">
-          <h3 className="footer__title">La newsletter Sleeps.fr</h3>
-          <p>
-            Chaque mois, des réductions exclusives et nos derniers tests
-            produits dans votre boîte mail.
-          </p>
+          <h3 className="footer__title">{section4.title}</h3>
+          <p>{section4.description}</p>
           <form className="footer__newsletter">
             <input type="text" placeholder="Votre email" />
-            <button>Je m'inscris !</button>
+            <button>{section4.buttonText}</button>
           </form>
         </div>
       </div>
     </footer>
-  );
+  )
+}
+
+export default function Footer() {
+  const data = useStaticQuery(graphql`
+    query FooterQuery {
+      markdownRemark(frontmatter: { dataKey: { eq: "footer" } }) {
+        frontmatter {
+          section1 {
+            title
+            description
+            socialLinks {
+              facebook
+              youtube
+              pinterest
+              linkedin
+            }
+          }
+          section2 {
+            title
+            links {
+              title
+              link
+            }
+          }
+          section3 {
+            title
+            links {
+              title
+              link
+            }
+          }
+          section4 {
+            title
+            description
+            buttonText
+          }
+        }
+      }
+    }
+  `)
+  const {
+    section1,
+    section3,
+    section2,
+    section4,
+  } = data.markdownRemark.frontmatter
+  return (
+    <FooterTemplate
+      section1={section1}
+      section2={section2}
+      section3={section3}
+      section4={section4}
+    />
+  )
 }

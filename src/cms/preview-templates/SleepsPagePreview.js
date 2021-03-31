@@ -1,19 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { SleepsPageTemplate } from "../../templates/sleeps-page";
+import React from 'react'
+import SleepsPageTemplate from '../../templates/sleeps-template-page'
 
-const SleepsPagePreview = ({ entry, widgetFor }) => (
-  <SleepsPageTemplate
-    title={entry.getIn(["data", "title"])}
-    content={widgetFor("body")}
-  />
-);
+const SleepsPagePreview = ({ entry }) => (
+  <SleepsPageTemplate title={entry.getIn(['data', 'title'])} />
+)
 
-SleepsPagePreview.propTypes = {
-  entry: PropTypes.shape({
-    getIn: PropTypes.func,
-  }),
-  widgetFor: PropTypes.func,
-};
-
-export default SleepsPagePreview;
+export default SleepsPagePreview
