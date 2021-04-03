@@ -119,7 +119,6 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: Description, name: description, widget: text }
               - { label: 'Button Text', name: buttonText, widget: string }
-      - files:
       - file: 'src/data/buttons.md'
         name: 'buttons'
         label: 'Buttons'
