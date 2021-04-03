@@ -16,7 +16,6 @@ export default function Blogs() {
               slug
             }
             frontmatter {
-              templateKey
               title
               date(formatString: "MMMM DD, YYYY")
             }

@@ -25,10 +25,157 @@ collections:
           default: 'blog-post',
         }
       - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Slug', name: 'slug', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'text' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Description', name: 'description', widget: 'markdown' }
+      - { label: 'Featured Image', name: 'featuredimage', widget: image }
       - { label: 'Tags', name: 'tags', widget: 'list' }
+      - { label: 'quote', name: 'quote', widget: 'markdown' }
+      - {
+          label: 'Pros',
+          name: 'pros',
+          widget: 'list',
+          field: { label: 'Pros', name: 'pros', widget: 'string' },
+        }
+      - {
+          label: 'Cons',
+          name: 'cons',
+          widget: 'list',
+          field: { label: 'Cons', name: 'cons', widget: 'string' },
+        }
+      - { label: 'Product Image', name: 'productImage', widget: image }
+      - { label: 'Product Details', name: 'productDetails', widget: markdown }
+      - {
+          label: 'Button',
+          name: 'button',
+          widget: relation,
+          collection: 'data',
+          value_field: 'buttons.items.link',
+          search_fields: ['buttons.items.title'],
+          display_fields: ['buttons.items.title'],
+        }
+      - {
+          label: 'Table',
+          name: 'table',
+          widget: list,
+          fields:
+            [
+              { label: 'Name', name: 'name', widget: string },
+              { label: 'Value', name: 'value', widget: string },
+            ],
+        }
+      - {
+          label: 'Gauges',
+          name: 'gauges',
+          widget: object,
+          fields:
+            [
+              {
+                label: 'Mode 1',
+                name: 'mode1',
+                widget: object,
+                fields:
+                  [
+                    {
+                      label: 'Value (in percent)',
+                      name: 'value',
+                      widget: number,
+                      min: 0,
+                      max: 100,
+                    },
+                    { label: 'Title', name: 'title', widget: string },
+                    {
+                      label: 'Features',
+                      name: 'features',
+                      widget: list,
+                      field:
+                        { label: 'Feature', name: 'feature', widget: string },
+                    },
+                  ],
+              },
+              {
+                label: 'Mode 2',
+                name: 'mode2',
+                widget: object,
+                fields:
+                  [
+                    {
+                      label: 'Value (in percent)',
+                      name: 'value',
+                      widget: number,
+                      min: 0,
+                      max: 100,
+                    },
+                    { label: 'Title', name: 'title', widget: string },
+                    {
+                      label: 'Features',
+                      name: 'features',
+                      widget: list,
+                      field:
+                        { label: 'Feature', name: 'feature', widget: string },
+                    },
+                  ],
+              },
+              {
+                label: 'Mode 3',
+                name: 'mode3',
+                widget: object,
+                fields:
+                  [
+                    {
+                      label: 'Value (in percent)',
+                      name: 'value',
+                      widget: number,
+                      min: 0,
+                      max: 100,
+                    },
+                    { label: 'Title', name: 'title', widget: string },
+                    {
+                      label: 'Features',
+                      name: 'features',
+                      widget: list,
+                      field:
+                        { label: 'Feature', name: 'feature', widget: string },
+                    },
+                  ],
+              },
+            ],
+        }
+      - {
+          label: 'Related Articles',
+          name: 'relatedArticles',
+          widget: object,
+          fields:
+            [
+              {
+                label: 'Article 1',
+                name: 'article1',
+                widget: relation,
+                collection: 'blog',
+                value_field: 'slug',
+                search_fields: ['title'],
+                display_fields: ['title'],
+              },
+              {
+                label: 'Article 2',
+                name: 'article2',
+                widget: relation,
+                collection: 'blog',
+                value_field: 'slug',
+                search_fields: ['title'],
+                display_fields: ['title'],
+              },
+              {
+                label: 'Article 3',
+                name: 'article3',
+                widget: relation,
+                collection: 'blog',
+                value_field: 'slug',
+                search_fields: ['title'],
+                display_fields: ['title'],
+              },
+            ],
+        }
 
   - name: 'data'
     label: 'Data'

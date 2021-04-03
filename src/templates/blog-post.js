@@ -10,16 +10,16 @@ export function BlogPostTemplate({ data, content, html }) {
     <section>
       <Helmet titleTemplate="%s | Blog">
         <title>{`${data.title}`}</title>
-        <meta name="description" content={`${data.description}`} />
+        {/* <meta name="description" content={`${data.description}`} /> */}
       </Helmet>
       <h1>Blogs</h1>
       <h2>{data.title}</h2>
       <p>{data.description}</p>
-      {html ? (
+      {/* {html ? (
         <div dangerouslySetInnerHTML={{ __html: content }} />
       ) : (
         <div>{content}</div>
-      )}
+      )} */}
       {data.tags && data.tags.length ? (
         <div>
           <h4>Tags</h4>

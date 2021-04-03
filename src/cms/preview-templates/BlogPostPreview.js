@@ -5,7 +5,7 @@ export default function BlogPostPreview({ entry, widgetFor }) {
   return (
     <BlogPostTemplate
       data={entry.getIn(['data']).toJS()}
-      content={widgetFor('body')}
+      // content={widgetFor('body')}
     />
   )
 }
