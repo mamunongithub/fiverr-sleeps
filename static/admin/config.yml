@@ -31,7 +31,7 @@ collections:
       - { label: 'Tags', name: 'tags', widget: 'list' }
 
   - name: 'data'
-    label: 'Navbar & Footer'
+    label: 'Data'
     files:
       - file: 'src/data/navbar.md'
         label: 'Navbar'
@@ -119,6 +119,27 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: Description, name: description, widget: text }
               - { label: 'Button Text', name: buttonText, widget: string }
+      - files:
+      - file: 'src/data/buttons.md'
+        name: 'buttons'
+        label: 'Buttons'
+        fields:
+          - {
+              label: 'Data Key',
+              name: 'dataKey',
+              widget: 'hidden',
+              default: 'buttons',
+            }
+          - {
+              label: 'Buttons',
+              name: 'items',
+              widget: list,
+              fields:
+                [
+                  { label: 'Title', name: 'title', widget: string },
+                  { label: 'Link', name: 'link', widget: string },
+                ],
+            }
   - name: 'pages'
     label: 'Pages'
     files:
