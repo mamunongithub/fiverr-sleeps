@@ -9,7 +9,8 @@ description: |-
   This is simle [Link](https://example.com)
 featuredImage: /img/chemex.jpg
 tags:
-  - { name: sommier, image: /img/sommier.png }
+  - name: sommier
+    image: /img/sommier.png
 quote: This is super **quote**
 pros:
   - Pros 1
@@ -40,7 +41,7 @@ table:
     value: 14.2 Kg
 gauges:
   mode1:
-    value: 20
+    value: 25
     title: Basic
     features:
       - Limited speed 5 km / h
