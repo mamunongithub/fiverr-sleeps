@@ -58,8 +58,4 @@ gauges:
     features:
       - Limited speed 25 km / h
       - Great acceleration
-relatedArticles:
-  article1: fist-post
-  article2: second-post
-  article3: third-post
 ---

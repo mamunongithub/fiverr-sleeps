@@ -61,8 +61,4 @@ gauges:
       - Great acceleration
 related:
   - article: demo-article
-relatedArticles:
-  article1: demo-article
-  article2: second-post
-  article3: third-post
 ---

@@ -65,6 +65,9 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+.navbar__brand a {
+  display: flex;
+}
 .navbar__logo {
   width: 6.5rem;
 }

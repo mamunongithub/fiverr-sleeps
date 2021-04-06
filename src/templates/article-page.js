@@ -97,16 +97,12 @@ export default function Article({
     allMarkdownRemark: { edges },
   },
 }) {
-  const relatedSlugs = post.frontmatter.relatedArticles
   let relatedArticles = []
-  if (relatedSlugs) {
+  if (post.frontmatter.related) {
     relatedArticles = edges.filter((_edges) => {
-      for (const key in relatedSlugs) {
-        if (_edges.node.frontmatter.slug === relatedSlugs[key]) {
-          return true
-        }
-      }
-      return false
+      return !!post.frontmatter.related.find(
+        ({ article }) => _edges.node.frontmatter.slug === article
+      )
     })
   }
   return (
@@ -169,10 +165,8 @@ export const pageQuery = graphql`
             features
           }
         }
-        relatedArticles {
-          article1
-          article2
-          article3
+        related {
+          article
         }
       }
     }
@@ -193,11 +187,6 @@ export const pageQuery = graphql`
                   ...GatsbyImageSharpFluid
                 }
               }
-            }
-            relatedArticles {
-              article1
-              article2
-              article3
             }
           }
         }

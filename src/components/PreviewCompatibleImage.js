@@ -51,6 +51,5 @@ export default function PreviewCompatibleImage({
 
   if (!!image && typeof image === 'string')
     return <img style={style} className={className} src={image} alt={alt} />
-
   return null
 }

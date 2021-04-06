@@ -12,11 +12,29 @@ media_folder: static/img
 public_folder: /img
 
 collections:
+  - name: affiliate-links
+    editor:
+      preview: false
+    label: Affiliate Links
+    folder: 'src/data/affiliate-links'
+    create: true
+    slug: '{{name}}'
+    fields:
+      - {
+          label: 'Data Key',
+          name: 'dataKey',
+          widget: 'hidden',
+          default: 'affiliate-links',
+        }
+      - { label: 'Name', name: 'name', widget: 'string' }
+      - { label: 'Link', name: 'link', widget: 'string' }
   - name: 'article'
+    editor:
+      preview: false
     label: 'Article'
     folder: 'src/pages/article'
     create: true
-    slug: '{{slug}}'
+    slug: '{{fields.slug}}'
     fields:
       - {
           label: 'Template Key',
@@ -27,7 +45,14 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Slug', name: 'slug', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'markdown' }
+      - {
+          label: 'Description',
+          name: 'description',
+          widget: 'markdown',
+          buttons: ['bold', 'italic', 'link', 'heading-one', 'heading-three'],
+          editor_components: [],
+          modes: ['rich_text'],
+        }
       - { label: 'Featured Image', name: 'featuredImage', widget: image }
       - {
           label: 'Tags',
@@ -35,11 +60,18 @@ collections:
           widget: 'list',
           fields:
             [
-              { label: 'Tag', name: tag, widget: string },
+              { label: 'Name', name: name, widget: string },
               { label: 'Image', name: image, widget: image },
             ],
         }
-      - { label: 'quote', name: 'quote', widget: 'markdown' }
+      - {
+          label: 'quote',
+          name: 'quote',
+          widget: 'markdown',
+          buttons: ['bold', 'italic', 'link', 'heading-one', 'heading-three'],
+          editor_components: [],
+          modes: ['rich_text'],
+        }
       - {
           label: 'Pros',
           name: 'pros',
@@ -53,15 +85,22 @@ collections:
           field: { label: 'Cons', name: 'cons', widget: 'string' },
         }
       - { label: 'Product Image', name: 'productImage', widget: image }
-      - { label: 'Product Details', name: 'productDetails', widget: markdown }
       - {
-          label: 'Button',
-          name: 'button',
+          label: 'Product Details',
+          name: 'productDetails',
+          widget: markdown,
+          buttons: ['bold', 'italic', 'link', 'heading-one', 'heading-three'],
+          editor_components: [],
+          modes: ['rich_text'],
+        }
+      - {
+          label: 'Affiliate Link (For this article)',
+          name: 'affiliate-link',
           widget: relation,
-          collection: 'data',
-          value_field: 'buttons.items.link',
-          search_fields: ['buttons.items.title'],
-          display_fields: ['buttons.items.title'],
+          collection: 'affiliate-links',
+          value_field: 'link',
+          search_fields: ['name', 'link'],
+          display_fields: ['name', 'link'],
         }
       - {
           label: 'Table',
@@ -151,7 +190,7 @@ collections:
             ],
         }
       - {
-          label: Related,
+          label: 'Related Articles (Maximum 3 items)',
           name: related,
           widget: list,
           max: 3,
@@ -168,44 +207,10 @@ collections:
               },
             ],
         }
-      - {
-          label: 'Related Articles',
-          name: 'relatedArticles',
-          widget: object,
-          fields:
-            [
-              {
-                label: 'Article 1',
-                name: 'article1',
-                widget: relation,
-                collection: 'article',
-                value_field: 'slug',
-                search_fields: ['title'],
-                display_fields: ['title'],
-              },
-              {
-                label: 'Article 2',
-                name: 'article2',
-                widget: relation,
-                collection: 'article',
-                value_field: 'slug',
-                search_fields: ['title'],
-                display_fields: ['title'],
-              },
-              {
-                label: 'Article 3',
-                name: 'article3',
-                widget: relation,
-                collection: 'article',
-                value_field: 'slug',
-                search_fields: ['title'],
-                display_fields: ['title'],
-              },
-            ],
-        }
-
   - name: 'data'
-    label: 'Data'
+    editor:
+      preview: false
+    label: 'Navbar & Footer'
     files:
       - file: 'src/data/navbar.md'
         label: 'Navbar'
@@ -293,27 +298,9 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: Description, name: description, widget: text }
               - { label: 'Button Text', name: buttonText, widget: string }
-      - file: 'src/data/buttons.md'
-        name: 'buttons'
-        label: 'Buttons'
-        fields:
-          - {
-              label: 'Data Key',
-              name: 'dataKey',
-              widget: 'hidden',
-              default: 'buttons',
-            }
-          - {
-              label: 'Buttons',
-              name: 'items',
-              widget: list,
-              fields:
-                [
-                  { label: 'Title', name: 'title', widget: string },
-                  { label: 'Link', name: 'link', widget: string },
-                ],
-            }
   - name: 'pages'
+    editor:
+      preview: false
     label: 'Pages'
     files:
       - file: 'src/pages/index.md'

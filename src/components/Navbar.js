@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { MenuIcon } from './Icons'
+import PreviewCompatibleImage from './PreviewCompatibleImage'
 
-export function NavbarTemplate({ data }) {
+export function NavbarTemplate({ data, logo }) {
   const [open, setOpen] = React.useState(false)
 
   return (
@@ -11,7 +11,7 @@ export function NavbarTemplate({ data }) {
       <div className="container navbar__container">
         <div className="navbar__brand">
           <Link to="/" title="Logo">
-            <GatsbyImage image={getImage(data.logo)} alt="Logo" />
+            <PreviewCompatibleImage {...logo} />
           </Link>
           <button className="navbar__button" onClick={() => setOpen(!open)}>
             <MenuIcon />
@@ -38,7 +38,9 @@ export default function Navbar() {
         frontmatter {
           logo {
             childImageSharp {
-              gatsbyImageData(layout: FIXED, width: 100, placeholder: BLURRED)
+              fixed(width: 100) {
+                ...GatsbyImageSharpFixed
+              }
             }
           }
           menuitems {
@@ -49,5 +51,5 @@ export default function Navbar() {
       }
     }
   `)
-  return <NavbarTemplate data={frontmatter} />
+  return <NavbarTemplate data={frontmatter} logo={frontmatter.logo} />
 }
