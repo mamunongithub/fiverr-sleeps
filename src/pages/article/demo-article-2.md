@@ -9,8 +9,10 @@ description: |-
   This is simle [Link](https://example.com)
 featuredImage: /img/blog-index.jpg
 tags:
-  - { name: sommier, image: /img/sommier.png }
-  - { name: matelas, image: /img/matelas.png }
+  - name: sommier
+    image: /img/sommier.png
+  - name: matelas
+    image: /img/matelas.png
 quote: This is super **quote** 2
 pros:
   - Pros a
@@ -57,6 +59,8 @@ gauges:
       - Feature 2
       - Limited speed 25 km / h
       - Great acceleration
+related:
+  - article: demo-article
 relatedArticles:
   article1: demo-article
   article2: second-post
