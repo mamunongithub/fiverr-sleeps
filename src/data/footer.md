@@ -29,7 +29,7 @@ section3:
   title: Plus d’infos
   links:
     - title: Le Blog
-      link: /blog
+      link: /article
     - title: Contact
       link: /contact
     - title: FAQ

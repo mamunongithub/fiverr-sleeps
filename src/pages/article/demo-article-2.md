@@ -1,5 +1,5 @@
 ---
-templateKey: blog-post
+templateKey: article-page
 title: This is demo article 2
 slug: demo-article-2
 date: 2021-04-03T21:33:30.508Z
@@ -7,12 +7,10 @@ description: |-
   This is **super** description 2
 
   This is simle [Link](https://example.com)
-featuredimage: /img/blog-index.jpg
-category:
-  name: sommier
-  image: /img/sommier.png
+featuredImage: /img/blog-index.jpg
 tags:
-  - tag2
+  - { name: sommier, image: /img/sommier.png }
+  - { name: matelas, image: /img/matelas.png }
 quote: This is super **quote** 2
 pros:
   - Pros a

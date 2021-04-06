@@ -10,7 +10,7 @@ export function NavbarTemplate({ data }) {
     <nav className="navbar" role="navigation" aria-label="main-navigation">
       <div className="container navbar__container">
         <div className="navbar__brand">
-          <Link to="/sleeps" title="Logo">
+          <Link to="/" title="Logo">
             <GatsbyImage image={getImage(data.logo)} alt="Logo" />
           </Link>
           <button className="navbar__button" onClick={() => setOpen(!open)}>

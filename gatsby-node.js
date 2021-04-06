@@ -2,6 +2,7 @@ const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const { fmImagesToRelative } = require('gatsby-remark-relative-images')
+const marked = require('marked')
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
@@ -19,8 +20,10 @@ exports.createPages = ({ actions, graphql }) => {
               slug
             }
             frontmatter {
-              tags
               templateKey
+              tags {
+                name
+              }
             }
           }
         }
@@ -49,12 +52,14 @@ exports.createPages = ({ actions, graphql }) => {
       })
     })
 
-    // Tag pages:
     let tags = []
     // Iterate through each post, putting all found tags into `tags`
     posts.forEach((edge) => {
       if (_.get(edge, `node.frontmatter.tags`)) {
-        tags = tags.concat(edge.node.frontmatter.tags)
+        Array.isArray(edge.node.frontmatter.tags) &&
+          edge.node.frontmatter.tags.forEach(({ name }) => {
+            tags = tags.concat(name)
+          })
       }
     })
     // Eliminate duplicate tags
@@ -85,6 +90,30 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       name: `slug`,
       node,
       value,
+    })
+    createNodeField({
+      name: `description`,
+      node,
+      value:
+        typeof node.frontmatter.description === 'string'
+          ? marked(node.frontmatter.description)
+          : null,
+    })
+    createNodeField({
+      name: `productDetails`,
+      node,
+      value:
+        typeof node.frontmatter.productDetails === 'string'
+          ? marked(node.frontmatter.productDetails)
+          : null,
+    })
+    createNodeField({
+      name: `quote`,
+      node,
+      value:
+        typeof node.frontmatter.quote === 'string'
+          ? marked(node.frontmatter.quote)
+          : null,
     })
   }
 }

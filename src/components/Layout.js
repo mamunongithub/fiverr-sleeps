@@ -7,14 +7,18 @@ import { withPrefix } from 'gatsby'
 
 import '../styles/main.css'
 
-export default function TemplateWrapper({ children }) {
+export default function Layout({
+  title: pageTitle,
+  description: pageDescription,
+  children,
+}) {
   const { title, description } = useSiteMetadata()
   return (
     <div className="root">
       <Helmet>
         <html lang="en" />
-        <title>{title}</title>
-        <meta name="description" content={description} />
+        <title>{pageTitle ? `${pageTitle} | ${title}` : title}</title>
+        <meta name="description" content={pageDescription ?? description} />
 
         <link
           rel="apple-touch-icon"

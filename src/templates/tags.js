@@ -1,33 +1,21 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
+import { capitalize } from 'lodash'
 
 import Layout from '../components/Layout'
+import Cover from '../components/Cover'
+import ArticleItems from '../components/ArticleItems'
 
-export default function TagRoute(props) {
-  const posts = props.data.allMarkdownRemark.edges
-  const tag = props.pageContext.tag
-  const title = props.data.site.siteMetadata.title
-  const totalCount = props.data.allMarkdownRemark.totalCount
-  const tagHeader = `${totalCount} post${
-    totalCount === 1 ? '' : 's'
-  } tagged with “${tag}”`
-
+export default function TagRoute({ data: { tags }, pageContext: { tag } }) {
+  const tagTitle = `${capitalize(tag)} Articles`
   return (
-    <Layout>
-      <section>
-        <Helmet title={`${tag} | ${title}`} />
-        <h3>{tagHeader}</h3>
-        <ul>
-          {posts.map((post) => (
-            <li key={post.node.fields.slug}>
-              <Link to={post.node.fields.slug}>
-                <h2>{post.node.frontmatter.title}</h2>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <Link to="/tags/">Browse all tags</Link>
+    <Layout title={tagTitle}>
+      <section className="container tags">
+        <Cover title={tagTitle} image="/simple-image.jpg" />
+        <h2 className="cover__subtitle">
+          Do you want to know the pros and cons before buying?
+        </h2>
+        <ArticleItems items={tags.edges} />
       </section>
     </Layout>
   )
@@ -35,17 +23,11 @@ export default function TagRoute(props) {
 
 export const tagPageQuery = graphql`
   query TagPage($tag: String) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(
+    tags: allMarkdownRemark(
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      filter: { frontmatter: { tags: { elemMatch: { name: { eq: $tag } } } } }
     ) {
-      totalCount
       edges {
         node {
           fields {
@@ -53,6 +35,13 @@ export const tagPageQuery = graphql`
           }
           frontmatter {
             title
+            featuredImage {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }

@@ -12,9 +12,9 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'blog'
-    label: 'Blog'
-    folder: 'src/pages/blog'
+  - name: 'atricle'
+    label: 'Atricle'
+    folder: 'src/pages/article'
     create: true
     slug: '{{slug}}'
     fields:
@@ -22,14 +22,23 @@ collections:
           label: 'Template Key',
           name: 'templateKey',
           widget: 'hidden',
-          default: 'blog-post',
+          default: 'article-page',
         }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Slug', name: 'slug', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'markdown' }
-      - { label: 'Featured Image', name: 'featuredimage', widget: image }
-      - { label: 'Tags', name: 'tags', widget: 'list' }
+      - { label: 'Featured Image', name: 'featuredImage', widget: image }
+      - {
+          label: 'Tags',
+          name: 'tags',
+          widget: 'list',
+          fields:
+            [
+              { label: 'Tag', name: tag, widget: string },
+              { label: 'Image', name: image, widget: image },
+            ],
+        }
       - { label: 'quote', name: 'quote', widget: 'markdown' }
       - {
           label: 'Pros',
@@ -142,6 +151,24 @@ collections:
             ],
         }
       - {
+          label: Related,
+          name: related,
+          widget: list,
+          max: 3,
+          fields:
+            [
+              {
+                label: 'Article',
+                name: 'article',
+                widget: relation,
+                collection: 'article',
+                value_field: 'slug',
+                search_fields: ['title'],
+                display_fields: ['title'],
+              },
+            ],
+        }
+      - {
           label: 'Related Articles',
           name: 'relatedArticles',
           widget: object,
@@ -151,7 +178,7 @@ collections:
                 label: 'Article 1',
                 name: 'article1',
                 widget: relation,
-                collection: 'blog',
+                collection: 'article',
                 value_field: 'slug',
                 search_fields: ['title'],
                 display_fields: ['title'],
@@ -160,7 +187,7 @@ collections:
                 label: 'Article 2',
                 name: 'article2',
                 widget: relation,
-                collection: 'blog',
+                collection: 'article',
                 value_field: 'slug',
                 search_fields: ['title'],
                 display_fields: ['title'],
@@ -169,7 +196,7 @@ collections:
                 label: 'Article 3',
                 name: 'article3',
                 widget: relation,
-                collection: 'blog',
+                collection: 'article',
                 value_field: 'slug',
                 search_fields: ['title'],
                 display_fields: ['title'],
