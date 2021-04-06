@@ -12,8 +12,8 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'atricle'
-    label: 'Atricle'
+  - name: 'article'
+    label: 'Article'
     folder: 'src/pages/article'
     create: true
     slug: '{{slug}}'

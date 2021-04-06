@@ -8,7 +8,7 @@ import ArticleItems from '../../components/ArticleItems'
 export default function ArticlePage({ data: { articles } }) {
   return (
     <Layout title="Articles">
-      <section className="container atricle">
+      <section className="container article">
         <Cover title="Articles" image="/simple-image.jpg" />
         <h2 className="cover__subtitle">
           Do you want to know the pros and cons before buying?
@@ -19,8 +19,8 @@ export default function ArticlePage({ data: { articles } }) {
   )
 }
 
-export const atriclePageQuery = graphql`
-  query AtriclePageQuery {
+export const articlePageQuery = graphql`
+  query ArticlePageQuery {
     articles: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { templateKey: { eq: "article-page" } } }

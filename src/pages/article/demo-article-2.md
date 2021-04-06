@@ -57,6 +57,8 @@ gauges:
       - Feature 2
       - Limited speed 25 km / h
       - Great acceleration
+related:
+  - article: demo-article
 relatedArticles:
   article1: demo-article
   article2: second-post
