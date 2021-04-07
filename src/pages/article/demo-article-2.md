@@ -1,5 +1,6 @@
 ---
 templateKey: article-page
+affiliateLink: https://google.com
 pros:
   - Pros a
   - Pros b
@@ -61,6 +62,9 @@ gauges:
       - Feature 2
       - Limited speed 25 km / h
       - Great acceleration
+generalNote:
+  message: Con una valoración de 9/10, podemos decir que es una buena inversión.
+  valuation: 9/10
 quote: This is super **quote** 2
 description: |-
   This is **super** description 2
