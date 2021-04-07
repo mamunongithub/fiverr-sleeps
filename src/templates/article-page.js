@@ -6,16 +6,12 @@ import Layout from '../components/Layout'
 import CircleChart from '../components/CircleChart'
 import ArticleItems from '../components/ArticleItems'
 
-export default function Article({
-  data: {
-    markdownRemark: { frontmatter: postData, fields: postFields },
-    allMarkdownRemark: { edges: posts },
-  },
-}) {
+export default function Article({ data: { article, articles, pageData } }) {
+  const { frontmatter: articleData, fields } = article
   let relatedArticles = []
-  if (postData.relatedArticles) {
-    relatedArticles = posts.filter((post) => {
-      return !!postData.relatedArticles.find(
+  if (articleData.relatedArticles) {
+    relatedArticles = articles.edges.filter((post) => {
+      return !!articleData.relatedArticles.find(
         ({ article }) => post.node.frontmatter.slug === article
       )
     })
@@ -23,32 +19,32 @@ export default function Article({
   const affiliateButton = (
     <a
       className="affiliate-links"
-      href={postData.affiliateLink}
+      href={articleData.affiliate.link}
       rel="nofollow noreferrer noopener"
       target="_blank"
     >
-      Ver en Amazon!
+      {articleData.affiliate.buttonText}
     </a>
   )
   return (
-    <Layout title={postData.title}>
+    <Layout title={articleData.title}>
       <section className="container article-page">
-        <h1 className="article-page__title">{postData.title}</h1>
+        <h1 className="article-page__title">{articleData.title}</h1>
         <Img
           className="article-page__image"
-          fluid={postData.articleImage.childImageSharp.fluid}
+          fluid={articleData.articleImage.childImageSharp.fluid}
         />
         <div
           className="article-page__description markdown-content"
           dangerouslySetInnerHTML={{
-            __html: postFields.articleDescriptionHTML,
+            __html: fields.articleDescriptionHTML,
           }}
         />
-        <h2 className="article-page__subtitle">Pros y contras</h2>
+        <h2 className="article-page__subtitle">{pageData.prosConsTitle}</h2>
         <div className="article-page__pros-cons">
           <div className="article-page__pros">
             <h3 className="article-page__pros-title">Pros</h3>
-            {postData.productPros.map((item, index) => (
+            {articleData.productPros.map((item, index) => (
               <div key={index} className="article-page__pros-item">
                 <span role="img" aria-label="Pros">
                   ✅
@@ -59,7 +55,7 @@ export default function Article({
           </div>
           <div className="article-page__cons">
             <h3 className="article-page__cons-title">Cons</h3>
-            {postData.productCons.map((item, index) => (
+            {articleData.productCons.map((item, index) => (
               <div key={index} className="article-page__cons-item">
                 <span role="img" aria-label="Cons">
                   ❌
@@ -76,11 +72,11 @@ export default function Article({
               <td colSpan="2">
                 <Img
                   className="article-page__product-image"
-                  fluid={postData.productImage.childImageSharp.fluid}
+                  fluid={articleData.productImage.childImageSharp.fluid}
                 />
               </td>
             </tr>
-            {postData.productDetails.map(({ name, value }, index) => (
+            {articleData.productDetails.map(({ name, value }, index) => (
               <tr key={index}>
                 <td>{name}</td>
                 <td>{value}</td>
@@ -90,33 +86,33 @@ export default function Article({
         </table>
         <div className="article-page__chart">
           <div className="article-page__chart-item">
-            <CircleChart percent={postData.productGauges.mode1.value} />
+            <CircleChart percent={articleData.productGauges.mode1.value} />
             <h4 className="article-page__chart-item-header">
-              {postData.productGauges.mode1.title}
+              {articleData.productGauges.mode1.title}
             </h4>
-            {postData.productGauges.mode1.features.map((item, index) => (
+            {articleData.productGauges.mode1.features.map((item, index) => (
               <div className="article-page__chart-list" key={index}>
                 {item}
               </div>
             ))}
           </div>
           <div className="article-page__chart-item">
-            <CircleChart percent={postData.productGauges.mode2.value} />
+            <CircleChart percent={articleData.productGauges.mode2.value} />
             <h4 className="article-page__chart-item-header">
-              {postData.productGauges.mode2.title}
+              {articleData.productGauges.mode2.title}
             </h4>
-            {postData.productGauges.mode2.features.map((item, index) => (
+            {articleData.productGauges.mode2.features.map((item, index) => (
               <div className="article-page__chart-list" key={index}>
                 {item}
               </div>
             ))}
           </div>
           <div className="article-page__chart-item">
-            <CircleChart percent={postData.productGauges.mode2.value} />
+            <CircleChart percent={articleData.productGauges.mode2.value} />
             <h4 className="article-page__chart-item-header">
-              {postData.productGauges.mode2.title}
+              {articleData.productGauges.mode2.title}
             </h4>
-            {postData.productGauges.mode2.features.map((item, index) => (
+            {articleData.productGauges.mode2.features.map((item, index) => (
               <div className="article-page__chart-list" key={index}>
                 {item}
               </div>
@@ -127,21 +123,30 @@ export default function Article({
           <div className="article-page__product-left">
             <Img
               className="article-page__product-image"
-              fluid={postData.productImage.childImageSharp.fluid}
+              fluid={articleData.productImage.childImageSharp.fluid}
             />
             {affiliateButton}
           </div>
           <div
             className="article-page__product-right markdown-content"
             dangerouslySetInnerHTML={{
-              __html: postFields.productDescriptionHTML,
+              __html: fields.productDescriptionHTML,
             }}
           />
+        </div>
+        <div className="general-note">
+          <div className="general-note__left">
+            {articleData.generalNote.valuation}
+          </div>
+          <div className="general-note__right">
+            <h4>{articleData.generalNote.message}</h4>
+            {affiliateButton}
+          </div>
         </div>
         {relatedArticles.length > 0 && (
           <>
             <h1 className="cool-title__wrapper">
-              <span className="cool-title">Related articles</span>
+              <span className="cool-title">{pageData.recentArticleTitle}</span>
             </h1>
             <ArticleItems items={relatedArticles} />
           </>
@@ -153,14 +158,17 @@ export default function Article({
 
 export const pageQuery = graphql`
   query ArticleByID($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+    article: markdownRemark(id: { eq: $id }) {
       fields {
         articleDescriptionHTML
         productDescriptionHTML
       }
       frontmatter {
         title
-        affiliateLink
+        affiliate {
+          link
+          buttonText
+        }
         articleImage {
           childImageSharp {
             fluid(maxWidth: 500) {
@@ -198,12 +206,16 @@ export const pageQuery = graphql`
             features
           }
         }
+        generalNote {
+          message
+          valuation
+        }
         relatedArticles {
           article
         }
       }
     }
-    allMarkdownRemark(
+    articles: allMarkdownRemark(
       filter: { frontmatter: { templateKey: { eq: "article-page" } } }
     ) {
       edges {
@@ -223,6 +235,12 @@ export const pageQuery = graphql`
             }
           }
         }
+      }
+    }
+    pageData: markdownRemark(frontmatter: { dataKey: { eq: "articlePage" } }) {
+      frontmatter {
+        prosConsTitle
+        recentArticleTitle
       }
     }
   }

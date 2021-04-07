@@ -20,7 +20,7 @@ export default function TagsPage({ data: { tags, articles, pageData } }) {
         <CategoryItems items={tags.edges} />
         <h1 className="cool-title__wrapper">
           <span className="cool-title">
-            {pageData.frontmatter.articleTitle}
+            {pageData.frontmatter.recentArticleTitle}
           </span>
         </h1>
         <ArticleItems items={articles.edges} />
@@ -86,7 +86,7 @@ export const tagPageQuery = graphql`
         }
         mainTitle
         secondaryTitle
-        articleTitle
+        recentArticleTitle
       }
     }
   }

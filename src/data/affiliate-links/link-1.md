@@ -1,5 +1,5 @@
 ---
-dataKey: affiliate-links
+dataKey: affiliateLinks
 name: Link 1
 link: https://example.com/example1
 ---

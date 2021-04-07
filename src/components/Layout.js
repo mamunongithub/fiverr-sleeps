@@ -5,8 +5,6 @@ import Navbar from '../components/Navbar'
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
 
-import '../styles/main.css'
-
 export default function Layout({
   title: pageTitle,
   description: pageDescription,

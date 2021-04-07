@@ -8,7 +8,7 @@ export default function Navbar() {
   const [open, setOpen] = React.useState(false)
 
   const data = useStaticQuery(graphql`
-    query HeaderQuery {
+    query NavbarQuery {
       markdownRemark(frontmatter: { dataKey: { eq: "navbar" } }) {
         frontmatter {
           logo {

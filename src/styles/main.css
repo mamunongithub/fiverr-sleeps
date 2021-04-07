@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
-@import './reboot.css';
 
 body {
   font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto,
@@ -500,9 +499,10 @@ body {
   color: #fff;
   background: #374151;
 }
+
 /* ====== category ====== */
 .category {
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 }
 .category__items {
   display: flex;
@@ -537,7 +537,7 @@ body {
 
 /* ====== article ====== */
 .article {
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 }
 .article__items {
   display: flex;
@@ -589,7 +589,7 @@ body {
 
 /* ====== tags ====== */
 .tags {
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 }
 
 /* ====== cool-title ====== */
@@ -676,7 +676,7 @@ body {
 
 /* ====== article-page ====== */
 .article-page {
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 }
 .article-page__title,
 .article-page__subtitle {
@@ -697,6 +697,7 @@ body {
 .article-page__description {
   margin-top: 4rem;
 }
+
 /* pros-cons */
 .article-page__pros,
 .article-page__cons {
@@ -735,6 +736,7 @@ body {
   text-align: center;
   margin-top: 4rem;
 }
+
 /* table */
 .article-page__product-table {
   margin: 4rem auto;
@@ -768,6 +770,7 @@ body {
   text-align: left;
   font-weight: bold;
 }
+
 /* chart */
 .article-page__chart {
   text-align: center;
@@ -798,6 +801,7 @@ body {
     padding: 2rem;
   }
 }
+
 /* product */
 .article-page__product {
   margin-bottom: 4rem;
@@ -821,6 +825,39 @@ body {
     width: 50%;
   }
 }
+/* general-note */
+.general-note {
+  margin: 4rem 0;
+}
+.general-note__left {
+  font-size: 92px;
+  font-weight: bold;
+  text-align: center;
+  color: rgba(26, 10, 56, 0.1);
+}
+.general-note__right {
+  text-align: center;
+}
+.general-note__right h4 {
+  font-size: 28px;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  line-height: 1.6;
+}
+@media (min-width: 720px) {
+  .general-note {
+    display: flex;
+  }
+  .general-note__left {
+    width: 40%;
+    text-align: right;
+    padding-right: 2rem;
+  }
+  .general-note__right {
+    width: 60%;
+    text-align: left;
+  }
+}
 /* ====== affiliate-links ====== */
 .affiliate-links {
   display: inline-block;
@@ -837,8 +874,8 @@ body {
   background-image: none;
   color: #000;
 }
-/* ====== markdown-content ====== */
 
+/* ====== markdown-content ====== */
 .markdown-content {
   line-height: 1.8;
   font-size: 20px;

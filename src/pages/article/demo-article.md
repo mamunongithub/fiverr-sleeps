@@ -2,7 +2,9 @@
 templateKey: article-page
 title: This is demo article
 slug: demo-article
-affiliateLink: https://example.com/example3
+affiliate:
+  link: https://example.com/example1
+  buttonText: Ver en Amazon!
 date: 2021-04-03T21:16:32.324Z
 tags:
   - name: sommier
@@ -58,4 +60,7 @@ productGauges:
     features:
       - Limited speed 25 km / h
       - Great acceleration
+generalNote:
+  message: Con una valoración de 9/10, podemos decir que es una buena inversión.
+  valuation: 9/10
 ---

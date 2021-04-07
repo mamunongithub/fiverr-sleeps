@@ -23,7 +23,7 @@ collections:
       - label: Data Key
         name: dataKey
         widget: hidden
-        default: affiliate-links
+        default: affiliateLinks
       - label: Name
         name: name
         widget: string
@@ -48,13 +48,20 @@ collections:
       - label: Slug
         name: slug
         widget: string
-      - label: Affiliate Link (For this article)
-        name: affiliateLink
-        widget: relation
-        collection: affiliateLinks
-        value_field: link
-        search_fields: [name, link]
-        display_fields: [name, link]
+      - label: Affiliate
+        name: affiliate
+        widget: object
+        fields:
+          - label: Link
+            name: link
+            widget: relation
+            collection: affiliateLinks
+            value_field: link
+            search_fields: [name, link]
+            display_fields: [name, link]
+          - label: Button Text
+            name: buttonText
+            widget: string
       - label: Date
         name: date
         widget: datetime
@@ -193,65 +200,6 @@ collections:
             value_field: slug
             search_fields: [title]
             display_fields: [title]
-  - name: pageData
-    editor:
-      preview: false
-    label: Page data
-    files:
-      - file: src/data/tags-page.md
-        label: Tags page
-        name: tagsPage
-        fields:
-          - label: Data Key
-            name: dataKey
-            widget: hidden
-            default: tagsPage
-          - label: Cover Image
-            name: coverImgae
-            widget: image
-          - label: Main Title
-            name: mainTitle
-            widget: string
-          - label: Secondary Title
-            name: secondaryTitle
-            widget: string
-          - label: Article Title
-            name: articleTitle
-            widget: string
-      - file: src/data/tag-page.md
-        label: Tag page
-        name: tagPage
-        fields:
-          - label: Data Key
-            name: dataKey
-            widget: hidden
-            default: tagPage
-          - label: Cover Image
-            name: coverImgae
-            widget: image
-          - label: Main Title
-            name: mainTitle
-            widget: string
-          - label: Secondary Title
-            name: secondaryTitle
-            widget: string
-      - file: src/data/articles-page.md
-        label: Articles page
-        name: articlesPage
-        fields:
-          - label: Data Key
-            name: dataKey
-            widget: hidden
-            default: articlesPage
-          - label: Cover Image
-            name: coverImgae
-            widget: image
-          - label: Main Title
-            name: mainTitle
-            widget: string
-          - label: Secondary Title
-            name: secondaryTitle
-            widget: string
   - name: data
     editor:
       preview: false
@@ -482,3 +430,71 @@ collections:
                     name: title
                   - label: Link
                     name: link
+      - file: src/data/tags-page.md
+        label: Tags Page
+        name: tagsPage
+        fields:
+          - label: Data Key
+            name: dataKey
+            widget: hidden
+            default: tagsPage
+          - label: Cover Image
+            name: coverImgae
+            widget: image
+          - label: Main Title
+            name: mainTitle
+            widget: string
+          - label: Secondary Title
+            name: secondaryTitle
+            widget: string
+          - label: Recent Article Title
+            name: recentArticleTitle
+            widget: string
+      - file: src/data/tag-page.md
+        label: Single Tag Page
+        name: tagPage
+        fields:
+          - label: Data Key
+            name: dataKey
+            widget: hidden
+            default: tagPage
+          - label: Cover Image
+            name: coverImgae
+            widget: image
+          - label: Main Title
+            name: mainTitle
+            widget: string
+          - label: Secondary Title
+            name: secondaryTitle
+            widget: string
+      - file: src/data/articles-page.md
+        label: Articles Page
+        name: articlesPage
+        fields:
+          - label: Data Key
+            name: dataKey
+            widget: hidden
+            default: articlesPage
+          - label: Cover Image
+            name: coverImgae
+            widget: image
+          - label: Main Title
+            name: mainTitle
+            widget: string
+          - label: Secondary Title
+            name: secondaryTitle
+            widget: string
+      - file: src/data/article-page.md
+        label: Single Article Page
+        name: articlePage
+        fields:
+          - label: Data Key
+            name: dataKey
+            widget: hidden
+            default: articlePage
+          - label: Pros & Cons Title
+            name: prosConsTitle
+            widget: string
+          - label: Recent Article Title
+            name: recentArticleTitle
+            widget: string

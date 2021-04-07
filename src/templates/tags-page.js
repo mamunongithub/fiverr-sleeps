@@ -6,13 +6,10 @@ import Layout from '../components/Layout'
 import Cover from '../components/Cover'
 import ArticleItems from '../components/ArticleItems'
 
-export default function TagRoute({
-  data: { tags, pageData },
-  pageContext: { tag },
-}) {
-  const tagTitle = pageData.frontmatter.mainTitle.replace(
+export default function TagRoute({ data: { pageData, tags }, pageContext }) {
+  const tagTitle = pageData.frontmatter.mainTitle.replaceAll(
     '{{tag}}',
-    capitalize(tag)
+    capitalize(pageContext.tag)
   )
   return (
     <Layout title={tagTitle}>
