@@ -33,7 +33,7 @@ collections:
   - name: article
     editor:
       preview: false
-    label: Article
+    label: Articles
     folder: src/pages/article
     create: true
     slug: '{{fields.slug}}'
@@ -307,7 +307,7 @@ collections:
     label: Pages
     files:
       - file: src/pages/index.md
-        label: Landing Page
+        label: Home Page
         name: index
         fields:
           - label: Template Key
