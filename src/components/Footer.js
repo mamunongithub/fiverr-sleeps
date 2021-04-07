@@ -8,7 +8,7 @@ export default function Footer() {
     query FooterQuery {
       markdownRemark(frontmatter: { dataKey: { eq: "footer" } }) {
         frontmatter {
-          section1 {
+          column1 {
             title
             description
             socialLinks {
@@ -18,21 +18,21 @@ export default function Footer() {
               linkedin
             }
           }
-          section2 {
+          column2 {
             title
             links {
               title
               link
             }
           }
-          section3 {
+          column3 {
             title
             links {
               title
               link
             }
           }
-          section4 {
+          column4 {
             title
             description
             buttonText
@@ -42,22 +42,17 @@ export default function Footer() {
     }
   `)
 
-  const {
-    section1,
-    section2,
-    section3,
-    section4,
-  } = data.markdownRemark.frontmatter
+  const { column1, column2, column3, column4 } = data.markdownRemark.frontmatter
 
   return (
     <footer className="footer">
       <div className="container footer__container">
         <div className="footer__section footer__section--social">
-          <h3 className="footer__title">{section1.title}</h3>
-          <p>{section1.description}</p>
+          <h3 className="footer__title">{column1.title}</h3>
+          <p>{column1.description}</p>
           <div className="footer__social-icons">
             <a
-              href={section1.socialLinks.facebook}
+              href={column1.socialLinks.facebook}
               target="_blank"
               rel="noreferrer"
             >
@@ -66,19 +61,19 @@ export default function Footer() {
             <a
               target="_blank"
               rel="noreferrer"
-              href={section1.socialLinks.youtube}
+              href={column1.socialLinks.youtube}
             >
               <YoutubeIcon />
             </a>
             <a
-              href={section1.socialLinks.pinterest}
+              href={column1.socialLinks.pinterest}
               target="_blank"
               rel="noreferrer"
             >
               <PinterestIcon />
             </a>
             <a
-              href={section1.socialLinks.linkedin}
+              href={column1.socialLinks.linkedin}
               target="_blank"
               rel="noreferrer"
             >
@@ -87,9 +82,9 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer__section">
-          <h3 className="footer__title">{section2.title}</h3>
+          <h3 className="footer__title">{column2.title}</h3>
           <div className="footer__list">
-            {section2.links.map(({ title, link }, index) => (
+            {column2.links.map(({ title, link }, index) => (
               <Link key={index} to={link}>
                 {title}
               </Link>
@@ -97,9 +92,9 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer__section">
-          <h3 className="footer__title">{section3.title}</h3>
+          <h3 className="footer__title">{column3.title}</h3>
           <div className="footer__list">
-            {section3.links.map(({ title, link }, index) => (
+            {column3.links.map(({ title, link }, index) => (
               <Link key={index} to={link}>
                 {title}
               </Link>
@@ -107,11 +102,11 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer__section footer__section--newsletter">
-          <h3 className="footer__title">{section4.title}</h3>
-          <p>{section4.description}</p>
+          <h3 className="footer__title">{column4.title}</h3>
+          <p>{column4.description}</p>
           <form className="footer__newsletter">
             <input type="text" placeholder="Votre email" />
-            <button>{section4.buttonText}</button>
+            <button>{column4.buttonText}</button>
           </form>
         </div>
       </div>

@@ -1,6 +1,6 @@
 ---
 dataKey: footer
-section1:
+column1:
   description: Sleeps.fr est le leader de la comparaison de produits de literie
     sur internet. Indépendant et 100% gratuit, notre mission est de vous aider à
     passer les meilleures nuits.
@@ -10,7 +10,7 @@ section1:
     youtube: https://www.youtube.com/channel/UCBlW8CFQ3C0-DJhxskmSUAA
     pinterest: https://www.pinterest.fr/sleeps_fr/
     linkedin: https://www.linkedin.com/company/sleeps/
-section2:
+column2:
   links:
     - title: Meilleurs Matelas
       link: /tags/meilleurs-matelas
@@ -25,7 +25,7 @@ section2:
     - title: Meilleurs Matelas Bébé
       link: /tag/meilleurs-matelas-bébé
   title: Guides Literie
-section3:
+column3:
   title: Plus d’infos
   links:
     - title: Le Blog
@@ -38,7 +38,7 @@ section3:
       link: /legal-notice
     - title: Politique de Transparence
       link: /transparency-policy
-section4:
+column4:
   title: La newsletter Sleeps.fr
   description: Chaque mois, des réductions exclusives et nos derniers tests
     produits dans votre boîte mail.

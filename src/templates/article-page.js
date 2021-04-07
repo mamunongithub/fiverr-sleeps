@@ -13,9 +13,9 @@ export default function Article({
   },
 }) {
   let relatedArticles = []
-  if (postData.related) {
+  if (postData.relatedArticles) {
     relatedArticles = posts.filter((post) => {
-      return !!postData.related.find(
+      return !!postData.relatedArticles.find(
         ({ article }) => post.node.frontmatter.slug === article
       )
     })
@@ -36,17 +36,19 @@ export default function Article({
         <h1 className="article-page__title">{postData.title}</h1>
         <Img
           className="article-page__image"
-          fluid={postData.featuredImage.childImageSharp.fluid}
+          fluid={postData.articleImage.childImageSharp.fluid}
         />
         <div
           className="article-page__description markdown-content"
-          dangerouslySetInnerHTML={{ __html: postFields.description }}
+          dangerouslySetInnerHTML={{
+            __html: postFields.articleDescriptionHTML,
+          }}
         />
         <h2 className="article-page__subtitle">Pros y contras</h2>
         <div className="article-page__pros-cons">
           <div className="article-page__pros">
             <h3 className="article-page__pros-title">Pros</h3>
-            {postData.pros.map((item, index) => (
+            {postData.productPros.map((item, index) => (
               <div key={index} className="article-page__pros-item">
                 <span role="img" aria-label="Pros">
                   ✅
@@ -57,7 +59,7 @@ export default function Article({
           </div>
           <div className="article-page__cons">
             <h3 className="article-page__cons-title">Cons</h3>
-            {postData.cons.map((item, index) => (
+            {postData.productCons.map((item, index) => (
               <div key={index} className="article-page__cons-item">
                 <span role="img" aria-label="Cons">
                   ❌
@@ -78,7 +80,7 @@ export default function Article({
                 />
               </td>
             </tr>
-            {postData.table.map(({ name, value }, index) => (
+            {postData.productDetails.map(({ name, value }, index) => (
               <tr key={index}>
                 <td>{name}</td>
                 <td>{value}</td>
@@ -88,33 +90,33 @@ export default function Article({
         </table>
         <div className="article-page__chart">
           <div className="article-page__chart-item">
-            <CircleChart percent={postData.gauges.mode1.value} />
+            <CircleChart percent={postData.productGauges.mode1.value} />
             <h4 className="article-page__chart-item-header">
-              {postData.gauges.mode1.title}
+              {postData.productGauges.mode1.title}
             </h4>
-            {postData.gauges.mode1.features.map((item, index) => (
+            {postData.productGauges.mode1.features.map((item, index) => (
               <div className="article-page__chart-list" key={index}>
                 {item}
               </div>
             ))}
           </div>
           <div className="article-page__chart-item">
-            <CircleChart percent={postData.gauges.mode2.value} />
+            <CircleChart percent={postData.productGauges.mode2.value} />
             <h4 className="article-page__chart-item-header">
-              {postData.gauges.mode2.title}
+              {postData.productGauges.mode2.title}
             </h4>
-            {postData.gauges.mode2.features.map((item, index) => (
+            {postData.productGauges.mode2.features.map((item, index) => (
               <div className="article-page__chart-list" key={index}>
                 {item}
               </div>
             ))}
           </div>
           <div className="article-page__chart-item">
-            <CircleChart percent={postData.gauges.mode2.value} />
+            <CircleChart percent={postData.productGauges.mode2.value} />
             <h4 className="article-page__chart-item-header">
-              {postData.gauges.mode2.title}
+              {postData.productGauges.mode2.title}
             </h4>
-            {postData.gauges.mode2.features.map((item, index) => (
+            {postData.productGauges.mode2.features.map((item, index) => (
               <div className="article-page__chart-list" key={index}>
                 {item}
               </div>
@@ -131,7 +133,9 @@ export default function Article({
           </div>
           <div
             className="article-page__product-right markdown-content"
-            dangerouslySetInnerHTML={{ __html: postFields.productDetails }}
+            dangerouslySetInnerHTML={{
+              __html: postFields.productDescriptionHTML,
+            }}
           />
         </div>
         {relatedArticles.length > 0 && (
@@ -151,22 +155,21 @@ export const pageQuery = graphql`
   query ArticleByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
       fields {
-        description
-        productDetails
+        articleDescriptionHTML
+        productDescriptionHTML
       }
       frontmatter {
         title
-        featuredImage {
+        affiliateLink
+        articleImage {
           childImageSharp {
             fluid(maxWidth: 500) {
               ...GatsbyImageSharpFluid
             }
           }
         }
-        affiliateLink
-        description
-        pros
-        cons
+        productPros
+        productCons
         productImage {
           childImageSharp {
             fluid(maxWidth: 500) {
@@ -174,11 +177,11 @@ export const pageQuery = graphql`
             }
           }
         }
-        table {
+        productDetails {
           name
           value
         }
-        gauges {
+        productGauges {
           mode1 {
             value
             title
@@ -195,7 +198,7 @@ export const pageQuery = graphql`
             features
           }
         }
-        related {
+        relatedArticles {
           article
         }
       }
@@ -211,7 +214,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             slug
-            featuredImage {
+            articleImage {
               childImageSharp {
                 fluid(maxWidth: 500) {
                   ...GatsbyImageSharpFluid

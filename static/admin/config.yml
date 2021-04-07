@@ -16,173 +16,161 @@ collections:
     editor:
       preview: false
     label: Affiliate Links
-    folder: 'src/data/affiliate-links'
+    folder: src/data/affiliate-links
     create: true
     slug: '{{name}}'
     fields:
-      - {
-          label: 'Data Key',
-          name: 'dataKey',
-          widget: 'hidden',
-          default: 'affiliate-links',
-        }
-      - { label: 'Name', name: 'name', widget: 'string' }
-      - { label: 'Link', name: 'link', widget: 'string' }
-  - name: 'article'
+      - label: Data Key
+        name: dataKey
+        widget: hidden
+        default: affiliate-links
+      - label: Name
+        name: name
+        widget: string
+      - label: Link
+        name: link
+        widget: string
+  - name: article
     editor:
       preview: false
-    label: 'Article'
-    folder: 'src/pages/article'
+    label: Article
+    folder: src/pages/article
     create: true
     slug: '{{fields.slug}}'
     fields:
-      - {
-          label: 'Template Key',
-          name: 'templateKey',
-          widget: 'hidden',
-          default: 'article-page',
-        }
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Slug', name: 'slug', widget: 'string' }
-      - {
-          label: 'Affiliate Link (For this article)',
-          name: 'affiliateLink',
-          widget: relation,
-          collection: 'affiliateLinks',
-          value_field: 'link',
-          search_fields: ['name', 'link'],
-          display_fields: ['name', 'link'],
-        }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - {
-          label: 'Description',
-          name: 'description',
-          widget: 'markdown',
-          buttons:
-            ['bold', 'italic', 'link', 'heading-one', 'heading-three', 'quote'],
-          editor_components: [],
-          modes: ['rich_text'],
-        }
-      - { label: 'Featured Image', name: 'featuredImage', widget: image }
-      - {
-          label: 'Tags',
-          name: 'tags',
-          widget: 'list',
-          fields:
-            [
-              { label: 'Name', name: name, widget: string },
-              { label: 'Image', name: image, widget: image },
-            ],
-        }
-      - {
-          label: 'Pros',
-          name: 'pros',
-          widget: 'list',
-          field: { label: 'Pros', name: 'pros', widget: 'string' },
-        }
-      - {
-          label: 'Cons',
-          name: 'cons',
-          widget: 'list',
-          field: { label: 'Cons', name: 'cons', widget: 'string' },
-        }
-      - { label: 'Product Image', name: 'productImage', widget: image }
-      - {
-          label: 'Product Details',
-          name: 'productDetails',
-          widget: markdown,
-          buttons:
-            ['bold', 'italic', 'link', 'heading-one', 'heading-three', 'quote'],
-          editor_components: [],
-          modes: ['rich_text'],
-        }
-      - {
-          label: 'Table',
-          name: 'table',
-          widget: list,
-          fields:
-            [
-              { label: 'Name', name: 'name', widget: string },
-              { label: 'Value', name: 'value', widget: string },
-            ],
-        }
-      - {
-          label: 'Gauges',
-          name: 'gauges',
-          widget: object,
-          fields:
-            [
-              {
-                label: 'Mode 1',
-                name: 'mode1',
-                widget: object,
-                fields:
-                  [
-                    {
-                      label: 'Value (in percent)',
-                      name: 'value',
-                      widget: number,
-                      min: 0,
-                      max: 100,
-                    },
-                    { label: 'Title', name: 'title', widget: string },
-                    {
-                      label: 'Features',
-                      name: 'features',
-                      widget: list,
-                      field:
-                        { label: 'Feature', name: 'feature', widget: string },
-                    },
-                  ],
-              },
-              {
-                label: 'Mode 2',
-                name: 'mode2',
-                widget: object,
-                fields:
-                  [
-                    {
-                      label: 'Value (in percent)',
-                      name: 'value',
-                      widget: number,
-                      min: 0,
-                      max: 100,
-                    },
-                    { label: 'Title', name: 'title', widget: string },
-                    {
-                      label: 'Features',
-                      name: 'features',
-                      widget: list,
-                      field:
-                        { label: 'Feature', name: 'feature', widget: string },
-                    },
-                  ],
-              },
-              {
-                label: 'Mode 3',
-                name: 'mode3',
-                widget: object,
-                fields:
-                  [
-                    {
-                      label: 'Value (in percent)',
-                      name: 'value',
-                      widget: number,
-                      min: 0,
-                      max: 100,
-                    },
-                    { label: 'Title', name: 'title', widget: string },
-                    {
-                      label: 'Features',
-                      name: 'features',
-                      widget: list,
-                      field:
-                        { label: 'Feature', name: 'feature', widget: string },
-                    },
-                  ],
-              },
-            ],
-        }
+      - label: Template Key
+        name: templateKey
+        widget: hidden
+        default: article-page
+      - label: Title
+        name: title
+        widget: string
+      - label: Slug
+        name: slug
+        widget: string
+      - label: Affiliate Link (For this article)
+        name: affiliateLink
+        widget: relation
+        collection: affiliateLinks
+        value_field: link
+        search_fields: [name, link]
+        display_fields: [name, link]
+      - label: Date
+        name: date
+        widget: datetime
+      - label: Tags
+        name: tags
+        widget: list
+        fields:
+          - label: Name
+            name: name
+            widget: string
+          - label: Image
+            name: image
+            widget: image
+      - label: Article Image
+        name: articleImage
+        widget: image
+      - label: Article Description
+        name: articleDescription
+        widget: markdown
+        buttons: [bold, italic, link, heading-one, heading-three, quote]
+        editor_components: []
+        modes: [rich_text]
+      - label: Product Pros
+        name: productPros
+        widget: list
+        field:
+          label: Pros
+          name: pros
+          widget: string
+      - label: Product Cons
+        name: productCons
+        widget: list
+        field:
+          label: Cons
+          name: cons
+          widget: string
+      - label: Product Image
+        name: productImage
+        widget: image
+      - label: Product Description
+        name: productDescription
+        widget: markdown
+        buttons: [bold, italic, link, heading-one, heading-three, quote]
+        editor_components: []
+        modes: [rich_text]
+      - label: Product Details
+        name: productDetails
+        widget: list
+        fields:
+          - label: Name
+            name: name
+            widget: string
+          - label: Value
+            name: value
+            widget: string
+      - label: Product Gauges
+        name: productGauges
+        widget: object
+        fields:
+          - label: Mode 1
+            name: mode1
+            widget: object
+            fields:
+              - label: Value (0 - 100)
+                name: value
+                widget: number
+                min: 0
+                max: 100
+              - label: Title
+                name: title
+                widget: string
+              - label: Features
+                name: features
+                widget: list
+                field:
+                  label: Feature
+                  name: feature
+                  widget: string
+          - label: Mode 2
+            name: mode2
+            widget: object
+            fields:
+              - label: Value (0 - 100)
+                name: value
+                widget: number
+                min: 0
+                max: 100
+              - label: Title
+                name: title
+                widget: string
+              - label: Features
+                name: features
+                widget: list
+                field:
+                  label: Feature
+                  name: feature
+                  widget: string
+          - label: Mode 3
+            name: mode3
+            widget: object
+            fields:
+              - label: Value (0 - 100)
+                name: value
+                widget: number
+                min: 0
+                max: 100
+              - label: Title
+                name: title
+                widget: string
+              - label: Features
+                name: features
+                widget: list
+                field:
+                  label: Feature
+                  name: feature
+                  widget: string
       - label: General Note
         name: generalNote
         widget: object
@@ -193,32 +181,26 @@ collections:
           - label: Message
             name: message
             widget: string
-      - {
-          label: 'Related Articles (Maximum 3 items)',
-          name: related,
-          widget: list,
-          max: 3,
-          fields:
-            [
-              {
-                label: 'Article',
-                name: 'article',
-                widget: relation,
-                collection: 'article',
-                value_field: 'slug',
-                search_fields: ['title'],
-                display_fields: ['title'],
-              },
-            ],
-        }
-  - name: 'pageData'
+      - label: Related Articles (Maximum 3)
+        name: relatedArticles
+        widget: list
+        max: 3
+        fields:
+          - label: Article
+            name: article
+            widget: relation
+            collection: article
+            value_field: slug
+            search_fields: [title]
+            display_fields: [title]
+  - name: pageData
     editor:
       preview: false
-    label: 'Page data'
+    label: Page data
     files:
-      - file: 'src/data/tags-page.md'
-        label: 'Tags page'
-        name: 'tagsPage'
+      - file: src/data/tags-page.md
+        label: Tags page
+        name: tagsPage
         fields:
           - label: Data Key
             name: dataKey
@@ -236,9 +218,9 @@ collections:
           - label: Article Title
             name: articleTitle
             widget: string
-      - file: 'src/data/tag-page.md'
-        label: 'Tag page'
-        name: 'tagPage'
+      - file: src/data/tag-page.md
+        label: Tag page
+        name: tagPage
         fields:
           - label: Data Key
             name: dataKey
@@ -253,9 +235,9 @@ collections:
           - label: Secondary Title
             name: secondaryTitle
             widget: string
-      - file: 'src/data/articles-page.md'
-        label: 'Articles page'
-        name: 'articlesPage'
+      - file: src/data/articles-page.md
+        label: Articles page
+        name: articlesPage
         fields:
           - label: Data Key
             name: dataKey
@@ -270,227 +252,233 @@ collections:
           - label: Secondary Title
             name: secondaryTitle
             widget: string
-  - name: 'data'
+  - name: data
     editor:
       preview: false
-    label: 'Navbar & Footer'
+    label: Navbar & Footer
     files:
-      - file: 'src/data/navbar.md'
-        label: 'Navbar'
-        name: 'navbar'
+      - file: src/data/navbar.md
+        label: Navbar
+        name: navbar
         fields:
-          - {
-              label: 'Data Key',
-              name: 'dataKey',
-              widget: 'hidden',
-              default: 'navbar',
-            }
-          - { label: 'Logo', name: logo, widget: image }
-          - {
-              label: 'Menu items',
-              name: 'menuitems',
-              widget: 'list',
-              fields:
-                [
-                  { label: 'Title', name: 'title' },
-                  { label: 'Link', name: 'link' },
-                ],
-            }
-      - file: 'src/data/footer.md'
-        label: 'Footer'
-        name: 'footer'
+          - label: Data Key
+            name: dataKey
+            widget: hidden
+            default: navbar
+          - label: Logo
+            name: logo
+            widget: image
+          - label: Menu items
+            name: menuitems
+            widget: list
+            fields:
+              - label: Title
+                name: title
+              - label: Link
+                name: link
+      - file: src/data/footer.md
+        label: Footer
+        name: footer
         fields:
-          - {
-              label: 'Data Key',
-              name: 'dataKey',
-              widget: 'hidden',
-              default: 'footer',
-            }
-          - label: 'Section One'
-            name: 'section1'
+          - label: Data Key
+            name: dataKey
+            widget: hidden
+            default: footer
+          - label: Column 1
+            name: column1
             widget: object
             fields:
-              - { label: Title, name: title, widget: string }
-              - { label: Description, name: description, widget: text }
-              - {
-                  label: 'Social links',
-                  name: 'socialLinks',
-                  widget: 'object',
-                  fields:
-                    [
-                      { label: 'Facebook', name: 'facebook', widget: string },
-                      { label: 'Youtube', name: 'youtube', widget: string },
-                      { label: 'Pinterest', name: 'pinterest', widget: string },
-                      { label: 'Linkedin', name: 'linkedin', widget: string },
-                    ],
-                }
-          - label: 'Section Two'
-            name: 'section2'
+              - label: Title
+                name: title
+                widget: string
+              - label: Description
+                name: description
+                widget: text
+              - label: Social links
+                name: socialLinks
+                widget: object
+                fields:
+                  - label: Facebook
+                    name: facebook
+                    widget: string
+                  - label: Youtube
+                    name: youtube
+                    widget: string
+                  - label: Pinterest
+                    name: pinterest
+                    widget: string
+                  - label: Linkedin
+                    name: linkedin
+                    widget: string
+          - label: Column 2
+            name: column2
             widget: object
             fields:
-              - { label: Title, name: title, widget: string }
-              - {
-                  label: 'Links',
-                  name: 'links',
-                  widget: 'list',
-                  fields:
-                    [
-                      { label: 'Title', name: 'title' },
-                      { label: 'Link', name: 'link' },
-                    ],
-                }
-          - label: 'Section Three'
-            name: 'section3'
+              - label: Title
+                name: title
+                widget: string
+              - label: Links
+                name: links
+                widget: list
+                fields:
+                  - label: Title
+                    name: title
+                  - label: Link
+                    name: link
+          - label: Column 3
+            name: column3
             widget: object
             fields:
-              - { label: Title, name: title, widget: string }
-              - {
-                  label: 'Links',
-                  name: 'links',
-                  widget: 'list',
-                  fields:
-                    [
-                      { label: 'Title', name: 'title' },
-                      { label: 'Link', name: 'link' },
-                    ],
-                }
-          - label: 'Section Four'
-            name: 'section4'
+              - label: Title
+                name: title
+                widget: string
+              - label: Links
+                name: links
+                widget: list
+                fields:
+                  - label: Title
+                    name: title
+                  - label: Link
+                    name: link
+          - label: Column 4
+            name: column4
             widget: object
             fields:
-              - { label: Title, name: title, widget: string }
-              - { label: Description, name: description, widget: text }
-              - { label: 'Button Text', name: buttonText, widget: string }
-  - name: 'pages'
+              - label: Title
+                name: title
+                widget: string
+              - label: Description
+                name: description
+                widget: text
+              - label: Button Text
+                name: buttonText
+                widget: string
+  - name: pages
     editor:
       preview: false
-    label: 'Pages'
+    label: Pages
     files:
-      - file: 'src/pages/index.md'
-        label: 'Landing Page'
-        name: 'index'
+      - file: src/pages/index.md
+        label: Landing Page
+        name: index
         fields:
-          - {
-              label: 'Template Key',
-              name: 'templateKey',
-              widget: 'hidden',
-              default: 'index-page',
-            }
-          - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Subtitle', name: 'subtitle', widget: 'string' }
-          - { label: 'Tagline', name: 'tagline', widget: 'string' }
-          - {
-              label: 'Feature tags',
-              name: 'featureTags',
-              widget: 'object',
-              fields:
-                [
-                  {
-                    label: 'Item 1',
-                    name: 'item1',
-                    widget: 'object',
-                    fields:
-                      [
-                        { label: 'Image', name: 'image', widget: 'image' },
-                        { label: 'Link', name: 'link', widget: 'string' },
-                      ],
-                  },
-                  {
-                    label: 'Item 2',
-                    name: 'item2',
-                    widget: 'object',
-                    fields:
-                      [
-                        { label: 'Image', name: 'image', widget: 'image' },
-                        { label: 'Link', name: 'link', widget: 'string' },
-                      ],
-                  },
-                  {
-                    label: 'Item 3',
-                    name: 'item3',
-                    widget: 'object',
-                    fields:
-                      [
-                        { label: 'Image', name: 'image', widget: 'image' },
-                        { label: 'Link', name: 'link', widget: 'string' },
-                      ],
-                  },
-                  {
-                    label: 'Item 4',
-                    name: 'item4',
-                    widget: 'object',
-                    fields:
-                      [
-                        { label: 'Image', name: 'image', widget: 'image' },
-                        { label: 'Link', name: 'link', widget: 'string' },
-                      ],
-                  },
-                ],
-            }
-          - {
-              label: 'Section 2',
-              name: 'section2',
-              widget: 'object',
-              fields:
-                [
-                  { label: 'Image', name: 'image', widget: 'image' },
-                  { label: 'Tagline', name: 'tagline', widget: 'string' },
-                  { label: 'Title', name: 'title', widget: 'string' },
-                  { label: 'Description', name: 'description', widget: 'text' },
-                  {
-                    label: 'Button Text',
-                    name: 'buttonText',
-                    widget: 'string',
-                  },
-                  {
-                    label: 'Button Link',
-                    name: 'buttonLink',
-                    widget: 'string',
-                  },
-                ],
-            }
-          - {
-              label: 'Section 3',
-              name: 'section3',
-              widget: 'object',
-              fields:
-                [
-                  { label: 'Tagline', name: 'tagline', widget: 'string' },
-                  { label: 'Title', name: 'title', widget: 'string' },
-                  {
-                    label: 'Content List',
-                    name: 'contentList',
-                    widget: 'list',
-                    fields:
-                      [
-                        { label: 'Title', name: 'title' },
-                        {
-                          label: 'Description',
-                          name: 'description',
-                          widget: 'text',
-                        },
-                      ],
-                  },
-                  { label: 'Image', name: 'image', widget: 'image' },
-                ],
-            }
-          - {
-              label: 'Section 4',
-              name: 'section4',
-              widget: 'object',
-              fields:
-                [
-                  { label: 'Tagline', name: 'tagline', widget: 'string' },
-                  { label: 'Title', name: 'title', widget: 'string' },
-                  {
-                    label: 'Category List',
-                    name: 'categoryList',
-                    widget: 'list',
-                    fields:
-                      [
-                        { label: 'Title', name: 'title' },
-                        { label: 'Link', name: 'link' },
-                      ],
-                  },
-                ],
-            }
+          - label: Template Key
+            name: templateKey
+            widget: hidden
+            default: index-page
+          - label: Title
+            name: title
+            widget: string
+          - label: Subtitle
+            name: subtitle
+            widget: string
+          - label: Tagline
+            name: tagline
+            widget: string
+          - label: Feature tags
+            name: featureTags
+            widget: object
+            fields:
+              - label: Item 1
+                name: item1
+                widget: object
+                fields:
+                  - label: Image
+                    name: image
+                    widget: image
+                  - label: Link
+                    name: link
+                    widget: string
+              - label: Item 2
+                name: item2
+                widget: object
+                fields:
+                  - label: Image
+                    name: image
+                    widget: image
+                  - label: Link
+                    name: link
+                    widget: string
+              - label: Item 3
+                name: item3
+                widget: object
+                fields:
+                  - label: Image
+                    name: image
+                    widget: image
+                  - label: Link
+                    name: link
+                    widget: string
+              - label: Item 4
+                name: item4
+                widget: object
+                fields:
+                  - label: Image
+                    name: image
+                    widget: image
+                  - label: Link
+                    name: link
+                    widget: string
+          - label: Section 2
+            name: section2
+            widget: object
+            fields:
+              - label: Image
+                name: image
+                widget: image
+              - label: Tagline
+                name: tagline
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Description
+                name: description
+                widget: text
+              - label: Button Text
+                name: buttonText
+                widget: string
+              - label: Button Link
+                name: buttonLink
+                widget: string
+          - label: Section 3
+            name: section3
+            widget: object
+            fields:
+              - label: Tagline
+                name: tagline
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Content List
+                name: contentList
+                widget: list
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                  - label: Description
+                    name: description
+                    widget: text
+              - label: Image
+                name: image
+                widget: image
+          - label: Section 4
+            name: section4
+            widget: object
+            fields:
+              - label: Tagline
+                name: tagline
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Category List
+                name: categoryList
+                widget: list
+                fields:
+                  - label: Title
+                    name: title
+                  - label: Link
+                    name: link

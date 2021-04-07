@@ -41,7 +41,7 @@ export const tagPageQuery = graphql`
           }
           frontmatter {
             title
-            featuredImage {
+            articleImage {
               childImageSharp {
                 fluid(maxWidth: 500) {
                   ...GatsbyImageSharpFluid

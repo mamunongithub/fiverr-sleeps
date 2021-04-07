@@ -92,27 +92,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value,
     })
     createNodeField({
-      name: `description`,
+      name: `articleDescriptionHTML`,
       node,
       value:
-        typeof node.frontmatter.description === 'string'
-          ? marked(node.frontmatter.description)
+        typeof node.frontmatter.articleDescription === 'string'
+          ? marked(node.frontmatter.articleDescription)
           : null,
     })
     createNodeField({
-      name: `productDetails`,
+      name: `productDescriptionHTML`,
       node,
       value:
-        typeof node.frontmatter.productDetails === 'string'
-          ? marked(node.frontmatter.productDetails)
-          : null,
-    })
-    createNodeField({
-      name: `quote`,
-      node,
-      value:
-        typeof node.frontmatter.quote === 'string'
-          ? marked(node.frontmatter.quote)
+        typeof node.frontmatter.productDescription === 'string'
+          ? marked(node.frontmatter.productDescription)
           : null,
     })
   }

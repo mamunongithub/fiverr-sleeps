@@ -2,23 +2,25 @@
 templateKey: article-page
 title: This is demo article
 slug: demo-article
+affiliateLink: https://example.com/example3
 date: 2021-04-03T21:16:32.324Z
-description: |-
+tags:
+  - name: sommier
+    image: /img/sommier.png
+articleImage: /img/chemex.jpg
+articleDescription: |-
   This is **super** description
 
   This is simle [Link](https://example.com)
-featuredImage: /img/chemex.jpg
-tags:
-  - { name: sommier, image: /img/sommier.png }
-pros:
+productPros:
   - Pros 1
   - Pros 2
   - Pros 3
-cons:
+productCons:
   - Cons 1
   - Cons 2
 productImage: /img/products-grid2.jpg
-productDetails: |-
+productDescription: |-
   This is the product **details**
 
 
@@ -27,8 +29,7 @@ productDetails: |-
   * item 1
   * item 2
   * item 3
-affiliateLink: https://example.com/example3
-table:
+productDetails:
   - name: Modal
     value: Xiaomi Mi Pro
   - name: Maximum speed
@@ -37,9 +38,9 @@ table:
     value: 300 W
   - name: Weight
     value: 14.2 Kg
-gauges:
+productGauges:
   mode1:
-    value: 20
+    value: 25
     title: Basic
     features:
       - Limited speed 5 km / h
