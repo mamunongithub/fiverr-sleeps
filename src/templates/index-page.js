@@ -1,15 +1,22 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
-import { ChevronRightIcon } from '../components/Icons'
+import FeatureArticleItem from '../components/FeatureArticleItem'
 
-export function IndexPageTemplate({
-  data: { title, subtitle, tagline, featureTags, section2, section3, section4 },
-}) {
+export default function IndexPage({ data }) {
+  const {
+    title,
+    subtitle,
+    tagline,
+    featureTags,
+    section2,
+    section3,
+    section4,
+  } = data.markdownRemark.frontmatter
   return (
-    <>
+    <Layout>
       <section className="hero">
         <div className="container">
           <h1 className="hero__title">{title}</h1>
@@ -22,8 +29,8 @@ export function IndexPageTemplate({
           {Object.keys(featureTags).map((key) => (
             <div key={key} className="feature__item">
               <Link to={featureTags[key].link}>
-                <GatsbyImage
-                  image={getImage(featureTags[key].image)}
+                <Img
+                  fluid={featureTags[key].image.childImageSharp.fluid}
                   alt="Feature tag"
                 />
               </Link>
@@ -33,9 +40,9 @@ export function IndexPageTemplate({
       </section>
       <section className="container cta">
         <div className="cta__left">
-          <GatsbyImage
+          <Img
             className="cta__image"
-            image={getImage(section2.image)}
+            fluid={section2.image.childImageSharp.fluid}
             alt={section2.title}
           />
         </div>
@@ -100,9 +107,9 @@ export function IndexPageTemplate({
           ))}
         </div>
         <div className="advantage__right">
-          <GatsbyImage
+          <Img
             style={{ position: 'static' }}
-            image={getImage(section3.image)}
+            fluid={section3.image.childImageSharp.fluid}
             alt={section3.title}
           />
         </div>
@@ -121,26 +128,6 @@ export function IndexPageTemplate({
           </div>
         </div>
       </section>
-    </>
-  )
-}
-
-const FeatureArticleItem = ({ subtitle, title, to, linkText }) => (
-  <div className="feature-article__item-wrapper">
-    <div className="feature-article__item">
-      <strong className="feature-article__subtitle">{subtitle}</strong>
-      <h3 className="feature-article__title">{title}</h3>
-      <Link to={to} className="feature-article__link">
-        {linkText} <ChevronRightIcon />
-      </Link>
-    </div>
-  </div>
-)
-
-export default function IndexPage({ data }) {
-  return (
-    <Layout>
-      <IndexPageTemplate data={data.markdownRemark.frontmatter} />
     </Layout>
   )
 }
@@ -156,7 +143,9 @@ export const indexPageQuery = graphql`
           item1 {
             image {
               childImageSharp {
-                gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
             link
@@ -164,7 +153,9 @@ export const indexPageQuery = graphql`
           item2 {
             image {
               childImageSharp {
-                gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
             link
@@ -172,7 +163,9 @@ export const indexPageQuery = graphql`
           item3 {
             image {
               childImageSharp {
-                gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
             link
@@ -180,7 +173,9 @@ export const indexPageQuery = graphql`
           item4 {
             image {
               childImageSharp {
-                gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
             link
@@ -189,7 +184,9 @@ export const indexPageQuery = graphql`
         section2 {
           image {
             childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+              fluid(maxWidth: 500) {
+                ...GatsbyImageSharpFluid
+              }
             }
           }
           tagline
@@ -207,7 +204,9 @@ export const indexPageQuery = graphql`
           }
           image {
             childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+              fluid(maxWidth: 500) {
+                ...GatsbyImageSharpFluid
+              }
             }
           }
         }

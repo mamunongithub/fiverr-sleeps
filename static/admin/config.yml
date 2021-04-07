@@ -12,7 +12,7 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: affiliate-links
+  - name: affiliateLinks
     editor:
       preview: false
     label: Affiliate Links
@@ -44,12 +44,22 @@ collections:
         }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Slug', name: 'slug', widget: 'string' }
+      - {
+          label: 'Affiliate Link (For this article)',
+          name: 'affiliateLink',
+          widget: relation,
+          collection: 'affiliateLinks',
+          value_field: 'link',
+          search_fields: ['name', 'link'],
+          display_fields: ['name', 'link'],
+        }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - {
           label: 'Description',
           name: 'description',
           widget: 'markdown',
-          buttons: ['bold', 'italic', 'link', 'heading-one', 'heading-three'],
+          buttons:
+            ['bold', 'italic', 'link', 'heading-one', 'heading-three', 'quote'],
           editor_components: [],
           modes: ['rich_text'],
         }
@@ -63,14 +73,6 @@ collections:
               { label: 'Name', name: name, widget: string },
               { label: 'Image', name: image, widget: image },
             ],
-        }
-      - {
-          label: 'quote',
-          name: 'quote',
-          widget: 'markdown',
-          buttons: ['bold', 'italic', 'link', 'heading-one', 'heading-three'],
-          editor_components: [],
-          modes: ['rich_text'],
         }
       - {
           label: 'Pros',
@@ -89,18 +91,10 @@ collections:
           label: 'Product Details',
           name: 'productDetails',
           widget: markdown,
-          buttons: ['bold', 'italic', 'link', 'heading-one', 'heading-three'],
+          buttons:
+            ['bold', 'italic', 'link', 'heading-one', 'heading-three', 'quote'],
           editor_components: [],
           modes: ['rich_text'],
-        }
-      - {
-          label: 'Affiliate Link (For this article)',
-          name: 'affiliate-link',
-          widget: relation,
-          collection: 'affiliate-links',
-          value_field: 'link',
-          search_fields: ['name', 'link'],
-          display_fields: ['name', 'link'],
         }
       - {
           label: 'Table',
@@ -189,6 +183,16 @@ collections:
               },
             ],
         }
+      - label: General Note
+        name: generalNote
+        widget: object
+        fields:
+          - label: Valuation
+            name: valuation
+            widget: string
+          - label: Message
+            name: message
+            widget: string
       - {
           label: 'Related Articles (Maximum 3 items)',
           name: related,
@@ -207,6 +211,65 @@ collections:
               },
             ],
         }
+  - name: 'pageData'
+    editor:
+      preview: false
+    label: 'Page data'
+    files:
+      - file: 'src/data/tags-page.md'
+        label: 'Tags page'
+        name: 'tagsPage'
+        fields:
+          - label: Data Key
+            name: dataKey
+            widget: hidden
+            default: tagsPage
+          - label: Cover Image
+            name: coverImgae
+            widget: image
+          - label: Main Title
+            name: mainTitle
+            widget: string
+          - label: Secondary Title
+            name: secondaryTitle
+            widget: string
+          - label: Article Title
+            name: articleTitle
+            widget: string
+      - file: 'src/data/tag-page.md'
+        label: 'Tag page'
+        name: 'tagPage'
+        fields:
+          - label: Data Key
+            name: dataKey
+            widget: hidden
+            default: tagPage
+          - label: Cover Image
+            name: coverImgae
+            widget: image
+          - label: Main Title
+            name: mainTitle
+            widget: string
+          - label: Secondary Title
+            name: secondaryTitle
+            widget: string
+      - file: 'src/data/articles-page.md'
+        label: 'Articles page'
+        name: 'articlesPage'
+        fields:
+          - label: Data Key
+            name: dataKey
+            widget: hidden
+            default: articlesPage
+          - label: Cover Image
+            name: coverImgae
+            widget: image
+          - label: Main Title
+            name: mainTitle
+            widget: string
+          - label: Secondary Title
+            name: secondaryTitle
+            widget: string
   - name: 'data'
     editor:
       preview: false

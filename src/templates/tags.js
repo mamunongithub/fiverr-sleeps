@@ -6,14 +6,20 @@ import Layout from '../components/Layout'
 import Cover from '../components/Cover'
 import ArticleItems from '../components/ArticleItems'
 
-export default function TagRoute({ data: { tags }, pageContext: { tag } }) {
-  const tagTitle = `${capitalize(tag)} Articles`
+export default function TagRoute({
+  data: { tags, pageData },
+  pageContext: { tag },
+}) {
+  const tagTitle = pageData.frontmatter.mainTitle.replace(
+    '{{tag}}',
+    capitalize(tag)
+  )
   return (
     <Layout title={tagTitle}>
       <section className="container tags">
-        <Cover title={tagTitle} image="/simple-image.jpg" />
+        <Cover title={tagTitle} image={pageData.frontmatter.coverImage} />
         <h2 className="cover__subtitle">
-          Do you want to know the pros and cons before buying?
+          {pageData.frontmatter.secondaryTitle}
         </h2>
         <ArticleItems items={tags.edges} />
       </section>
@@ -44,6 +50,19 @@ export const tagPageQuery = graphql`
             }
           }
         }
+      }
+    }
+    pageData: markdownRemark(frontmatter: { dataKey: { eq: "tagPage" } }) {
+      frontmatter {
+        coverImage {
+          childImageSharp {
+            fluid(maxWidth: 1000, maxHeight: 400) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        mainTitle
+        secondaryTitle
       }
     }
   }

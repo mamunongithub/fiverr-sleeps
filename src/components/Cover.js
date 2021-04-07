@@ -1,13 +1,13 @@
 import React from 'react'
-import PreviewCompatibleImage from './PreviewCompatibleImage'
+import Img from 'gatsby-image'
 
 export default function Cover({ image, title }) {
   return (
     <div className="cover__wrapper">
-      <PreviewCompatibleImage
-        image={image}
-        alt="Cover image"
+      <Img
         className="cover__image"
+        fluid={image.childImageSharp.fluid}
+        alt="Cover image"
       />
       <h1 className="cover__title">{title}</h1>
     </div>

@@ -3,9 +3,52 @@ import { graphql, Link, useStaticQuery } from 'gatsby'
 
 import { FacebookIcon, YoutubeIcon, PinterestIcon, LinkedinIcon } from './Icons'
 
-export function FooterTemplate({
-  data: { section1, section2, section3, section4 },
-}) {
+export default function Footer() {
+  const data = useStaticQuery(graphql`
+    query FooterQuery {
+      markdownRemark(frontmatter: { dataKey: { eq: "footer" } }) {
+        frontmatter {
+          section1 {
+            title
+            description
+            socialLinks {
+              facebook
+              youtube
+              pinterest
+              linkedin
+            }
+          }
+          section2 {
+            title
+            links {
+              title
+              link
+            }
+          }
+          section3 {
+            title
+            links {
+              title
+              link
+            }
+          }
+          section4 {
+            title
+            description
+            buttonText
+          }
+        }
+      }
+    }
+  `)
+
+  const {
+    section1,
+    section2,
+    section3,
+    section4,
+  } = data.markdownRemark.frontmatter
+
   return (
     <footer className="footer">
       <div className="container footer__container">
@@ -74,47 +117,4 @@ export function FooterTemplate({
       </div>
     </footer>
   )
-}
-
-export default function Footer() {
-  const {
-    markdownRemark: { frontmatter },
-  } = useStaticQuery(graphql`
-    query FooterQuery {
-      markdownRemark(frontmatter: { dataKey: { eq: "footer" } }) {
-        frontmatter {
-          section1 {
-            title
-            description
-            socialLinks {
-              facebook
-              youtube
-              pinterest
-              linkedin
-            }
-          }
-          section2 {
-            title
-            links {
-              title
-              link
-            }
-          }
-          section3 {
-            title
-            links {
-              title
-              link
-            }
-          }
-          section4 {
-            title
-            description
-            buttonText
-          }
-        }
-      }
-    }
-  `)
-  return <FooterTemplate data={frontmatter} />
 }

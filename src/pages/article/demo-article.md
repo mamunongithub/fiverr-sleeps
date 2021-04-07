@@ -10,7 +10,6 @@ description: |-
 featuredImage: /img/chemex.jpg
 tags:
   - { name: sommier, image: /img/sommier.png }
-quote: This is super **quote**
 pros:
   - Pros 1
   - Pros 2
@@ -28,7 +27,7 @@ productDetails: |-
   * item 1
   * item 2
   * item 3
-button: https://example.com/example3
+affiliateLink: https://example.com/example3
 table:
   - name: Modal
     value: Xiaomi Mi Pro

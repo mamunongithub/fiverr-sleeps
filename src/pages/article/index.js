@@ -5,13 +5,16 @@ import Layout from '../../components/Layout'
 import Cover from '../../components/Cover'
 import ArticleItems from '../../components/ArticleItems'
 
-export default function ArticlePage({ data: { articles } }) {
+export default function ArticlePage({ data: { articles, pageData } }) {
   return (
-    <Layout title="Articles">
+    <Layout title={pageData.frontmatter.mainTitle}>
       <section className="container article">
-        <Cover title="Articles" image="/simple-image.jpg" />
+        <Cover
+          title={pageData.frontmatter.mainTitle}
+          image={pageData.frontmatter.coverImage}
+        />
         <h2 className="cover__subtitle">
-          Do you want to know the pros and cons before buying?
+          {pageData.frontmatter.secondaryTitle}
         </h2>
         <ArticleItems items={articles.edges} />
       </section>
@@ -41,6 +44,19 @@ export const articlePageQuery = graphql`
             }
           }
         }
+      }
+    }
+    pageData: markdownRemark(frontmatter: { dataKey: { eq: "articlesPage" } }) {
+      frontmatter {
+        coverImage {
+          childImageSharp {
+            fluid(maxWidth: 1000, maxHeight: 400) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        mainTitle
+        secondaryTitle
       }
     }
   }

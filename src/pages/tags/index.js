@@ -6,17 +6,22 @@ import Cover from '../../components/Cover'
 import CategoryItems from '../../components/CategoryItems'
 import ArticleItems from '../../components/ArticleItems'
 
-export default function TagsPage({ data: { tags, articles } }) {
+export default function TagsPage({ data: { tags, articles, pageData } }) {
   return (
-    <Layout title="Category">
+    <Layout title={'Category'}>
       <section className="container category">
-        <Cover title="Category" image="/simple-image.jpg" />
+        <Cover
+          title={pageData.frontmatter.mainTitle}
+          image={pageData.frontmatter.coverImage}
+        />
         <h2 className="cover__subtitle">
-          Do you want to know the pros and cons before buying?
+          {pageData.frontmatter.secondaryTitle}
         </h2>
         <CategoryItems items={tags.edges} />
         <h1 className="cool-title__wrapper">
-          <span className="cool-title">Recent articles</span>
+          <span className="cool-title">
+            {pageData.frontmatter.articleTitle}
+          </span>
         </h1>
         <ArticleItems items={articles.edges} />
       </section>
@@ -68,6 +73,20 @@ export const tagPageQuery = graphql`
             }
           }
         }
+      }
+    }
+    pageData: markdownRemark(frontmatter: { dataKey: { eq: "tagsPage" } }) {
+      frontmatter {
+        coverImage {
+          childImageSharp {
+            fluid(maxWidth: 1000, maxHeight: 400) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        mainTitle
+        secondaryTitle
+        articleTitle
       }
     }
   }

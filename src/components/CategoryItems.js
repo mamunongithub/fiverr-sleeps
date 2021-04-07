@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import Img from 'gatsby-image'
 import { kebabCase, capitalize } from 'lodash'
-
-import PreviewCompatibleImage from './PreviewCompatibleImage'
 
 export default function CategoryItems({ items }) {
   const tagsMap = {}
@@ -32,10 +31,10 @@ export default function CategoryItems({ items }) {
           className="category__item"
         >
           {image && (
-            <PreviewCompatibleImage
+            <Img
               className="category__item-image"
               alt={name}
-              {...image}
+              fixed={image.childImageSharp.fixed}
             />
           )}
           <h4 className="category__item-title">{capitalize(name)}</h4>
