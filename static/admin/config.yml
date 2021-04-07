@@ -439,7 +439,7 @@ collections:
             widget: hidden
             default: tagsPage
           - label: Cover Image
-            name: coverImgae
+            name: coverImage
             widget: image
           - label: Main Title
             name: mainTitle
@@ -459,7 +459,7 @@ collections:
             widget: hidden
             default: tagPage
           - label: Cover Image
-            name: coverImgae
+            name: coverImage
             widget: image
           - label: Main Title
             name: mainTitle
@@ -476,7 +476,7 @@ collections:
             widget: hidden
             default: articlesPage
           - label: Cover Image
-            name: coverImgae
+            name: coverImage
             widget: image
           - label: Main Title
             name: mainTitle
