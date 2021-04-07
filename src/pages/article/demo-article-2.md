@@ -1,34 +1,20 @@
 ---
 templateKey: article-page
-title: This is demo article 2
-slug: demo-article-2
-date: 2021-04-03T21:33:30.508Z
-description: |-
-  This is **super** description 2
-
-  This is simle [Link](https://example.com)
-featuredImage: /img/blog-index.jpg
-tags:
-  - name: sommier
-    image: /img/sommier.png
-  - name: matelas
-    image: /img/matelas.png
-quote: This is super **quote** 2
 pros:
   - Pros a
   - Pros b
   - Pros c
+relatedArticles:
+  article1: demo-article
+  article2: second-post
+  article3: third-post
+slug: demo-article-2
+date: 2021-04-03T21:33:30.508Z
+featuredImage: /img/blog-index.jpg
 cons:
   - Cons d
   - Cons e
 productImage: /img/products-grid2.jpg
-productDetails: |-
-  This is the product **details**
-
-  * item a
-  * item b
-  * item c
-button: https://example.com/example3
 table:
   - name: Model
     value: Xiaomi Redmi Pro
@@ -38,6 +24,22 @@ table:
     value: 3000 W
   - name: Weight
     value: 14.2 Kg
+related:
+  - article: demo-article
+button: https://example.com/example3
+title: This is demo article 2
+tags:
+  - name: sommier
+    image: /img/sommier.png
+  - name: matelas
+    image: /img/matelas.png
+productDetails: |-
+  This is the product **details**
+
+  * item a
+  * item b
+  * item c
+affiliate-link: https://example.com/example1
 gauges:
   mode1:
     value: 25
@@ -59,10 +61,9 @@ gauges:
       - Feature 2
       - Limited speed 25 km / h
       - Great acceleration
-related:
-  - article: demo-article
-relatedArticles:
-  article1: demo-article
-  article2: second-post
-  article3: third-post
+quote: This is super **quote** 2
+description: |-
+  This is **super** description 2
+
+  This is simle [Link](https://example.com)
 ---
