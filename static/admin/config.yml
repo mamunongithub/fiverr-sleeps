@@ -16,7 +16,7 @@ collections:
     name: affiliateLinks
     folder: src/data/affiliate-links
     create: true
-    slug: '{{name}}'
+    slug: '{{id}}'
     editor:
       preview: false
     fields:
@@ -24,8 +24,8 @@ collections:
         name: dataKey
         widget: hidden
         default: affiliateLinks
-      - label: Name
-        name: name
+      - label: Id (Should Be Unique & Don't change it)
+        name: id
         widget: string
       - label: Link
         name: link
@@ -56,9 +56,9 @@ collections:
             name: link
             widget: relation
             collection: affiliateLinks
-            value_field: link
-            search_fields: [name, link]
-            display_fields: [name, link]
+            value_field: id
+            search_fields: [id, link]
+            display_fields: [id, link]
           - label: Button Text
             name: buttonText
             widget: string

@@ -3,7 +3,7 @@ templateKey: article-page
 title: This is demo article 2
 slug: demo-article-2
 affiliate:
-  link: https://example.com/example2
+  link: link-2
   buttonText: Ver en Amazon!
 date: 2021-04-03T21:33:30.508Z
 tags:

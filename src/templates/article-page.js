@@ -7,7 +7,9 @@ import ArticleItems from '../components/ArticleItems'
 import { findByArray } from '../helper/helper'
 import ProductMode from '../components/ProductMode'
 
-export default function ArticlePage({ data: { article, articles, pageData } }) {
+export default function ArticlePage({
+  data: { article, articles, affiliateLinks, pageData },
+}) {
   const { frontmatter: articleData, fields } = article
   let relatedArticles = []
   if (articleData.relatedArticles) {
@@ -18,16 +20,21 @@ export default function ArticlePage({ data: { article, articles, pageData } }) {
       cb2: (item) => item.article,
     })
   }
-  const affiliateButton = (
+  const affiliateLink = affiliateLinks.edges.find(
+    (item) => item.node.frontmatter.id === articleData.affiliate.link
+  )
+
+  const affiliateButton = affiliateLink ? (
     <a
       className="affiliate-links"
-      href={articleData.affiliate.link}
+      href={affiliateLink.node.frontmatter.link}
       rel="nofollow noreferrer noopener"
       target="_blank"
     >
       {articleData.affiliate.buttonText}
     </a>
-  )
+  ) : null
+
   return (
     <Layout title={articleData.title}>
       <section className="container article-page">
@@ -209,6 +216,18 @@ export const pageQuery = graphql`
                 }
               }
             }
+          }
+        }
+      }
+    }
+    affiliateLinks: allMarkdownRemark(
+      filter: { frontmatter: { dataKey: { eq: "affiliateLinks" } } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            id
+            link
           }
         }
       }
