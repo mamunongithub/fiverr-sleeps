@@ -1,7 +1,7 @@
 ---
 templateKey: article-page
-title: This is demo article
-slug: demo-article
+title: This is demo article 1
+slug: demo-article-1
 affiliate:
   link: https://example.com/example1
   buttonText: Ver en Amazon!
