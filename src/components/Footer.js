@@ -43,6 +43,15 @@ export default function Footer() {
       }
     }
   `)
+  const [email, setEmail] = React.useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    /**
+     * Do something with email
+     */
+    console.log({ email })
+  }
 
   const { column1, column2, column3, column4 } = data.markdownRemark.frontmatter
 
@@ -106,8 +115,13 @@ export default function Footer() {
         <div className="footer__section footer__section--newsletter">
           <h3 className="footer__title">{column4.title}</h3>
           <p>{column4.description}</p>
-          <form className="footer__newsletter">
-            <input type="text" placeholder={column4.placeholderText} />
+          <form onSubmit={handleSubmit} className="footer__newsletter">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={column4.placeholderText}
+            />
             <button>{column4.buttonText}</button>
           </form>
         </div>

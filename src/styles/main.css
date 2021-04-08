@@ -428,13 +428,13 @@ body {
 .footer__newsletter {
   margin-top: auto;
 }
-.footer__newsletter [type='text'] {
+.footer__newsletter [type='email'] {
   width: 100%;
   padding: 0.5rem 0.75rem;
   border-radius: 0.25rem;
   border: 1px solid #e5e7eb;
 }
-.footer__newsletter [type='text']:focus {
+.footer__newsletter [type='email']:focus {
   box-shadow: 0 0 4px #0002;
   outline: none;
 }
