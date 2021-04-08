@@ -28,7 +28,7 @@ productPros:
 productCons:
   - Cons 1
   - Cons 2
-productImage: /img/products-grid2.jpg
+productImage: /img/coffee.png
 productDescription: >-
   # Laboris nisi ut aliquip ex ea
 
