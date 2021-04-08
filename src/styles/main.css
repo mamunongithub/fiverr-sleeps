@@ -230,6 +230,7 @@ body {
   margin: 0 -1rem 3rem -1rem;
 }
 .feature-article__item-wrapper {
+  flex-grow: 1;
   display: flex;
   padding: 1rem;
 }
@@ -246,6 +247,7 @@ body {
   background: #e1edf8;
 }
 .feature-article__item {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

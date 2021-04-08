@@ -407,7 +407,6 @@ collections:
                     value_field: slug
                     search_fields: [title]
                     display_fields: [title]
-
           - label: Section 3
             name: section3
             widget: object
@@ -514,6 +513,6 @@ collections:
           - label: Pros & Cons Title
             name: prosConsTitle
             widget: string
-          - label: Recent Article Title
-            name: recentArticleTitle
+          - label: Related Article Title
+            name: relatedArticleTitle
             widget: string

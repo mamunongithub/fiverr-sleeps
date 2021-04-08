@@ -4,17 +4,28 @@ import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
 import FeatureArticleItem from '../components/FeatureArticleItem'
+import { findByArray } from '../helper/helper'
 
-export default function IndexPage({ data }) {
+export default function IndexPage({ data: { article, articles } }) {
   const {
     title,
     subtitle,
     tagline,
     featureTags,
     section2,
+    featureArticles,
     section3,
     section4,
-  } = data.markdownRemark.frontmatter
+  } = article.frontmatter
+  let finalFeatureArticles = []
+  if (featureArticles.articles) {
+    finalFeatureArticles = findByArray({
+      arr1: articles.edges,
+      arr2: featureArticles.articles,
+      cb1: (item) => item.node.frontmatter.slug,
+      cb2: (item) => item.article,
+    })
+  }
   return (
     <Layout>
       <section className="hero">
@@ -57,42 +68,17 @@ export default function IndexPage({ data }) {
       </section>
       <section className="container feature-article">
         <div className="feature-article__wrapper">
-          <FeatureArticleItem
-            subtitle="MARQUES DE LITERIE"
-            title="Nous avons testé les meilleures marques de literie."
-            to="/"
-            linkText="VOIR LES MARQUES"
-          />
-          <FeatureArticleItem
-            subtitle="MARQUES DE LITERIE"
-            title="Nous avons testé les meilleures marques de literie."
-            to="/"
-            linkText="VOIR LES MARQUES"
-          />
-          <FeatureArticleItem
-            subtitle="MARQUES DE LITERIE"
-            title="Nous avons testé les meilleures marques de literie."
-            to="/"
-            linkText="VOIR LES MARQUES"
-          />
-          <FeatureArticleItem
-            subtitle="MARQUES DE LITERIE"
-            title="Nous avons testé les meilleures marques de literie."
-            to="/"
-            linkText="VOIR LES MARQUES"
-          />
-          <FeatureArticleItem
-            subtitle="MARQUES DE LITERIE"
-            title="Nous avons testé les meilleures marques de literie."
-            to="/"
-            linkText="VOIR LES MARQUES"
-          />
-          <FeatureArticleItem
-            subtitle="MARQUES DE LITERIE"
-            title="Nous avons testé les meilleures marques de literie."
-            to="/"
-            linkText="VOIR LES MARQUES"
-          />
+          {finalFeatureArticles.map(
+            ({ node: { frontmatter, fields } }, index) => (
+              <FeatureArticleItem
+                key={index}
+                subtitle={frontmatter.tags[0].name}
+                title={frontmatter.title}
+                to={fields.slug}
+                linkText={featureArticles.buttonText}
+              />
+            )
+          )}
         </div>
       </section>
       <section className="container advantage">
@@ -133,8 +119,10 @@ export default function IndexPage({ data }) {
 }
 
 export const indexPageQuery = graphql`
-  query SleepPageQuery {
-    markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+  query IndexPageQuery {
+    article: markdownRemark(
+      frontmatter: { templateKey: { eq: "index-page" } }
+    ) {
       frontmatter {
         title
         subtitle
@@ -195,6 +183,12 @@ export const indexPageQuery = graphql`
           buttonText
           buttonLink
         }
+        featureArticles {
+          articles {
+            article
+          }
+          buttonText
+        }
         section3 {
           tagline
           title
@@ -216,6 +210,25 @@ export const indexPageQuery = graphql`
           categoryList {
             title
             link
+          }
+        }
+      }
+    }
+    articles: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { templateKey: { eq: "article-page" } } }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            slug
+            title
+            tags {
+              name
+            }
           }
         }
       }

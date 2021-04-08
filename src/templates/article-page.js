@@ -5,15 +5,17 @@ import Img from 'gatsby-image'
 import Layout from '../components/Layout'
 import CircleChart from '../components/CircleChart'
 import ArticleItems from '../components/ArticleItems'
+import { findByArray } from '../helper/helper'
 
 export default function ArticlePage({ data: { article, articles, pageData } }) {
   const { frontmatter: articleData, fields } = article
   let relatedArticles = []
   if (articleData.relatedArticles) {
-    relatedArticles = articles.edges.filter((post) => {
-      return !!articleData.relatedArticles.find(
-        ({ article }) => post.node.frontmatter.slug === article
-      )
+    relatedArticles = findByArray({
+      arr1: articles.edges,
+      arr2: articleData.relatedArticles,
+      cb1: (item) => item.node.frontmatter.slug,
+      cb2: (item) => item.article,
     })
   }
   const affiliateButton = (
@@ -40,7 +42,9 @@ export default function ArticlePage({ data: { article, articles, pageData } }) {
             __html: fields.articleDescriptionHTML,
           }}
         />
-        <h2 className="article-page__subtitle">{pageData.prosConsTitle}</h2>
+        <h2 className="article-page__subtitle">
+          {pageData.frontmatter.prosConsTitle}
+        </h2>
         <div className="article-page__pros-cons">
           <div className="article-page__pros">
             <h3 className="article-page__pros-title">Pros</h3>
@@ -146,7 +150,9 @@ export default function ArticlePage({ data: { article, articles, pageData } }) {
         {relatedArticles.length > 0 && (
           <>
             <h1 className="cool-title__wrapper">
-              <span className="cool-title">{pageData.recentArticleTitle}</span>
+              <span className="cool-title">
+                {pageData.frontmatter.relatedArticleTitle}
+              </span>
             </h1>
             <ArticleItems items={relatedArticles} />
           </>
@@ -240,7 +246,7 @@ export const pageQuery = graphql`
     pageData: markdownRemark(frontmatter: { dataKey: { eq: "articlePage" } }) {
       frontmatter {
         prosConsTitle
-        recentArticleTitle
+        relatedArticleTitle
       }
     }
   }
