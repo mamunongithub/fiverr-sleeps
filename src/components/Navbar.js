@@ -3,6 +3,7 @@ import { Link, useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
 import { MenuIcon } from './Icons'
+import { resolveLink } from '../helper/helper'
 
 export default function Navbar() {
   const [open, setOpen] = React.useState(false)
@@ -42,7 +43,11 @@ export default function Navbar() {
         </div>
         <div className={`navbar__menu ${open ? 'navbar__menu--open' : ''}`}>
           {menuitems.map(({ title, link }, index) => (
-            <Link key={index} className="navbar__menu-item" to={link}>
+            <Link
+              key={index}
+              className="navbar__menu-item"
+              to={resolveLink(link)}
+            >
               {title}
             </Link>
           ))}

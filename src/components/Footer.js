@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
 
 import { FacebookIcon, YoutubeIcon, PinterestIcon, LinkedinIcon } from './Icons'
+import { resolveLink } from '../helper/helper'
 
 export default function Footer() {
   const data = useStaticQuery(graphql`
@@ -85,7 +86,7 @@ export default function Footer() {
           <h3 className="footer__title">{column2.title}</h3>
           <div className="footer__list">
             {column2.links.map(({ title, link }, index) => (
-              <Link key={index} to={link}>
+              <Link key={index} to={resolveLink(link)}>
                 {title}
               </Link>
             ))}
@@ -95,7 +96,7 @@ export default function Footer() {
           <h3 className="footer__title">{column3.title}</h3>
           <div className="footer__list">
             {column3.links.map(({ title, link }, index) => (
-              <Link key={index} to={link}>
+              <Link key={index} to={resolveLink(link)}>
                 {title}
               </Link>
             ))}

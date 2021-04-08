@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
 import FeatureArticleItem from '../components/FeatureArticleItem'
-import { findByArray } from '../helper/helper'
+import { findByArray, resolveLink } from '../helper/helper'
 
 export default function IndexPage({ data: { article, articles } }) {
   const {
@@ -39,7 +39,7 @@ export default function IndexPage({ data: { article, articles } }) {
         <div className="feature__wrapper">
           {Object.keys(featureTags).map((key) => (
             <div key={key} className="feature__item">
-              <Link to={featureTags[key].link}>
+              <Link to={resolveLink(featureTags[key].link)}>
                 <Img
                   fluid={featureTags[key].image.childImageSharp.fluid}
                   alt="Feature tag"
@@ -61,7 +61,7 @@ export default function IndexPage({ data: { article, articles } }) {
           <strong className="cta__subtitle">{section2.tagline}</strong>
           <h1 className="cta__title">{section2.title}</h1>
           <p className="cta__desc">{section2.description}</p>
-          <Link to={section2.buttonLink} className="cta__link">
+          <Link to={resolveLink(section2.buttonLink)} className="cta__link">
             {section2.buttonText}
           </Link>
         </div>
@@ -74,7 +74,7 @@ export default function IndexPage({ data: { article, articles } }) {
                 key={index}
                 subtitle={frontmatter.tags[0].name}
                 title={frontmatter.title}
-                to={fields.slug}
+                to={resolveLink(fields.slug)}
                 linkText={featureArticles.buttonText}
               />
             )
@@ -108,7 +108,7 @@ export default function IndexPage({ data: { article, articles } }) {
             {section4.categoryList.map(({ title, link }, index) => (
               <React.Fragment key={index}>
                 {index ? <span> | </span> : ''}
-                <Link to={link}>{title}</Link>
+                <Link to={resolveLink(link)}>{title}</Link>
               </React.Fragment>
             ))}
           </div>

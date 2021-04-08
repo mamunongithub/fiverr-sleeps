@@ -2,11 +2,17 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
+import { resolveLink } from '../helper/helper'
+
 export default function ArticleItems({ items }) {
   return (
     <div className="article__items">
       {items.map(({ node }, index) => (
-        <Link key={index} to={node.fields.slug} className="article__item">
+        <Link
+          key={index}
+          to={resolveLink(node.fields.slug)}
+          className="article__item"
+        >
           <div className="article__item-wrapper" />
           {node.frontmatter.articleImage && (
             <Img
