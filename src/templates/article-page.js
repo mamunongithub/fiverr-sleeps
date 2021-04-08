@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 import CircleChart from '../components/CircleChart'
 import ArticleItems from '../components/ArticleItems'
 
-export default function Article({ data: { article, articles, pageData } }) {
+export default function ArticlePage({ data: { article, articles, pageData } }) {
   const { frontmatter: articleData, fields } = article
   let relatedArticles = []
   if (articleData.relatedArticles) {
