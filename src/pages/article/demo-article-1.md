@@ -63,4 +63,6 @@ productGauges:
 generalNote:
   message: Con una valoración de 9/10, podemos decir que es una buena inversión.
   valuation: 9/10
+relatedArticles:
+  - article: demo-article-2
 ---
