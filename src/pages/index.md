@@ -26,17 +26,20 @@ section2:
     minute.
   buttonText: JE TROUVE MON MATELAS
   buttonLink: /tags
+featureArticles:
+  articles:
+    - article: demo-article
+    - article: demo-article-2
+  buttonText: VOIR LES MARQUES
 section3:
   contentList:
     - title: Des conseils d'experts
-      description:
-        "Tests, comparatifs, guides d'achats : avec son équipe de testeurs
+      description: "Tests, comparatifs, guides d'achats : avec son équipe de testeurs
         indépendants, Sleeps.fr est à votre service pour vous conseiller et vous
         aider à trouver gratuitement les meilleurs produits de literie du
         marché."
     - title: Des outils efficaces
-      description:
-        Des comparatifs et des simulateurs vous aideront à choisir une
+      description: Des comparatifs et des simulateurs vous aideront à choisir une
         literie adaptée à vos besoins et passer les meilleures nuits.
     - title: Un suivi personnalisé
       description: Vous avez une question ? Contactez directement notre équipe
