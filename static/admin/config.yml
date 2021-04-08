@@ -12,13 +12,13 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: affiliateLinks
-    editor:
-      preview: false
-    label: Affiliate Links
+  - label: Affiliate Links
+    name: affiliateLinks
     folder: src/data/affiliate-links
     create: true
     slug: '{{name}}'
+    editor:
+      preview: false
     fields:
       - label: Data Key
         name: dataKey
@@ -30,13 +30,13 @@ collections:
       - label: Link
         name: link
         widget: string
-  - name: article
-    editor:
-      preview: false
-    label: Articles
+  - label: Articles
+    name: article
     folder: src/pages/article
     create: true
     slug: '{{fields.slug}}'
+    editor:
+      preview: false
     fields:
       - label: Template Key
         name: templateKey
@@ -200,14 +200,14 @@ collections:
             value_field: slug
             search_fields: [title]
             display_fields: [title]
-  - name: data
+  - label: Navbar & Footer
+    name: data
     editor:
       preview: false
-    label: Navbar & Footer
     files:
-      - file: src/data/navbar.md
-        label: Navbar
+      - label: Navbar
         name: navbar
+        file: src/data/navbar.md
         fields:
           - label: Data Key
             name: dataKey
@@ -224,9 +224,9 @@ collections:
                 name: title
               - label: Link
                 name: link
-      - file: src/data/footer.md
-        label: Footer
+      - label: Footer
         name: footer
+        file: src/data/footer.md
         fields:
           - label: Data Key
             name: dataKey
@@ -301,14 +301,14 @@ collections:
               - label: Button Text
                 name: buttonText
                 widget: string
-  - name: pages
+  - label: Pages
+    name: pages
     editor:
       preview: false
-    label: Pages
     files:
-      - file: src/pages/index.md
-        label: Home Page
+      - label: Home Page
         name: index
+        file: src/pages/index.md
         fields:
           - label: Template Key
             name: templateKey
@@ -430,9 +430,9 @@ collections:
                     name: title
                   - label: Link
                     name: link
-      - file: src/data/tags-page.md
-        label: Tags Page
+      - label: Tags Page
         name: tagsPage
+        file: src/data/tags-page.md
         fields:
           - label: Data Key
             name: dataKey
@@ -450,9 +450,9 @@ collections:
           - label: Recent Article Title
             name: recentArticleTitle
             widget: string
-      - file: src/data/tag-page.md
-        label: Single Tag Page
+      - label: Single Tag Page
         name: tagPage
+        file: src/data/tag-page.md
         fields:
           - label: Data Key
             name: dataKey
@@ -467,9 +467,9 @@ collections:
           - label: Secondary Title
             name: secondaryTitle
             widget: string
-      - file: src/data/articles-page.md
-        label: Articles Page
+      - label: Articles Page
         name: articlesPage
+        file: src/data/articles-page.md
         fields:
           - label: Data Key
             name: dataKey
@@ -484,9 +484,9 @@ collections:
           - label: Secondary Title
             name: secondaryTitle
             widget: string
-      - file: src/data/article-page.md
-        label: Single Article Page
+      - label: Single Article Page
         name: articlePage
+        file: src/data/article-page.md
         fields:
           - label: Data Key
             name: dataKey
