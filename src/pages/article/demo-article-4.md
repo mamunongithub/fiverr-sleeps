@@ -70,7 +70,7 @@ productDetails:
     value: 14.2 Kg
 productGauges:
   mode1:
-    value: 51
+    value: 50
     title: Basic 2
     features:
       - Limited speed 5 km / h
