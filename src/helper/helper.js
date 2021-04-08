@@ -6,11 +6,11 @@ export const findByArray = ({ arr1, arr2, cb1 = justPass, cb2 = justPass }) =>
   )
 
 /**
- * WEIRD LINK ISSUE:
- *
- * Can't able to find what causes this
+ * WEIRD LINK ISSUE
  *
  * IN MARKDOWN    :  /articles
  * GRAPHQL RESULT :  ../pages/article
+ *
+ * Can't able to find what causes this
  */
 export const resolveLink = (link) => link.replace(/^\.\.\/pages/, '')
