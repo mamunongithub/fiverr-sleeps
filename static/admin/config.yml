@@ -389,6 +389,25 @@ collections:
               - label: Button Link
                 name: buttonLink
                 widget: string
+          - label: Feature Articles
+            name: featureArticles
+            widget: object
+            fields:
+              - label: Button Text
+                name: buttonText
+                widget: string
+              - label: Articles
+                name: articles
+                widget: list
+                fields:
+                  - label: Article
+                    name: article
+                    widget: relation
+                    collection: article
+                    value_field: slug
+                    search_fields: [title]
+                    display_fields: [title]
+
           - label: Section 3
             name: section3
             widget: object
