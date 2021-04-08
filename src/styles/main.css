@@ -515,7 +515,7 @@ body {
 .category__item {
   text-align: center;
   max-width: 350px;
-  min-width: 200px;
+  min-width: 300px;
   flex-grow: 1;
   flex-shrink: 0;
   box-shadow: 0 2px 48px #0002;
@@ -550,7 +550,7 @@ body {
   position: relative;
   text-align: center;
   max-width: 350px;
-  min-width: 200px;
+  min-width: 300px;
   flex-grow: 1;
   flex-shrink: 0;
   margin: 1rem;
