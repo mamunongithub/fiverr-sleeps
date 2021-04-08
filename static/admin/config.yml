@@ -301,6 +301,9 @@ collections:
               - label: Button Text
                 name: buttonText
                 widget: string
+              - label: Placeholder Text
+                name: placeholderText
+                widget: string
   - label: Pages
     name: pages
     editor:

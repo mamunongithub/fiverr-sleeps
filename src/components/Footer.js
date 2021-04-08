@@ -37,6 +37,7 @@ export default function Footer() {
             title
             description
             buttonText
+            placeholderText
           }
         }
       }
@@ -106,7 +107,7 @@ export default function Footer() {
           <h3 className="footer__title">{column4.title}</h3>
           <p>{column4.description}</p>
           <form className="footer__newsletter">
-            <input type="text" placeholder="Votre email" />
+            <input type="text" placeholder={column4.placeholderText} />
             <button>{column4.buttonText}</button>
           </form>
         </div>

@@ -43,4 +43,5 @@ column4:
   description: Chaque mois, des réductions exclusives et nos derniers tests
     produits dans votre boîte mail.
   buttonText: Je m'inscris !
+  placeholderText: Votre email
 ---
