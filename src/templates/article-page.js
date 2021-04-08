@@ -3,9 +3,9 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
-import CircleChart from '../components/CircleChart'
 import ArticleItems from '../components/ArticleItems'
 import { findByArray } from '../helper/helper'
+import ProductMode from '../components/ProductMode'
 
 export default function ArticlePage({ data: { article, articles, pageData } }) {
   const { frontmatter: articleData, fields } = article
@@ -89,39 +89,9 @@ export default function ArticlePage({ data: { article, articles, pageData } }) {
           </tbody>
         </table>
         <div className="article-page__chart">
-          <div className="article-page__chart-item">
-            <CircleChart percent={articleData.productGauges.mode1.value} />
-            <h4 className="article-page__chart-item-header">
-              {articleData.productGauges.mode1.title}
-            </h4>
-            {articleData.productGauges.mode1.features.map((item, index) => (
-              <div className="article-page__chart-list" key={index}>
-                {item}
-              </div>
-            ))}
-          </div>
-          <div className="article-page__chart-item">
-            <CircleChart percent={articleData.productGauges.mode2.value} />
-            <h4 className="article-page__chart-item-header">
-              {articleData.productGauges.mode2.title}
-            </h4>
-            {articleData.productGauges.mode2.features.map((item, index) => (
-              <div className="article-page__chart-list" key={index}>
-                {item}
-              </div>
-            ))}
-          </div>
-          <div className="article-page__chart-item">
-            <CircleChart percent={articleData.productGauges.mode2.value} />
-            <h4 className="article-page__chart-item-header">
-              {articleData.productGauges.mode2.title}
-            </h4>
-            {articleData.productGauges.mode2.features.map((item, index) => (
-              <div className="article-page__chart-list" key={index}>
-                {item}
-              </div>
-            ))}
-          </div>
+          <ProductMode {...articleData.productGauges.mode1} />
+          <ProductMode {...articleData.productGauges.mode2} />
+          <ProductMode {...articleData.productGauges.mode3} />
         </div>
         <div className="article-page__product">
           <div className="article-page__product-left">
