@@ -28,7 +28,7 @@ section2:
   buttonLink: /tags
 featureArticles:
   articles:
-    - article: demo-article
+    - article: demo-article-1
     - article: demo-article-2
   buttonText: VOIR LES MARQUES
 section3:
