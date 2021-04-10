@@ -81,9 +81,6 @@ collections:
       - label: Article Description
         name: articleDescription
         widget: markdown
-        buttons: [bold, italic, link, heading-one, heading-three, quote]
-        editor_components: []
-        modes: [rich_text]
       - label: Product Pros
         name: productPros
         widget: list
@@ -104,9 +101,6 @@ collections:
       - label: Product Description
         name: productDescription
         widget: markdown
-        buttons: [bold, italic, link, heading-one, heading-three, quote]
-        editor_components: []
-        modes: [rich_text]
       - label: Product Details
         name: productDetails
         widget: list
