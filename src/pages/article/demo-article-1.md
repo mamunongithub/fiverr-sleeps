@@ -26,7 +26,7 @@ articleDescription: >-
   AFTER
 
 
-  <a className="affiliate-links" rel="nofollow noreferrer noopener" target="_blank" @affiliate="link-1">Buy Now</a>
+  <a className="affiliate-links" rel="nofollow noreferrer noopener" target="_blank" @affiliate="link-2">Buy Now</a>
 
 
   LAST
