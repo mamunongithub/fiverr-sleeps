@@ -26,7 +26,7 @@ articleDescription: >-
   AFTER
 
 
-  <a className="affiliate-links" rel="nofollow noreferrer noopener" target="_blank" @relation-href="A LINK BUTTON">https://example.com</a>
+  <a className="affiliate-links" rel="nofollow noreferrer noopener" target="_blank" @affiliate="This is a id">OK there</a>
 
 
   LAST
