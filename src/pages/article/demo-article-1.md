@@ -32,11 +32,7 @@ articleDescription: >-
   AFTER
 
 
-
-
-  {{text}{This is link text}{link}{https://example.com/example1}}
-
-
+  <a href="https://example.com/example1">Super Example</a>
 
 
   LAST
