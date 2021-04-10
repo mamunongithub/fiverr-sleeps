@@ -9,7 +9,7 @@ column1:
     facebook: https://www.facebook.com/sleeps.fr/
     youtube: https://www.youtube.com/channel/UCBlW8CFQ3C0-DJhxskmSUAA
     pinterest: https://www.pinterest.fr/sleeps_fr/
-    linkedin: https://www.linkedin.com/company/sleeps/
+    linkedin: ""
 column2:
   links:
     - title: Meilleurs Matelas
