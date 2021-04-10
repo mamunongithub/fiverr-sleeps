@@ -734,6 +734,14 @@ body {
   font-size: 20px;
   padding: 1rem 3rem;
 }
+.article-page__pros-item:before {
+  content: '✅';
+  margin-right: 1rem;
+}
+.article-page__cons-item:before {
+  content: '❌';
+  margin-right: 1rem;
+}
 .article-page__product-link {
   text-align: center;
   margin-top: 4rem;

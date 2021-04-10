@@ -57,9 +57,6 @@ export default function ArticlePage({
             <h3 className="article-page__pros-title">Pros</h3>
             {articleData.productPros.map((item, index) => (
               <div key={index} className="article-page__pros-item">
-                <span role="img" aria-label="Pros">
-                  ✅
-                </span>{' '}
                 {item}
               </div>
             ))}
@@ -68,9 +65,6 @@ export default function ArticlePage({
             <h3 className="article-page__cons-title">Cons</h3>
             {articleData.productCons.map((item, index) => (
               <div key={index} className="article-page__cons-item">
-                <span role="img" aria-label="Cons">
-                  ❌
-                </span>{' '}
                 {item}
               </div>
             ))}
