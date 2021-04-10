@@ -26,14 +26,20 @@ articleDescription: >-
   BEFORE
 
 
-
-
   youtube aqz-KE-bpKQ
 
 
-
-
   AFTER
+
+
+
+
+  {{text}{This is link text}{link}{https://example.com/example1}}
+
+
+
+
+  LAST
 productPros:
   - Pros 1
   - Pros 2
