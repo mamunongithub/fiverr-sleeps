@@ -62,34 +62,42 @@ export default function Footer() {
           <h3 className="footer__title">{column1.title}</h3>
           <p>{column1.description}</p>
           <div className="footer__social-icons">
-            <a
-              href={column1.socialLinks.facebook}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FacebookIcon />
-            </a>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href={column1.socialLinks.youtube}
-            >
-              <YoutubeIcon />
-            </a>
-            <a
-              href={column1.socialLinks.pinterest}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <PinterestIcon />
-            </a>
-            <a
-              href={column1.socialLinks.linkedin}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <LinkedinIcon />
-            </a>
+            {column1.socialLinks.facebook && (
+              <a
+                href={column1.socialLinks.facebook}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FacebookIcon />
+              </a>
+            )}
+            {column1.socialLinks.youtube && (
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={column1.socialLinks.youtube}
+              >
+                <YoutubeIcon />
+              </a>
+            )}
+            {column1.socialLinks.pinterest && (
+              <a
+                href={column1.socialLinks.pinterest}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <PinterestIcon />
+              </a>
+            )}
+            {column1.socialLinks.linkedin && (
+              <a
+                href={column1.socialLinks.linkedin}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedinIcon />
+              </a>
+            )}
           </div>
         </div>
         <div className="footer__section">

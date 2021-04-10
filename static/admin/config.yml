@@ -249,15 +249,19 @@ collections:
                   - label: Facebook
                     name: facebook
                     widget: string
+                    required: false
                   - label: Youtube
                     name: youtube
                     widget: string
+                    required: false
                   - label: Pinterest
                     name: pinterest
                     widget: string
+                    required: false
                   - label: Linkedin
                     name: linkedin
                     widget: string
+                    required: false
           - label: Column 2
             name: column2
             widget: object
