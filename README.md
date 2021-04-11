@@ -2,7 +2,6 @@
 
 > * Make sure to use at least one `line-break` to separate `html` and `markdown` whenever you are using them together
 > * Do not `indent` html
-> * To delete button or image component inside rich editor first you have to click/focus and then hit `Delete` key on keyboard
 
 # Utility class
 
