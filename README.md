@@ -2,6 +2,7 @@
 
 > * Make sure to use at least one `line-break` to separate `html` and `markdown` whenever you are using them together
 > * Do not `indent` html
+> * You have to switch to `markdown` mode when you copy and paste from this documentation 
 
 # Utility class
 
