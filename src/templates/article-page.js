@@ -6,7 +6,9 @@ import Layout from '../components/Layout'
 import ArticleItems from '../components/ArticleItems'
 import { findByArray } from '../helper/helper'
 
-export default function ArticlePage({ data: { article, articles, pageData } }) {
+export default function ArticlePage({
+  data: { article, articles, affiliateLinks, pageData },
+}) {
   const { frontmatter: articleData } = article
   let relatedArticles = []
   if (articleData.relatedArticles) {
@@ -18,28 +20,36 @@ export default function ArticlePage({ data: { article, articles, pageData } }) {
     })
   }
 
-  const html = article.html.replace(
-    /<data-chart[\s\n]+value="([^"]+)"[\s\n]*\/>/g,
-    (_, value) => {
+  const html = article.html
+    .replace(/<data-chart[\s\n]+value="([^"]+)"[\s\n]*\/>/g, (_, value) => {
       const totalLength = 301.10565185546875
       return `
-    <div class="chart">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <circle
-          cx="50"
-          cy="50"
-          r="48"
-          stroke-dasharray="${totalLength}"
-          stroke-dashoffset="${totalLength - (value / 100) * totalLength}"
-        />
-      </svg>
-      <span>
-        ${value}%
-      </span>
-    </div>
+<div class="chart">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle
+      cx="50"
+      cy="50"
+      r="48"
+      stroke-dasharray="${totalLength}"
+      stroke-dashoffset="${totalLength - (value / 100) * totalLength}"
+    />
+  </svg>
+  <span>
+    ${value}%
+  </span>
+</div>
     `
-    }
-  )
+    })
+    .replace(/data-href="([^"]+)"/g, (match, id) => {
+      const affiliate = affiliateLinks.edges.find(
+        (edge) => edge.node.frontmatter.id === id
+      )
+      if (affiliate) {
+        return `href="${affiliate.node.frontmatter.link}"`
+      } else {
+        return match
+      }
+    })
 
   return (
     <Layout title={articleData.title}>

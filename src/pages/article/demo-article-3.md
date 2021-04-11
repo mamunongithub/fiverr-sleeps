@@ -35,6 +35,8 @@ Goodies 3
 
 This is content
 
+<a class="buy-button" rel="nofollow noreferrer noopener" target="_blank" data-href="link-1">Buy Now 1</a>
+
 </div>
 </div>
 
@@ -98,7 +100,9 @@ Feature 2
 ![Picture](/img/coffee.png)
 
 <div class="v-space">
-<a class="buy-button" href="https://example.com">Buy now</a>
+
+<a class="buy-button" rel="nofollow noreferrer noopener" target="_blank" data-href="link-3">Buy Now 3</a>
+
 </div>
 </div>
 <div class="col">
@@ -120,7 +124,7 @@ This is content
 
 ### This is the note
 
-<a class="buy-button" href="https://example.com">Buy now</a>
+<a class="buy-button" rel="nofollow noreferrer noopener" target="_blank" data-href="link-1">Buy Now 1</a>
 
 </div>
 </div>
@@ -136,17 +140,33 @@ This is content
 
 </td>
 </tr>
+<tr>
 <td>Modal</td>
 <td>This is Model</td>
 </tr>
-</tr>
+<tr>
 <td>Speed</td>
 <td>This is Speed</td>
 </tr>
-</tr>
+<tr>
 <td>Power</td>
 <td>This is Power</td>
 </tr>
+<tr>
+<td>Go now</td>
+<td>
+
+<a class="buy-button" rel="nofollow noreferrer noopener" target="_blank" data-href="link-3">Go now</a>
+
+</td>
 </tr>
 </tbody>
 </table>
+
+El [Xiaomi Mi Electric Scooter Pro 2](https://google.com) es el nuevo buque insignia de la marca Xiaomi dentro de su gama alta de patinetes eléctricos. Si bien sus mejoras probablemente no justifiquen su compra si tienes el modelo anterior ([Xiaomi Mi Scooter Pro](https://google.com)), se trata de uno de los **mejores patinetes eléctricos del momento que destaca** especialmente por su extraordinaria potencia y velocidad y una ajustada relación calidad-precio.
+
+<div class="text-center">
+
+<a class="buy-button" rel="nofollow noreferrer noopener" target="_blank" data-href="link-2">Buy Now 2</a>
+
+</div>

@@ -1,7 +1,8 @@
 # Markdown & HTML
 
-> * make sure to use at least one `line-break` to separate `html` and `markdown` whenever you are using them together
-> * do not `indent` html
+> * Make sure to use at least one `line-break` to separate `html` and `markdown` whenever you are using them together
+> * Do not `indent` html
+> * To delete button or image component inside rich editor first you have to click/focus and then hit `Delete` key on keyboard
 
 # Utility class
 
@@ -181,7 +182,7 @@ Feature 2
 ![Picture](/img/picture.png)
 
 <div class="v-space">
-<a class="buy-button" href="https://example.com">Buy now</a>
+<a class="buy-button" rel="nofollow noreferrer noopener" target="_blank" data-href="link-1">Buy Now</a>
 </div>
 </div>
 <div class="col">
@@ -207,7 +208,7 @@ This is content
 
 ### This is the note
 
-<a class="buy-button" href="https://example.com">Buy now</a>
+<a class="buy-button" rel="nofollow noreferrer noopener" target="_blank" data-href="link-1">Buy Now</a>
 </div>
 </div>
 ```
@@ -218,7 +219,6 @@ This is content
 
 ```html
 <table class="product-table">
-<tbody>
 <tr>
 <td colspan="2">
 
@@ -226,19 +226,18 @@ This is content
 
 </td>
 </tr>
+<tr>
 <td>Modal</td>
 <td>This is Model</td>
 </tr>
-</tr>
+<tr>
 <td>Speed</td>
 <td>This is Speed</td>
 </tr>
-</tr>
+<tr>
 <td>Power</td>
 <td>This is Power</td>
 </tr>
-</tr>
-</tbody>
 </table>
 ```
 
