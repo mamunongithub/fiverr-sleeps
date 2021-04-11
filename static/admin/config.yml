@@ -48,20 +48,6 @@ collections:
       - label: Slug
         name: slug
         widget: string
-      - label: Affiliate
-        name: affiliate
-        widget: object
-        fields:
-          - label: Link
-            name: link
-            widget: relation
-            collection: affiliateLinks
-            value_field: id
-            search_fields: [id, link]
-            display_fields: [id, link]
-          - label: Button Text
-            name: buttonText
-            widget: string
       - label: Date
         name: date
         widget: datetime
@@ -78,110 +64,9 @@ collections:
       - label: Article Image
         name: articleImage
         widget: image
-      - label: Article Description
-        name: articleDescription
+      - label: Body
+        name: body
         widget: markdown
-      - label: Product Pros
-        name: productPros
-        widget: list
-        field:
-          label: Pros
-          name: pros
-          widget: string
-      - label: Product Cons
-        name: productCons
-        widget: list
-        field:
-          label: Cons
-          name: cons
-          widget: string
-      - label: Product Image
-        name: productImage
-        widget: image
-      - label: Product Description
-        name: productDescription
-        widget: markdown
-      - label: Product Details
-        name: productDetails
-        widget: list
-        fields:
-          - label: Name
-            name: name
-            widget: string
-          - label: Value
-            name: value
-            widget: string
-      - label: Product Gauges
-        name: productGauges
-        widget: object
-        fields:
-          - label: Mode 1
-            name: mode1
-            widget: object
-            fields:
-              - label: Value (0 - 100)
-                name: value
-                widget: number
-                min: 0
-                max: 100
-              - label: Title
-                name: title
-                widget: string
-              - label: Features
-                name: features
-                widget: list
-                field:
-                  label: Feature
-                  name: feature
-                  widget: string
-          - label: Mode 2
-            name: mode2
-            widget: object
-            fields:
-              - label: Value (0 - 100)
-                name: value
-                widget: number
-                min: 0
-                max: 100
-              - label: Title
-                name: title
-                widget: string
-              - label: Features
-                name: features
-                widget: list
-                field:
-                  label: Feature
-                  name: feature
-                  widget: string
-          - label: Mode 3
-            name: mode3
-            widget: object
-            fields:
-              - label: Value (0 - 100)
-                name: value
-                widget: number
-                min: 0
-                max: 100
-              - label: Title
-                name: title
-                widget: string
-              - label: Features
-                name: features
-                widget: list
-                field:
-                  label: Feature
-                  name: feature
-                  widget: string
-      - label: General Note
-        name: generalNote
-        widget: object
-        fields:
-          - label: Valuation
-            name: valuation
-            widget: string
-          - label: Message
-            name: message
-            widget: string
       - label: Related Articles (Maximum 3)
         name: relatedArticles
         widget: list
@@ -511,9 +396,6 @@ collections:
             name: dataKey
             widget: hidden
             default: articlePage
-          - label: Pros & Cons Title
-            name: prosConsTitle
-            widget: string
           - label: Related Article Title
             name: relatedArticleTitle
             widget: string

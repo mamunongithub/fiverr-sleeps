@@ -5,12 +5,9 @@ import Img from 'gatsby-image'
 import Layout from '../components/Layout'
 import ArticleItems from '../components/ArticleItems'
 import { findByArray } from '../helper/helper'
-import ProductMode from '../components/ProductMode'
 
-export default function ArticlePage({
-  data: { article, articles, affiliateLinks, pageData },
-}) {
-  const { frontmatter: articleData, fields } = article
+export default function ArticlePage({ data: { article, articles, pageData } }) {
+  const { frontmatter: articleData, html } = article
   let relatedArticles = []
   if (articleData.relatedArticles) {
     relatedArticles = findByArray({
@@ -20,20 +17,6 @@ export default function ArticlePage({
       cb2: (item) => item.article,
     })
   }
-  const affiliateLink = affiliateLinks.edges.find(
-    (item) => item.node.frontmatter.id === articleData.affiliate.link
-  )
-
-  const affiliateButton = affiliateLink ? (
-    <a
-      className="affiliate-links"
-      href={affiliateLink.node.frontmatter.link}
-      rel="nofollow noreferrer noopener"
-      target="_blank"
-    >
-      {articleData.affiliate.buttonText}
-    </a>
-  ) : null
 
   return (
     <Layout title={articleData.title}>
@@ -44,80 +27,12 @@ export default function ArticlePage({
           fluid={articleData.articleImage.childImageSharp.fluid}
         />
         <div
-          className="article-page__description markdown-content"
+          className="markdown-content"
           dangerouslySetInnerHTML={{
-            __html: fields.articleDescriptionHTML,
+            __html: html,
           }}
         />
-        <h2 className="article-page__subtitle">
-          {pageData.frontmatter.prosConsTitle}
-        </h2>
-        <div className="article-page__pros-cons">
-          <div className="article-page__pros">
-            <h3 className="article-page__pros-title">Pros</h3>
-            {articleData.productPros.map((item, index) => (
-              <div key={index} className="article-page__pros-item">
-                {item}
-              </div>
-            ))}
-          </div>
-          <div className="article-page__cons">
-            <h3 className="article-page__cons-title">Cons</h3>
-            {articleData.productCons.map((item, index) => (
-              <div key={index} className="article-page__cons-item">
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="article-page__product-link">{affiliateButton}</div>
-        <table className="article-page__product-table">
-          <tbody>
-            <tr>
-              <td colSpan="2">
-                <Img
-                  className="article-page__product-image"
-                  fluid={articleData.productImage.childImageSharp.fluid}
-                />
-              </td>
-            </tr>
-            {articleData.productDetails.map(({ name, value }, index) => (
-              <tr key={index}>
-                <td>{name}</td>
-                <td>{value}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="article-page__chart">
-          <ProductMode {...articleData.productGauges.mode1} />
-          <ProductMode {...articleData.productGauges.mode2} />
-          <ProductMode {...articleData.productGauges.mode3} />
-        </div>
-        <div className="article-page__product">
-          <div className="article-page__product-left">
-            <Img
-              className="article-page__product-image"
-              fluid={articleData.productImage.childImageSharp.fluid}
-            />
-            {affiliateButton}
-          </div>
-          <div
-            className="article-page__product-right markdown-content"
-            dangerouslySetInnerHTML={{
-              __html: fields.productDescriptionHTML,
-            }}
-          />
-        </div>
-        <div className="general-note">
-          <div className="general-note__left">
-            {articleData.generalNote.valuation}
-          </div>
-          <div className="general-note__right">
-            <h4>{articleData.generalNote.message}</h4>
-            {affiliateButton}
-          </div>
-        </div>
+
         {relatedArticles.length > 0 && (
           <>
             <h1 className="cool-title__wrapper">
@@ -136,56 +51,15 @@ export default function ArticlePage({
 export const pageQuery = graphql`
   query ArticleByID($id: String!) {
     article: markdownRemark(id: { eq: $id }) {
-      fields {
-        articleDescriptionHTML
-        productDescriptionHTML
-      }
+      html
       frontmatter {
         title
-        affiliate {
-          link
-          buttonText
-        }
         articleImage {
           childImageSharp {
             fluid(maxWidth: 500) {
               ...GatsbyImageSharpFluid
             }
           }
-        }
-        productPros
-        productCons
-        productImage {
-          childImageSharp {
-            fluid(maxWidth: 500) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        productDetails {
-          name
-          value
-        }
-        productGauges {
-          mode1 {
-            value
-            title
-            features
-          }
-          mode2 {
-            value
-            title
-            features
-          }
-          mode3 {
-            value
-            title
-            features
-          }
-        }
-        generalNote {
-          message
-          valuation
         }
         relatedArticles {
           article
@@ -228,7 +102,6 @@ export const pageQuery = graphql`
     }
     pageData: markdownRemark(frontmatter: { dataKey: { eq: "articlePage" } }) {
       frontmatter {
-        prosConsTitle
         relatedArticleTitle
       }
     }

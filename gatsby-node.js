@@ -2,7 +2,6 @@ const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const { fmImagesToRelative } = require('gatsby-remark-relative-images')
-const marked = require('marked')
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
@@ -90,22 +89,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       name: `slug`,
       node,
       value,
-    })
-    createNodeField({
-      name: `articleDescriptionHTML`,
-      node,
-      value:
-        typeof node.frontmatter.articleDescription === 'string'
-          ? marked(node.frontmatter.articleDescription)
-          : null,
-    })
-    createNodeField({
-      name: `productDescriptionHTML`,
-      node,
-      value:
-        typeof node.frontmatter.productDescription === 'string'
-          ? marked(node.frontmatter.productDescription)
-          : null,
     })
   }
 }
