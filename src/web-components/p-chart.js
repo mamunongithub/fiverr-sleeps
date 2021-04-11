@@ -11,10 +11,12 @@ class PChart extends HTMLElement {
       <div
         style={{
           position: 'relative',
-          width: 250,
-          display: 'flex',
+          maxWidth: 250,
+          display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
+          background: '#f0f0f0',
+          borderRadius: 500,
         }}
       >
         <svg
