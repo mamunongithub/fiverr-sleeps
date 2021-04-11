@@ -1,4 +1,4 @@
-## This easy way to deploy
+## The easy way to deploy
 
 1. First login to your `Github` & `Netlify` account
 
