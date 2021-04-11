@@ -84,7 +84,7 @@ Feature 2
 <div class="row">
 <div class="text-center col">
 
-![Picture](/img/picture.png)
+![Picture](/img/sommeil-mini.png)
 
 <div class="v-space">
 <a class="buy-button" rel="nofollow noreferrer noopener" target="_blank" data-href="link-1">Buy Now</a>
@@ -108,6 +108,7 @@ This is content
 ### This is the note
 
 <a class="buy-button" rel="nofollow noreferrer noopener" target="_blank" data-href="link-1">Buy Now</a>
+
 </div>
 </div>
 
@@ -115,7 +116,7 @@ This is content
 <tr>
 <td colspan="2">
 
-![Picture](/img/picture.png)
+![Picture](/img/tutorials.png)
 
 </td>
 </tr>
