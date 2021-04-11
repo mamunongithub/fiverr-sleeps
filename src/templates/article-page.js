@@ -7,7 +7,7 @@ import ArticleItems from '../components/ArticleItems'
 import { findByArray } from '../helper/helper'
 
 export default function ArticlePage({ data: { article, articles, pageData } }) {
-  const { frontmatter: articleData, html } = article
+  const { frontmatter: articleData } = article
   let relatedArticles = []
   if (articleData.relatedArticles) {
     relatedArticles = findByArray({
@@ -17,6 +17,29 @@ export default function ArticlePage({ data: { article, articles, pageData } }) {
       cb2: (item) => item.article,
     })
   }
+
+  const html = article.html.replace(
+    /<data-chart[\s\n]+value="([^"]+)"[\s\n]*\/>/g,
+    (_, value) => {
+      const totalLength = 301.10565185546875
+      return `
+    <div class="chart">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle
+          cx="50"
+          cy="50"
+          r="48"
+          stroke-dasharray="${totalLength}"
+          stroke-dashoffset="${totalLength - (value / 100) * totalLength}"
+        />
+      </svg>
+      <span>
+        ${value}%
+      </span>
+    </div>
+    `
+    }
+  )
 
   return (
     <Layout title={articleData.title}>

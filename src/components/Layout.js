@@ -5,7 +5,6 @@ import { withPrefix } from 'gatsby'
 import useSiteMetadata from './SiteMetadata'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
-import '../web-components/p-chart'
 
 export default function Layout({
   title: pageTitle,

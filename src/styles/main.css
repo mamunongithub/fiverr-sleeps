@@ -860,3 +860,27 @@ body {
   background-image: none;
   color: #000;
 }
+
+/* chart */
+.chart {
+  position: relative;
+  max-width: 250px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  border-radius: 500px;
+  margin-bottom: 2rem;
+}
+.chart svg {
+  stroke: orange;
+  stroke-width: 4px;
+  fill: none;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+}
+.chart span {
+  position: absolute;
+  font-size: 48px;
+  font-weight: bold;
+}

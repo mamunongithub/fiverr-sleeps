@@ -1,11 +1,11 @@
 # Markdown & HTML
 
 > * make sure to use at least one `line-break` to separate `html` and `markdown` whenever you are using them together
-> * do not **indent** html
+> * do not `indent` html
 
 # Utility class
 
-## A simple grid with 2 simple class `row` & `col`
+## Simple grid with `2` simple class `row` & `col`
 ### 2 columns
 ```html
 <div class="row">
@@ -89,7 +89,7 @@
 ```html
 <div class="row">
 <div class="text-center col">
-<p-chart value="50"></p-chart>
+<data-chart value="50" />
 
 ### Free
 
@@ -110,12 +110,14 @@ This is content
 </div>
 ```
 
+![Chart 2](./docs/chart2.jpg)
+
 ## Three column chart
 
 ```html
 <div class="text-center row">
 <div class="col">
-<p-chart value="25"></p-chart>
+<data-chart value="25" />
 
 ### Good
 
@@ -125,7 +127,7 @@ Feature 2
 
 </div>
 <div class="col">
-<p-chart value="50"></p-chart>
+<data-chart value="50" />
 
 ### Better
 
@@ -135,7 +137,7 @@ Feature 2
 
 </div>
 <div class="col">
-<p-chart value="75"></p-chart>
+<data-chart value="75" />
 
 ### Best
 
@@ -146,6 +148,8 @@ Feature 2
 </div>
 </div>
 ```
+
+![Chart 3](./docs/chart3.jpg)
 
 ## Pros & Cons
 
@@ -165,6 +169,8 @@ Feature 2
 </div>
 </div>
 ```
+
+![Pro Cons](./docs/procons.jpg)
 
 ## Two column product
 
@@ -188,8 +194,9 @@ This is content
 </div>
 ```
 
+![Product 2](./docs/product2.jpg)
 
-## Genaral Note
+## General Note
 
 ```html
 <div class="row">
@@ -204,6 +211,8 @@ This is content
 </div>
 </div>
 ```
+
+![Product 2](./docs/generalnote.jpg)
 
 ## Product table
 
@@ -232,3 +241,5 @@ This is content
 </tbody>
 </table>
 ```
+
+![Product 2](./docs/producttable.jpg)

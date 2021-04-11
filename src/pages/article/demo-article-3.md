@@ -13,11 +13,12 @@ relatedArticles:
   - article: demo-article-1
   - article: demo-article-2
 ---
+
 # @two column chart
 
 <div class="row">
 <div class="text-center col">
-<p-chart value="50"></p-chart>
+<data-chart value="50" />
 
 ### Free
 
@@ -41,7 +42,7 @@ This is content
 
 <div class="text-center row">
 <div class="col">
-<p-chart value="25"></p-chart>
+<data-chart value="25" />
 
 ### Good
 
@@ -51,7 +52,7 @@ Feature 2
 
 </div>
 <div class="col">
-<p-chart value="50"></p-chart>
+<data-chart value="50" />
 
 ### Better
 
@@ -61,7 +62,7 @@ Feature 2
 
 </div>
 <div class="col">
-<p-chart value="75"></p-chart>
+<data-chart value="75" />
 
 ### Best
 
