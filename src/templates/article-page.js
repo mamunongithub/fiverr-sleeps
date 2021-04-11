@@ -55,10 +55,12 @@ export default function ArticlePage({
     <Layout title={articleData.title}>
       <section className="container article-page">
         <h1 className="article-page__title">{articleData.title}</h1>
-        <Img
-          className="article-page__image"
-          fluid={articleData.articleImage.childImageSharp.fluid}
-        />
+        {articleData.articleImage && (
+          <Img
+            className="article-page__image"
+            fluid={articleData.articleImage.childImageSharp.fluid}
+          />
+        )}
         <div
           className="markdown-content"
           dangerouslySetInnerHTML={{
