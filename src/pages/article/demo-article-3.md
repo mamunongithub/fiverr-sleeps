@@ -3,6 +3,9 @@ templateKey: article-page
 title: This is demo article 3
 slug: demo-article-3
 date: 2021-04-08T17:11:44.455Z
+tags2:
+  - tag: tag-1
+  - tag: tag-3
 tags:
   - name: sommier
     image: /img/sommier.png

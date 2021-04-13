@@ -72,10 +72,10 @@ collections:
       - label: Date
         name: date
         widget: datetime
-      - label: Tags2
-        name: tag2
+      - label: Tags2 (Minimum 1 & 1st item is main)
+        name: tags2
         widget: list
-        required: false
+        min: 1
         fields:
           - label: Tag
             name: tag
