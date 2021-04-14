@@ -11,7 +11,7 @@ export default function TagsPage({ data: { tags, articles, pageData } }) {
   const joinedArticles = joinTagArticle(tags.edges, articles.edges)
 
   return (
-    <Layout title={'Category'}>
+    <Layout title="Category" description={pageData.frontmatter.description}>
       <section className="container category">
         <Cover
           title={pageData.frontmatter.mainTitle}
@@ -82,6 +82,7 @@ export const tagPageQuery = graphql`
     }
     pageData: markdownRemark(frontmatter: { dataKey: { eq: "tagsPage" } }) {
       frontmatter {
+        description
         coverImage {
           childImageSharp {
             fluid(maxWidth: 1000, maxHeight: 400) {

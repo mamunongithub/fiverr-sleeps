@@ -11,6 +11,7 @@ import { findByArray, joinTagArticle, resolveLink } from '../helper/helper'
 export default function IndexPage({ data: { tags, articles, pageData } }) {
   const {
     title,
+    description,
     subtitle,
     tagline,
     featureTags,
@@ -34,7 +35,7 @@ export default function IndexPage({ data: { tags, articles, pageData } }) {
   const joinedFeatureArticles = joinTagArticle(tags.edges, finalFeatureArticles)
 
   return (
-    <Layout>
+    <Layout description={description}>
       <section className="hero">
         <div className="container">
           <h1 className="hero__title">{title}</h1>
@@ -135,6 +136,7 @@ export const indexPageQuery = graphql`
     ) {
       frontmatter {
         title
+        description
         subtitle
         tagline
         featureTags {

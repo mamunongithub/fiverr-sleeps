@@ -10,7 +10,10 @@ export default function ArticlePage({ data: { tags, articles, pageData } }) {
   const joinedArticles = joinTagArticle(tags.edges, articles.edges)
 
   return (
-    <Layout title={pageData.frontmatter.mainTitle}>
+    <Layout
+      title={pageData.frontmatter.mainTitle}
+      description={pageData.frontmatter.description}
+    >
       <section className="container article">
         <Cover
           title={pageData.frontmatter.mainTitle}
@@ -67,6 +70,7 @@ export const articlePageQuery = graphql`
     }
     pageData: markdownRemark(frontmatter: { dataKey: { eq: "articlesPage" } }) {
       frontmatter {
+        description
         coverImage {
           childImageSharp {
             fluid(maxWidth: 1000, maxHeight: 400) {

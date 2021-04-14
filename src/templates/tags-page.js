@@ -23,7 +23,7 @@ export default function TagPage({
   )
 
   return (
-    <Layout title={tagTitle}>
+    <Layout title={tagTitle} description={pageData.frontmatter.description}>
       <section className="container tags">
         <Cover title={tagTitle} image={pageData.frontmatter.coverImage} />
         <h2 className="cover__subtitle">
@@ -80,6 +80,7 @@ export const tagPageQuery = graphql`
             }
           }
         }
+        description
         mainTitle
         secondaryTitle
       }

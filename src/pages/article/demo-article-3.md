@@ -1,6 +1,7 @@
 ---
 dataKey: articles
 title: This is demo article 3
+description: This is page description (SEO)
 slug: demo-article-3
 date: 2021-04-08T17:11:44.455Z
 tags:

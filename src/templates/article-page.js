@@ -56,7 +56,10 @@ export default function ArticlePage({
     })
 
   return (
-    <Layout title={articleData.title}>
+    <Layout
+      title={articleData.title}
+      description={pageData.frontmatter.description}
+    >
       <section className="container article-page">
         <h1 className="article-page__title">{articleData.title}</h1>
         {articleData.articleImage && (
@@ -155,6 +158,7 @@ export const pageQuery = graphql`
     }
     pageData: markdownRemark(frontmatter: { dataKey: { eq: "articlePage" } }) {
       frontmatter {
+        description
         relatedArticleTitle
       }
     }
