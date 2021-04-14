@@ -6,6 +6,10 @@ subtitle: Vous cherchez des **conseils d'experts, fiables** et impartiaux pour
   répondre à vos questions sur le sommeil ? Vous êtes au bon
   [endroit](https://example.com).
 tagline: Comparez des dizaines de marques pour trouver votre meilleur
+featureTags2:
+  - item: tag-1
+  - item: tag-4
+  - item: tag-3
 featureTags:
   item1:
     image: /img/sommier.png
