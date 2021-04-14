@@ -1,6 +1,7 @@
 ---
 templateKey: index-page
 title: Dormez mieux, vivez heureux.
+description: This is page description (SEO)
 subtitle: Vous cherchez des **conseils d'experts, fiables** et impartiaux pour
   répondre à vos questions sur le sommeil ? Vous êtes au bon
   [endroit](https://example.com).
