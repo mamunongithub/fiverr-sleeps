@@ -121,6 +121,10 @@ collections:
             name: dataKey
             widget: hidden
             default: navbar
+          - label: HTML lang
+            name: lang
+            widget: string
+            required: false
           - label: Logo
             name: logo
             widget: image
