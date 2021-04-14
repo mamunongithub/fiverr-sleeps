@@ -7,13 +7,8 @@
 > * Do not `indent` html
 > * You have to switch to `markdown` mode when you copy and paste from this documentation 
 
-<div style="color:tomato">
-
 > * **You shouldn't delete all the `articles` or `affiliate-links` or `tags`. You must have to keep at least one.**
-
-> * **If accidentally delete all of them then here all the examples. Create one and then commit and push.**
-
-</div>
+> * **If accidentally delete all of them then here all the examples. Create one and then `commit` & `push`.**
 
 ## Article
 
