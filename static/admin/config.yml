@@ -124,10 +124,13 @@ collections:
             name: menuitems
             widget: list
             fields:
-              - label: Title
-                name: title
-              - label: Link
-                name: link
+              - label: Item
+                name: item
+                widget: relation
+                collection: tags
+                value_field: id
+                search_fields: [name]
+                display_fields: [name]
       - label: Footer
         name: footer
         file: src/data/footer.md

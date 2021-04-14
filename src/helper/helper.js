@@ -5,12 +5,17 @@ export const findByArray = ({ arr1, arr2, cb1 = justPass, cb2 = justPass }) =>
     Boolean(arr2.find((item2) => cb1(item1) === cb2(item2)))
   )
 
-export const joinTagArticle = (tags, articles) => {
+export const mapTags = (tags) => {
   const tagsMap = {}
 
   tags.forEach((item) => {
     tagsMap[item.node.frontmatter.id] = item.node.frontmatter
   })
+  return tagsMap
+}
+
+export const joinTagArticle = (tags, articles) => {
+  const tagsMap = mapTags(tags)
 
   const joinedArticles = []
 
