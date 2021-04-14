@@ -59,10 +59,10 @@ collections:
     editor:
       preview: false
     fields:
-      - label: Template Key
-        name: templateKey
+      - label: Data Key
+        name: dataKey
         widget: hidden
-        default: article-page
+        default: articles
       - label: Title
         name: title
         widget: string
@@ -72,8 +72,8 @@ collections:
       - label: Date
         name: date
         widget: datetime
-      - label: Tags2 (Minimum 1 & 1st item is main)
-        name: tags2
+      - label: Tags (Minimum 1 & 1st item is main)
+        name: tags
         widget: list
         min: 1
         fields:
@@ -84,17 +84,6 @@ collections:
             value_field: id
             search_fields: [name]
             display_fields: [name]
-      - label: Tags
-        name: tags
-        widget: list
-        required: false
-        fields:
-          - label: Name
-            name: name
-            widget: string
-          - label: Image
-            name: image
-            widget: image
       - label: Article Image
         name: articleImage
         widget: image

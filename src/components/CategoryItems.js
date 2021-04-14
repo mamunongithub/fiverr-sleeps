@@ -6,30 +6,18 @@ import { kebabCase, capitalize } from 'lodash'
 export default function CategoryItems({ items }) {
   const tagsMap = {}
   const allTags = []
-  items.forEach(
-    ({
-      node: {
-        frontmatter: { tags },
-      },
-    }) => {
-      tags.forEach((tag) => {
-        if (!tagsMap[tag.name]) {
-          tagsMap[tag.name] = 1
-          allTags.push(tag)
-        } else {
-          tagsMap[tag.name]++
-        }
-      })
+  items.forEach(({ node: { frontmatter: tag } }) => {
+    if (!tagsMap[tag.name]) {
+      tagsMap[tag.name] = 1
+      allTags.push(tag)
+    } else {
+      tagsMap[tag.name]++
     }
-  )
+  })
   return (
     <div className="category__items">
       {allTags.map(({ name, image }) => (
-        <Link
-          key={name}
-          to={`/tags/${kebabCase(name)}/`}
-          className="category__item"
-        >
+        <Link key={name} to={`/${kebabCase(name)}/`} className="category__item">
           {image && (
             <Img
               className="category__item-image"

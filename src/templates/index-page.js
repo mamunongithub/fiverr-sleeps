@@ -4,9 +4,9 @@ import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
 import FeatureArticleItem from '../components/FeatureArticleItem'
-import { findByArray, resolveLink } from '../helper/helper'
+import { findByArray, joinTagArticle, resolveLink } from '../helper/helper'
 
-export default function IndexPage({ data: { article, articles } }) {
+export default function IndexPage({ data: { tags, articles, pageData } }) {
   const {
     title,
     subtitle,
@@ -16,8 +16,10 @@ export default function IndexPage({ data: { article, articles } }) {
     featureArticles,
     section3,
     section4,
-  } = article.frontmatter
+  } = pageData.frontmatter
+
   let finalFeatureArticles = []
+
   if (featureArticles.articles) {
     finalFeatureArticles = findByArray({
       arr1: articles.edges,
@@ -26,6 +28,9 @@ export default function IndexPage({ data: { article, articles } }) {
       cb2: (item) => item.article,
     })
   }
+
+  const joinedFeatureArticles = joinTagArticle(tags.edges, finalFeatureArticles)
+
   return (
     <Layout>
       <section className="hero">
@@ -68,17 +73,15 @@ export default function IndexPage({ data: { article, articles } }) {
       </section>
       <section className="container feature-article">
         <div className="feature-article__wrapper">
-          {finalFeatureArticles.map(
-            ({ node: { frontmatter, fields } }, index) => (
-              <FeatureArticleItem
-                key={index}
-                subtitle={frontmatter.tags[0].name}
-                title={frontmatter.title}
-                to={resolveLink(fields.slug)}
-                linkText={featureArticles.buttonText}
-              />
-            )
-          )}
+          {joinedFeatureArticles.map(({ title, slug, tags }, index) => (
+            <FeatureArticleItem
+              key={index}
+              subtitle={tags[0].name}
+              title={title}
+              to={resolveLink(`/${tags[0].name}/${slug}`)}
+              linkText={featureArticles.buttonText}
+            />
+          ))}
         </div>
       </section>
       <section className="container advantage">
@@ -120,7 +123,7 @@ export default function IndexPage({ data: { article, articles } }) {
 
 export const indexPageQuery = graphql`
   query IndexPageQuery {
-    article: markdownRemark(
+    pageData: markdownRemark(
       frontmatter: { templateKey: { eq: "index-page" } }
     ) {
       frontmatter {
@@ -214,9 +217,21 @@ export const indexPageQuery = graphql`
         }
       }
     }
+    tags: allMarkdownRemark(
+      filter: { frontmatter: { dataKey: { eq: "tags" } } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            id
+            name
+          }
+        }
+      }
+    }
     articles: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { templateKey: { eq: "article-page" } } }
+      filter: { frontmatter: { dataKey: { eq: "articles" } } }
     ) {
       edges {
         node {
@@ -227,7 +242,7 @@ export const indexPageQuery = graphql`
             slug
             title
             tags {
-              name
+              tag
             }
           }
         }

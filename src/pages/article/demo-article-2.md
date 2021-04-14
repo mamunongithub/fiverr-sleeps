@@ -1,16 +1,11 @@
 ---
-templateKey: article-page
+dataKey: articles
 title: This is demo article 2
 slug: demo-article-2
 date: 2021-04-03T21:33:30.508Z
-tags2:
+tags:
   - tag: tag-1
   - tag: tag-2
-tags:
-  - name: sommier
-    image: /img/sommier.png
-  - name: matelas
-    image: /img/matelas.png
 articleImage: /img/blog-index.jpg
 relatedArticles:
   - article: demo-article-1

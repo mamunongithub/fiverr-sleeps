@@ -1,16 +1,11 @@
 ---
-templateKey: article-page
+dataKey: articles
 title: This is demo article 3
 slug: demo-article-3
 date: 2021-04-08T17:11:44.455Z
-tags2:
+tags:
   - tag: tag-1
   - tag: tag-3
-tags:
-  - name: sommier
-    image: /img/sommier.png
-  - name: matelas
-    image: /img/matelas.png
 articleImage: /img/flavor_wheel.jpg
 relatedArticles:
   - article: demo-article-1

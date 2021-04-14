@@ -4,8 +4,11 @@ import { graphql } from 'gatsby'
 import Layout from '../../components/Layout'
 import Cover from '../../components/Cover'
 import ArticleItems from '../../components/ArticleItems'
+import { joinTagArticle } from '../../helper/helper'
 
-export default function ArticlePage({ data: { articles, pageData } }) {
+export default function ArticlePage({ data: { tags, articles, pageData } }) {
+  const joinedArticles = joinTagArticle(tags.edges, articles.edges)
+
   return (
     <Layout title={pageData.frontmatter.mainTitle}>
       <section className="container article">
@@ -16,7 +19,7 @@ export default function ArticlePage({ data: { articles, pageData } }) {
         <h2 className="cover__subtitle">
           {pageData.frontmatter.secondaryTitle}
         </h2>
-        <ArticleItems items={articles.edges} />
+        <ArticleItems items={joinedArticles} />
       </section>
     </Layout>
   )
@@ -24,9 +27,21 @@ export default function ArticlePage({ data: { articles, pageData } }) {
 
 export const articlePageQuery = graphql`
   query ArticlePageQuery {
+    tags: allMarkdownRemark(
+      filter: { frontmatter: { dataKey: { eq: "tags" } } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            id
+            name
+          }
+        }
+      }
+    }
     articles: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { templateKey: { eq: "article-page" } } }
+      filter: { frontmatter: { dataKey: { eq: "articles" } } }
     ) {
       edges {
         node {
@@ -35,6 +50,10 @@ export const articlePageQuery = graphql`
           }
           frontmatter {
             title
+            slug
+            tags {
+              tag
+            }
             articleImage {
               childImageSharp {
                 fluid(maxWidth: 500) {
