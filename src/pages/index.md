@@ -1,8 +1,9 @@
 ---
 templateKey: index-page
 title: Dormez mieux, vivez heureux.
-subtitle: Vous cherchez des conseils d'experts, fiables et impartiaux pour
-  répondre à vos questions sur le sommeil ? Vous êtes au bon endroit.
+subtitle: Vous cherchez des **conseils d'experts, fiables** et impartiaux pour
+  répondre à vos questions sur le sommeil ? Vous êtes au bon
+  [endroit](https://example.com).
 tagline: Comparez des dizaines de marques pour trouver votre meilleur
 featureTags:
   item1:
@@ -34,14 +35,12 @@ featureArticles:
 section3:
   contentList:
     - title: Des conseils d'experts
-      description:
-        "Tests, comparatifs, guides d'achats : avec son équipe de testeurs
+      description: "Tests, comparatifs, guides d'achats : avec son équipe de testeurs
         indépendants, Sleeps.fr est à votre service pour vous conseiller et vous
         aider à trouver gratuitement les meilleurs produits de literie du
         marché."
     - title: Des outils efficaces
-      description:
-        Des comparatifs et des simulateurs vous aideront à choisir une
+      description: Des comparatifs et des simulateurs vous aideront à choisir une
         literie adaptée à vos besoins et passer les meilleures nuits.
     - title: Un suivi personnalisé
       description: Vous avez une question ? Contactez directement notre équipe
