@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { kebabCase, capitalize } from 'lodash'
+import { resolveLink } from '../helper/helper'
 
 export default function CategoryItems({ items }) {
   const tagsMap = {}
@@ -19,7 +20,7 @@ export default function CategoryItems({ items }) {
       {allTags.map(({ name, image }) => (
         <Link
           key={name}
-          to={`/${kebabCase(name)}/`.toLowerCase()}
+          to={resolveLink(`/${kebabCase(name)}/`.toLowerCase())}
           className="category__item"
         >
           {image && (

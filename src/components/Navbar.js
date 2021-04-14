@@ -64,7 +64,7 @@ export default function Navbar() {
             <Link
               key={index}
               className="navbar__menu-item"
-              to={resolveLink(kebabCase(name).toLowerCase())}
+              to={`/${resolveLink(kebabCase(name).toLowerCase())}`}
             >
               {capitalize(name)}
             </Link>
