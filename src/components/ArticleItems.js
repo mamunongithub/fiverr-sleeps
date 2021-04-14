@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
+import { kebabCase } from 'lodash'
 
 import { resolveLink } from '../helper/helper'
 
@@ -10,7 +11,9 @@ export default function ArticleItems({ items }) {
       {items.map(({ title, articleImage, slug, tags }, index) => (
         <Link
           key={index}
-          to={resolveLink(`/${tags[0].name}/${slug}`)}
+          to={resolveLink(
+            `/${kebabCase(tags[0].name)}/${kebabCase(slug)}`.toLowerCase()
+          )}
           className="article__item"
         >
           <div className="article__item-wrapper" />

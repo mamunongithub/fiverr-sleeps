@@ -70,8 +70,12 @@ exports.createPages = ({ actions, graphql }) => {
     articles.forEach((edge) => {
       const firstTag = tagsMap[edge.node.frontmatter.tags[0].tag]
       const id = edge.node.id
+      const articlePath = `/${_.kebabCase(firstTag.name)}/${_.kebabCase(
+        edge.node.frontmatter.slug
+      )}/`.toLowerCase()
+
       createPage({
-        path: `/${firstTag.name}/${edge.node.frontmatter.slug}/`,
+        path: articlePath,
         component: path.resolve(`src/templates/article-page.js`),
         context: {
           id,
@@ -82,7 +86,7 @@ exports.createPages = ({ actions, graphql }) => {
     const tagsNames = tags.map((edge) => edge.node.frontmatter.name)
 
     _.uniq(tagsNames).forEach((tag) => {
-      const tagPath = `/${_.kebabCase(tag)}/`
+      const tagPath = `/${_.kebabCase(tag)}/`.toLowerCase()
 
       createPage({
         path: tagPath,

@@ -17,7 +17,11 @@ export default function CategoryItems({ items }) {
   return (
     <div className="category__items">
       {allTags.map(({ name, image }) => (
-        <Link key={name} to={`/${kebabCase(name)}/`} className="category__item">
+        <Link
+          key={name}
+          to={`/${kebabCase(name)}/`.toLowerCase()}
+          className="category__item"
+        >
           {image && (
             <Img
               className="category__item-image"

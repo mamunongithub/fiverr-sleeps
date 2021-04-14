@@ -5,6 +5,7 @@ import Img from 'gatsby-image'
 import Layout from '../components/Layout'
 import FeatureArticleItem from '../components/FeatureArticleItem'
 import { findByArray, joinTagArticle, resolveLink } from '../helper/helper'
+import { kebabCase } from 'lodash'
 
 export default function IndexPage({ data: { tags, articles, pageData } }) {
   const {
@@ -78,7 +79,9 @@ export default function IndexPage({ data: { tags, articles, pageData } }) {
               key={index}
               subtitle={tags[0].name}
               title={title}
-              to={resolveLink(`/${tags[0].name}/${slug}`)}
+              to={resolveLink(
+                `/${kebabCase(tags[0].name)}/${kebabCase(slug)}`.toLowerCase()
+              )}
               linkText={featureArticles.buttonText}
             />
           ))}
