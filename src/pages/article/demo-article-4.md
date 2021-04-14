@@ -1,7 +1,7 @@
 ---
 dataKey: articles
 title: This is demo article 4
-slug: demo-article-4
+slug: demo-article_4
 date: 2021-04-08T17:24:27.885Z
 tags:
   - tag: tag-2
