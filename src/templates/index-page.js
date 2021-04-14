@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import marked from 'marked'
+import { kebabCase } from 'lodash'
 
 import Layout from '../components/Layout'
 import FeatureArticleItem from '../components/FeatureArticleItem'
 import { findByArray, joinTagArticle, resolveLink } from '../helper/helper'
-import { kebabCase } from 'lodash'
 
 export default function IndexPage({ data: { tags, articles, pageData } }) {
   const {
@@ -37,7 +38,10 @@ export default function IndexPage({ data: { tags, articles, pageData } }) {
       <section className="hero">
         <div className="container">
           <h1 className="hero__title">{title}</h1>
-          <p className="hero__desc">{subtitle}</p>
+          <div
+            className="hero__desc"
+            dangerouslySetInnerHTML={{ __html: marked(subtitle) }}
+          />
           <strong className="hero__strong">{tagline}</strong>
         </div>
       </section>

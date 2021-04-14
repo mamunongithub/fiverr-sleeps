@@ -233,7 +233,10 @@ collections:
             widget: string
           - label: Subtitle
             name: subtitle
-            widget: string
+            widget: markdown
+            minimal: true
+            buttons: [bold, italic, code, link]
+            editor_components: []
           - label: Tagline
             name: tagline
             widget: string
