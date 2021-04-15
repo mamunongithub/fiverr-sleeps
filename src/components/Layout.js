@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useStaticQuery, withPrefix } from 'gatsby'
+import { graphql, useStaticQuery, withPrefix } from 'gatsby'
 
 import useSiteMetadata from './SiteMetadata'
 import Footer from '../components/Footer'

@@ -253,12 +253,11 @@ collections:
           - label: Tagline
             name: tagline
             widget: string
-          - label: Feature tags (Sould be 4 items)
+          - label: Feature tags (Should be 4 items)
             name: featureTags
             widget: list
             min: 4
             max: 4
-            allow_add: false
             fields:
               - label: Tag
                 name: tag
