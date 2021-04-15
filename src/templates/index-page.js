@@ -2,11 +2,16 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import marked from 'marked'
-import { kebabCase } from 'lodash'
+import { capitalize, kebabCase } from 'lodash'
 
 import Layout from '../components/Layout'
 import FeatureArticleItem from '../components/FeatureArticleItem'
-import { findByArray, joinTagArticle, resolveLink } from '../helper/helper'
+import {
+  findByArray,
+  joinTagArticle,
+  resolveLink,
+  mapTags,
+} from '../helper/helper'
 
 export default function IndexPage({ data: { tags, articles, pageData } }) {
   const {
@@ -34,6 +39,13 @@ export default function IndexPage({ data: { tags, articles, pageData } }) {
 
   const joinedFeatureArticles = joinTagArticle(tags.edges, finalFeatureArticles)
 
+  const tagsMap = mapTags(tags.edges)
+
+  const joinedFeatureTags = featureTags.map(({ tag }) => tagsMap[tag])
+  const joinedCategoryTags = section4.categoryList.map(
+    ({ tag }) => tagsMap[tag]
+  )
+
   return (
     <Layout description={description}>
       <section className="hero">
@@ -48,13 +60,10 @@ export default function IndexPage({ data: { tags, articles, pageData } }) {
       </section>
       <section className="feature">
         <div className="feature__wrapper">
-          {Object.keys(featureTags).map((key) => (
-            <div key={key} className="feature__item">
-              <Link to={resolveLink(featureTags[key].link)}>
-                <Img
-                  fluid={featureTags[key].image.childImageSharp.fluid}
-                  alt="Feature tag"
-                />
+          {joinedFeatureTags.map(({ name, image }, index) => (
+            <div key={index} className="feature__item">
+              <Link to={resolveLink(`/${kebabCase(name).toLowerCase()}`)}>
+                <Img fluid={image.childImageSharp.fluid} alt="Feature tag" />
               </Link>
             </div>
           ))}
@@ -116,10 +125,12 @@ export default function IndexPage({ data: { tags, articles, pageData } }) {
           <strong className="test__subtitle">{section4.tagline}</strong>
           <h3 className="test__title">{section4.title}</h3>
           <div className="test__content">
-            {section4.categoryList.map(({ title, link }, index) => (
+            {joinedCategoryTags.map(({ name }, index) => (
               <React.Fragment key={index}>
                 {index ? <span> | </span> : ''}
-                <Link to={resolveLink(link)}>{title}</Link>
+                <Link to={resolveLink(`/${kebabCase(name).toLowerCase()}`)}>
+                  {capitalize(name)}
+                </Link>
               </React.Fragment>
             ))}
           </div>
@@ -140,46 +151,7 @@ export const indexPageQuery = graphql`
         subtitle
         tagline
         featureTags {
-          item1 {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            link
-          }
-          item2 {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            link
-          }
-          item3 {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            link
-          }
-          item4 {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            link
-          }
+          tag
         }
         section2 {
           image {
@@ -220,8 +192,7 @@ export const indexPageQuery = graphql`
           tagline
           title
           categoryList {
-            title
-            link
+            tag
           }
         }
       }
@@ -234,6 +205,13 @@ export const indexPageQuery = graphql`
           frontmatter {
             id
             name
+            image {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }

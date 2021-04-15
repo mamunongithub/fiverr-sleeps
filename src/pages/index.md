@@ -6,23 +6,11 @@ subtitle: Vous cherchez des **conseils d'experts, fiables** et impartiaux pour
   répondre à vos questions sur le sommeil ? Vous êtes au bon
   [endroit](https://example.com).
 tagline: Comparez des dizaines de marques pour trouver votre meilleur
-featureTags2:
-  - item: tag-1
-  - item: tag-4
-  - item: tag-3
 featureTags:
-  item1:
-    image: /img/sommier.png
-    link: /tags/sommier
-  item2:
-    image: /img/oreiller.png
-    link: /tags/oreiller
-  item3:
-    image: /img/couette.png
-    link: /tags/couette
-  item4:
-    image: /img/matelas.png
-    link: /tags/matelas
+  - tag: tag-1
+  - tag: tag-2
+  - tag: tag-3
+  - tag: tag-4
 section2:
   image: /img/matelas2.png
   tagline: UN BON ENDROIT POUR COMMENCER
@@ -40,12 +28,14 @@ featureArticles:
 section3:
   contentList:
     - title: Des conseils d'experts
-      description: "Tests, comparatifs, guides d'achats : avec son équipe de testeurs
+      description:
+        "Tests, comparatifs, guides d'achats : avec son équipe de testeurs
         indépendants, Sleeps.fr est à votre service pour vous conseiller et vous
         aider à trouver gratuitement les meilleurs produits de literie du
         marché."
     - title: Des outils efficaces
-      description: Des comparatifs et des simulateurs vous aideront à choisir une
+      description:
+        Des comparatifs et des simulateurs vous aideront à choisir une
         literie adaptée à vos besoins et passer les meilleures nuits.
     - title: Un suivi personnalisé
       description: Vous avez une question ? Contactez directement notre équipe
@@ -55,16 +45,10 @@ section3:
   image: /img/sommeil-mini.png
 section4:
   categoryList:
-    - title: Mémoire de forme
-      link: /tags/mémoire-de-forme
-    - title: Pour le dos
-      link: /tags/pour-le-dos
-    - title: Sur le ventre
-      link: /tags/sur-le-ventre
-    - title: Pas chers
-      link: /tags/pas-chers
-    - title: Haut de gamme
-      link: /tags/haut-de-gamme
+    - tag: tag-1
+    - tag: tag-2
+    - tag: tag-3
+    - tag: tag-4
   tagline: NOUS AVONS TESTÉ POUR VOUS
   title: Découvrez nos meilleurs choix matelas par catégorie.
 ---
