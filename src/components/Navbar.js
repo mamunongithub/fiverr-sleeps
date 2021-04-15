@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import { kebabCase, capitalize } from 'lodash'
 
 import { MenuIcon } from './Icons'
 import { mapTags, resolveLink } from '../helper/helper'
-import { kebabCase, capitalize } from 'lodash'
 
 export default function Navbar() {
   const [open, setOpen] = React.useState(false)

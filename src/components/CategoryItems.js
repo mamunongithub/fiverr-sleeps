@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { kebabCase, capitalize } from 'lodash'
+
 import { resolveLink } from '../helper/helper'
 
 export default function CategoryItems({ items }) {
