@@ -98,6 +98,7 @@ collections:
       - label: Related Articles (Maximum 3)
         name: relatedArticles
         widget: list
+        min: 0
         max: 3
         required: false
         fields:
@@ -339,14 +340,6 @@ collections:
               - label: Title
                 name: title
                 widget: string
-              # - label: Category List
-              #   name: categoryList
-              #   widget: list
-              #   fields:
-              #     - label: Title
-              #       name: title
-              #     - label: Link
-              #       name: link
               - label: Category List
                 name: categoryList
                 widget: list
