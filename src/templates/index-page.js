@@ -44,7 +44,9 @@ export default function IndexPage({ data: { tags, articles, pageData } }) {
 
   const tagsMap = mapTags(tags.edges)
 
-  const joinedFeatureTags = featureTags.map(({ tag }) => tagsMap[tag])
+  const joinedFeatureTags = featureTags
+    .map(({ tag }) => tagsMap[tag])
+    .filter((item) => Boolean(item))
   const joinedCategoryTags = section4.categoryList
     .map(({ tag }) => tagsMap[tag])
     .filter((item) => Boolean(item))
