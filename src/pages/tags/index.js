@@ -24,7 +24,7 @@ export default function TagsPage({ data: { pageData } }) {
         <h2 className="cover__subtitle">
           {pageData.frontmatter.secondaryTitle}
         </h2>
-        <CategoryItems items={tags.edges} />
+        <CategoryItems items={tags} />
         <h1 className="cool-title__wrapper">
           <span className="cool-title">
             {pageData.frontmatter.recentArticleTitle}

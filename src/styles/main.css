@@ -531,10 +531,16 @@ body {
   color: #1f2937;
 }
 .category__item-image {
-  width: 200px;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+.category__item-image img {
+  object-fit: contain !important;
 }
 .category__item-title {
   font-size: 20px;
+  margin-bottom: 1rem;
   font-weight: bold;
 }
 

@@ -28,7 +28,7 @@ export default function CategoryItems({ items }) {
             <Img
               className="category__item-image"
               alt={name}
-              fixed={image.childImageSharp.fixed}
+              fluid={image.childImageSharp.fluid}
             />
           )}
           <h4 className="category__item-title">{capitalize(name)}</h4>
