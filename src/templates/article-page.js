@@ -10,19 +10,20 @@ import useArticles from '../staticQuerys/useArticles'
 import useAffiliateLinks from '../staticQuerys/useAffiliateLinks'
 import { findByArray, joinTagArticle } from '../helper/helper'
 
-export default function ArticlePage({ data: { article } }) {
+export default function ArticlePage({ data }) {
   const { description, relatedArticleTitle } = useArticlePageData()
   const tags = useTags()
   const articles = useArticles()
   const affiliateLinks = useAffiliateLinks()
-  const { frontmatter: articleData } = article
+
+  const { html, frontmatter } = data.markdownRemark
 
   let relatedArticles = []
 
-  if (articleData.relatedArticles) {
+  if (frontmatter.relatedArticles) {
     relatedArticles = findByArray({
       arr1: articles,
-      arr2: articleData.relatedArticles,
+      arr2: frontmatter.relatedArticles,
       cb1: (item) => item.node.frontmatter.slug,
       cb2: (item) => item.article,
     })
@@ -30,7 +31,7 @@ export default function ArticlePage({ data: { article } }) {
 
   const joinedRelatedArticles = joinTagArticle(tags, relatedArticles)
 
-  const html = article.html
+  const replacedHtml = html
     .replace(/<data-chart[\s\n]+value="([^"]+)"[\s\n]*\/>/g, (_, value) => {
       const totalLength = 301.10565185546875
       return `
@@ -62,19 +63,19 @@ export default function ArticlePage({ data: { article } }) {
     })
 
   return (
-    <Layout title={articleData.title} description={description}>
+    <Layout title={frontmatter.title} description={description}>
       <section className="container article-page">
-        <h1 className="article-page__title">{articleData.title}</h1>
-        {articleData.articleImage && (
+        <h1 className="article-page__title">{frontmatter.title}</h1>
+        {frontmatter.articleImage && (
           <Img
             className="article-page__image"
-            fluid={articleData.articleImage.childImageSharp.fluid}
+            fluid={frontmatter.articleImage.childImageSharp.fluid}
           />
         )}
         <div
           className="markdown-content"
           dangerouslySetInnerHTML={{
-            __html: html,
+            __html: replacedHtml,
           }}
         />
         {joinedRelatedArticles.length > 0 && (
@@ -92,7 +93,7 @@ export default function ArticlePage({ data: { article } }) {
 
 export const pageQuery = graphql`
   query ArticleByID($id: String!) {
-    article: markdownRemark(id: { eq: $id }) {
+    markdownRemark(id: { eq: $id }) {
       html
       frontmatter {
         title
