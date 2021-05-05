@@ -2,9 +2,9 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { graphql, useStaticQuery, withPrefix } from 'gatsby'
 
-import useSiteMetadata from './SiteMetadata'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import useSiteMetadata from '../staticQuerys/useSiteMetadata'
 
 export default function Layout({
   title: pageTitle,
