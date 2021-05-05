@@ -1,19 +1,25 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 import { capitalize } from 'lodash'
 
 import Layout from '../components/Layout'
 import Cover from '../components/Cover'
 import ArticleItems from '../components/ArticleItems'
+import useTagPageData from '../staticQuerys/useTagPageData'
 import useTags from '../staticQuerys/useTags'
 import useArticles from '../staticQuerys/useArticles'
 import { joinTagArticle } from '../helper/helper'
 
-export default function TagPage({ data: { pageData }, pageContext }) {
+export default function TagPage({ pageContext }) {
+  const {
+    mainTitle,
+    secondaryTitle,
+    description,
+    coverImage,
+  } = useTagPageData()
   const tags = useTags()
   const articles = useArticles()
 
-  const tagTitle = pageData.frontmatter.mainTitle.replace(
+  const tagTitle = mainTitle.replace(
     /\{\{tag\}\}/g,
     capitalize(pageContext.tag)
   )
@@ -27,33 +33,12 @@ export default function TagPage({ data: { pageData }, pageContext }) {
     .filter((item) => Boolean(item))
 
   return (
-    <Layout title={tagTitle} description={pageData.frontmatter.description}>
+    <Layout title={tagTitle} description={description}>
       <section className="container tags">
-        <Cover title={tagTitle} image={pageData.frontmatter.coverImage} />
-        <h2 className="cover__subtitle">
-          {pageData.frontmatter.secondaryTitle}
-        </h2>
+        <Cover title={tagTitle} image={coverImage} />
+        <h2 className="cover__subtitle">{secondaryTitle}</h2>
         <ArticleItems items={tagArticles} />
       </section>
     </Layout>
   )
 }
-
-export const tagPageQuery = graphql`
-  query TagPage {
-    pageData: markdownRemark(frontmatter: { dataKey: { eq: "tagPage" } }) {
-      frontmatter {
-        coverImage {
-          childImageSharp {
-            fluid(maxWidth: 1000, maxHeight: 400) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        description
-        mainTitle
-        secondaryTitle
-      }
-    }
-  }
-`
