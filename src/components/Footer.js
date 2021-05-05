@@ -6,9 +6,7 @@ import { FacebookIcon, YoutubeIcon, PinterestIcon, LinkedinIcon } from './Icons'
 import { resolveLink } from '../helper/helper'
 
 export default function Footer() {
-  const data = useFooterQuery()
-
-  const { column1, column2, column3, column4 } = data.markdownRemark.frontmatter
+  const { column1, column2, column3, column4 } = useFooterQuery()
 
   return (
     <footer className="footer">

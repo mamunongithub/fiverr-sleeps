@@ -1,8 +1,8 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
 export default function useFooterQuery() {
-  return useStaticQuery(graphql`
-    query FooterQuery {
+  const data = useStaticQuery(graphql`
+    query FOOTER_QUERY {
       markdownRemark(frontmatter: { dataKey: { eq: "footer" } }) {
         frontmatter {
           column1 {
@@ -39,4 +39,5 @@ export default function useFooterQuery() {
       }
     }
   `)
+  return data.markdownRemark.frontmatter
 }
