@@ -4,12 +4,14 @@ import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
 import ArticleItems from '../components/ArticleItems'
+import useArticlePageData from '../staticQuerys/useArticlePageData'
 import useTags from '../staticQuerys/useTags'
 import useArticles from '../staticQuerys/useArticles'
 import useAffiliateLinks from '../staticQuerys/useAffiliateLinks'
 import { findByArray, joinTagArticle } from '../helper/helper'
 
-export default function ArticlePage({ data: { article, pageData } }) {
+export default function ArticlePage({ data: { article } }) {
+  const { description, relatedArticleTitle } = useArticlePageData()
   const tags = useTags()
   const articles = useArticles()
   const affiliateLinks = useAffiliateLinks()
@@ -60,10 +62,7 @@ export default function ArticlePage({ data: { article, pageData } }) {
     })
 
   return (
-    <Layout
-      title={articleData.title}
-      description={pageData.frontmatter.description}
-    >
+    <Layout title={articleData.title} description={description}>
       <section className="container article-page">
         <h1 className="article-page__title">{articleData.title}</h1>
         {articleData.articleImage && (
@@ -81,9 +80,7 @@ export default function ArticlePage({ data: { article, pageData } }) {
         {joinedRelatedArticles.length > 0 && (
           <>
             <h1 className="cool-title__wrapper">
-              <span className="cool-title">
-                {pageData.frontmatter.relatedArticleTitle}
-              </span>
+              <span className="cool-title">{relatedArticleTitle}</span>
             </h1>
             <ArticleItems items={joinedRelatedArticles} />
           </>
@@ -109,12 +106,6 @@ export const pageQuery = graphql`
         relatedArticles {
           article
         }
-      }
-    }
-    pageData: markdownRemark(frontmatter: { dataKey: { eq: "articlePage" } }) {
-      frontmatter {
-        description
-        relatedArticleTitle
       }
     }
   }
