@@ -7,6 +7,7 @@ import { capitalize, kebabCase } from 'lodash'
 import Layout from '../components/Layout'
 import FeatureArticleItem from '../components/FeatureArticleItem'
 import useTags from '../staticQuerys/useTags'
+import useArticles from '../staticQuerys/useArticles'
 import {
   findByArray,
   joinTagArticle,
@@ -14,7 +15,7 @@ import {
   mapTags,
 } from '../helper/helper'
 
-export default function IndexPage({ data: { articles, pageData } }) {
+export default function IndexPage({ data: { pageData } }) {
   const {
     title,
     description,
@@ -28,12 +29,13 @@ export default function IndexPage({ data: { articles, pageData } }) {
   } = pageData.frontmatter
 
   const tags = useTags()
+  const articles = useArticles()
 
   let finalFeatureArticles = []
 
   if (featureArticles.articles) {
     finalFeatureArticles = findByArray({
-      arr1: articles.edges,
+      arr1: articles,
       arr2: featureArticles.articles,
       cb1: (item) => item.node.frontmatter.slug,
       cb2: (item) => item.article,
@@ -201,25 +203,6 @@ export const indexPageQuery = graphql`
           title
           categoryList {
             tag
-          }
-        }
-      }
-    }
-    articles: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { dataKey: { eq: "articles" } } }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            slug
-            title
-            tags {
-              tag
-            }
           }
         }
       }

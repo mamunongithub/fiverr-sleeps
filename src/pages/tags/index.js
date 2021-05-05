@@ -6,11 +6,13 @@ import Cover from '../../components/Cover'
 import CategoryItems from '../../components/CategoryItems'
 import ArticleItems from '../../components/ArticleItems'
 import useTags from '../../staticQuerys/useTags'
+import useArticles from '../../staticQuerys/useArticles'
 import { joinTagArticle } from '../../helper/helper'
 
-export default function TagsPage({ data: { articles, pageData } }) {
+export default function TagsPage({ data: { pageData } }) {
   const tags = useTags()
-  const joinedArticles = joinTagArticle(tags, articles.edges)
+  const articles = useArticles()
+  const joinedArticles = joinTagArticle(tags, articles)
 
   return (
     <Layout title="Category" description={pageData.frontmatter.description}>
@@ -36,33 +38,6 @@ export default function TagsPage({ data: { articles, pageData } }) {
 
 export const tagPageQuery = graphql`
   query TagsQuery {
-    articles: allMarkdownRemark(
-      limit: 6
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { dataKey: { eq: "articles" } } }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            slug
-            tags {
-              tag
-            }
-            articleImage {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
     pageData: markdownRemark(frontmatter: { dataKey: { eq: "tagsPage" } }) {
       frontmatter {
         description

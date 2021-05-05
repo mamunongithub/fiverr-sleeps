@@ -6,17 +6,19 @@ import Layout from '../components/Layout'
 import Cover from '../components/Cover'
 import ArticleItems from '../components/ArticleItems'
 import useTags from '../staticQuerys/useTags'
+import useArticles from '../staticQuerys/useArticles'
 import { joinTagArticle } from '../helper/helper'
 
-export default function TagPage({ data: { pageData, articles }, pageContext }) {
+export default function TagPage({ data: { pageData }, pageContext }) {
   const tags = useTags()
+  const articles = useArticles()
 
   const tagTitle = pageData.frontmatter.mainTitle.replace(
     /\{\{tag\}\}/g,
     capitalize(pageContext.tag)
   )
 
-  const joinedArticles = joinTagArticle(tags, articles.edges)
+  const joinedArticles = joinTagArticle(tags, articles)
 
   const tagArticles = joinedArticles
     .filter((article) =>
@@ -39,28 +41,6 @@ export default function TagPage({ data: { pageData, articles }, pageContext }) {
 
 export const tagPageQuery = graphql`
   query TagPage {
-    articles: allMarkdownRemark(
-      filter: { frontmatter: { dataKey: { eq: "articles" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            title
-            slug
-            tags {
-              tag
-            }
-            articleImage {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
     pageData: markdownRemark(frontmatter: { dataKey: { eq: "tagPage" } }) {
       frontmatter {
         coverImage {

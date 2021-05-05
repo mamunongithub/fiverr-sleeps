@@ -5,11 +5,13 @@ import Layout from '../../components/Layout'
 import Cover from '../../components/Cover'
 import ArticleItems from '../../components/ArticleItems'
 import useTags from '../../staticQuerys/useTags'
+import useArticles from '../../staticQuerys/useArticles'
 import { joinTagArticle } from '../../helper/helper'
 
-export default function ArticlePage({ data: { articles, pageData } }) {
+export default function ArticlePage({ data: { pageData } }) {
   const tags = useTags()
-  const joinedArticles = joinTagArticle(tags, articles.edges)
+  const articles = useArticles()
+  const joinedArticles = joinTagArticle(tags, articles)
 
   return (
     <Layout
@@ -32,32 +34,6 @@ export default function ArticlePage({ data: { articles, pageData } }) {
 
 export const articlePageQuery = graphql`
   query ArticlePageQuery {
-    articles: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { dataKey: { eq: "articles" } } }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            slug
-            tags {
-              tag
-            }
-            articleImage {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
     pageData: markdownRemark(frontmatter: { dataKey: { eq: "articlesPage" } }) {
       frontmatter {
         description

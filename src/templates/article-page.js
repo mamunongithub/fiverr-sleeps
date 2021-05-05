@@ -5,19 +5,21 @@ import Img from 'gatsby-image'
 import Layout from '../components/Layout'
 import ArticleItems from '../components/ArticleItems'
 import useTags from '../staticQuerys/useTags'
+import useArticles from '../staticQuerys/useArticles'
 import { findByArray, joinTagArticle } from '../helper/helper'
 
 export default function ArticlePage({
-  data: { article, articles, affiliateLinks, pageData },
+  data: { article, affiliateLinks, pageData },
 }) {
   const tags = useTags()
+  const articles = useArticles()
   const { frontmatter: articleData } = article
 
   let relatedArticles = []
 
   if (articleData.relatedArticles) {
     relatedArticles = findByArray({
-      arr1: articles.edges,
+      arr1: articles,
       arr2: articleData.relatedArticles,
       cb1: (item) => item.node.frontmatter.slug,
       cb2: (item) => item.article,
@@ -106,31 +108,6 @@ export const pageQuery = graphql`
         }
         relatedArticles {
           article
-        }
-      }
-    }
-    articles: allMarkdownRemark(
-      filter: { frontmatter: { dataKey: { eq: "articles" } } }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            slug
-            tags {
-              tag
-            }
-            articleImage {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
         }
       }
     }
