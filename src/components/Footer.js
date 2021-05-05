@@ -1,48 +1,12 @@
 import React from 'react'
-import { graphql, Link, useStaticQuery } from 'gatsby'
+import { Link } from 'gatsby'
 
+import useFooterQuery from '../staticQuerys/useFooterQuery'
 import { FacebookIcon, YoutubeIcon, PinterestIcon, LinkedinIcon } from './Icons'
 import { resolveLink } from '../helper/helper'
 
 export default function Footer() {
-  const data = useStaticQuery(graphql`
-    query FooterQuery {
-      markdownRemark(frontmatter: { dataKey: { eq: "footer" } }) {
-        frontmatter {
-          column1 {
-            title
-            description
-            socialLinks {
-              facebook
-              youtube
-              pinterest
-              linkedin
-            }
-          }
-          column2 {
-            title
-            links {
-              title
-              link
-            }
-          }
-          column3 {
-            title
-            links {
-              title
-              link
-            }
-          }
-          column4 {
-            title
-            description
-            buttonText
-            placeholderText
-          }
-        }
-      }
-    }
-  `)
+  const data = useFooterQuery()
 
   const { column1, column2, column3, column4 } = data.markdownRemark.frontmatter
 
