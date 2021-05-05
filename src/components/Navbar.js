@@ -3,6 +3,7 @@ import { Link, useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { kebabCase, capitalize } from 'lodash'
 
+import useNavbar from '../staticQuerys/useNavbar'
 import { MenuIcon } from './Icons'
 import { mapTags, resolveLink } from '../helper/helper'
 
@@ -11,22 +12,6 @@ export default function Navbar() {
 
   const data = useStaticQuery(graphql`
     query NavbarQuery {
-      componentData: markdownRemark(
-        frontmatter: { dataKey: { eq: "navbar" } }
-      ) {
-        frontmatter {
-          logo {
-            childImageSharp {
-              fixed(width: 100) {
-                ...GatsbyImageSharpFixed
-              }
-            }
-          }
-          menuitems {
-            item
-          }
-        }
-      }
       tags: allMarkdownRemark(
         filter: { frontmatter: { dataKey: { eq: "tags" } } }
       ) {
@@ -42,7 +27,7 @@ export default function Navbar() {
     }
   `)
 
-  const { logo, menuitems } = data.componentData.frontmatter
+  const { logo, menuitems } = useNavbar()
 
   const tagsMap = mapTags(data.tags.edges)
 
