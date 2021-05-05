@@ -11,7 +11,7 @@ import useAffiliateLinks from '../staticQuerys/useAffiliateLinks'
 import { findByArray, joinTagArticle } from '../helper/helper'
 
 export default function ArticlePage({ data }) {
-  const { description, relatedArticleTitle } = useArticlePageData()
+  const pageData = useArticlePageData()
   const tags = useTags()
   const articles = useArticles()
   const affiliateLinks = useAffiliateLinks()
@@ -63,7 +63,7 @@ export default function ArticlePage({ data }) {
     })
 
   return (
-    <Layout title={frontmatter.title} description={description}>
+    <Layout title={frontmatter.title} description={pageData.description}>
       <section className="container article-page">
         <h1 className="article-page__title">{frontmatter.title}</h1>
         {frontmatter.articleImage && (
@@ -81,7 +81,7 @@ export default function ArticlePage({ data }) {
         {joinedRelatedArticles.length > 0 && (
           <>
             <h1 className="cool-title__wrapper">
-              <span className="cool-title">{relatedArticleTitle}</span>
+              <span className="cool-title">{pageData.relatedArticleTitle}</span>
             </h1>
             <ArticleItems items={joinedRelatedArticles} />
           </>

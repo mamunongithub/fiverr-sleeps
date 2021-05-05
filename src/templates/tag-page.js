@@ -10,16 +10,11 @@ import useArticles from '../staticQuerys/useArticles'
 import { joinTagArticle } from '../helper/helper'
 
 export default function TagPage({ pageContext }) {
-  const {
-    mainTitle,
-    secondaryTitle,
-    description,
-    coverImage,
-  } = useTagPageData()
+  const pageData = useTagPageData()
   const tags = useTags()
   const articles = useArticles()
 
-  const tagTitle = mainTitle.replace(
+  const tagTitle = pageData.mainTitle.replace(
     /\{\{tag\}\}/g,
     capitalize(pageContext.tag)
   )
@@ -33,10 +28,10 @@ export default function TagPage({ pageContext }) {
     .filter((item) => Boolean(item))
 
   return (
-    <Layout title={tagTitle} description={description}>
+    <Layout title={tagTitle} description={pageData.description}>
       <section className="container tags">
-        <Cover title={tagTitle} image={coverImage} />
-        <h2 className="cover__subtitle">{secondaryTitle}</h2>
+        <Cover title={tagTitle} image={pageData.coverImage} />
+        <h2 className="cover__subtitle">{pageData.secondaryTitle}</h2>
         <ArticleItems items={tagArticles} />
       </section>
     </Layout>

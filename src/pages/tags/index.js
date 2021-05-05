@@ -10,25 +10,19 @@ import useArticles from '../../staticQuerys/useArticles'
 import { joinTagArticle } from '../../helper/helper'
 
 export default function TagsPage() {
-  const {
-    mainTitle,
-    secondaryTitle,
-    description,
-    coverImage,
-    recentArticleTitle,
-  } = useTagsPageData()
+  const pageData = useTagsPageData()
   const tags = useTags()
   const articles = useArticles()
   const joinedArticles = joinTagArticle(tags, articles)
 
   return (
-    <Layout title="Category" description={description}>
+    <Layout title="Category" description={pageData.description}>
       <section className="container category">
-        <Cover title={mainTitle} image={coverImage} />
-        <h2 className="cover__subtitle">{secondaryTitle}</h2>
+        <Cover title={pageData.mainTitle} image={pageData.coverImage} />
+        <h2 className="cover__subtitle">{pageData.secondaryTitle}</h2>
         <CategoryItems items={tags} />
         <h1 className="cool-title__wrapper">
-          <span className="cool-title">{recentArticleTitle}</span>
+          <span className="cool-title">{pageData.recentArticleTitle}</span>
         </h1>
         <ArticleItems items={joinedArticles} />
       </section>

@@ -6,6 +6,8 @@ export default function useArticlesPageData() {
       query ARTICLES_PAGE_DATA_QUERY {
         markdownRemark(frontmatter: { dataKey: { eq: "articlesPage" } }) {
           frontmatter {
+            mainTitle
+            secondaryTitle
             description
             coverImage {
               childImageSharp {
@@ -14,8 +16,6 @@ export default function useArticlesPageData() {
                 }
               }
             }
-            mainTitle
-            secondaryTitle
           }
         }
       }

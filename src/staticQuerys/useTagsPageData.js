@@ -6,6 +6,8 @@ export default function useTagsPageData() {
       query TAGS_PAGE_DATA_QUERY {
         markdownRemark(frontmatter: { dataKey: { eq: "tagsPage" } }) {
           frontmatter {
+            mainTitle
+            secondaryTitle
             description
             coverImage {
               childImageSharp {
@@ -14,8 +16,6 @@ export default function useTagsPageData() {
                 }
               }
             }
-            mainTitle
-            secondaryTitle
             recentArticleTitle
           }
         }
