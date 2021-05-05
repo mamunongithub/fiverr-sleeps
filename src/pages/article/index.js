@@ -4,10 +4,12 @@ import { graphql } from 'gatsby'
 import Layout from '../../components/Layout'
 import Cover from '../../components/Cover'
 import ArticleItems from '../../components/ArticleItems'
+import useTags from '../../staticQuerys/useTags'
 import { joinTagArticle } from '../../helper/helper'
 
-export default function ArticlePage({ data: { tags, articles, pageData } }) {
-  const joinedArticles = joinTagArticle(tags.edges, articles.edges)
+export default function ArticlePage({ data: { articles, pageData } }) {
+  const tags = useTags()
+  const joinedArticles = joinTagArticle(tags, articles.edges)
 
   return (
     <Layout
@@ -30,18 +32,6 @@ export default function ArticlePage({ data: { tags, articles, pageData } }) {
 
 export const articlePageQuery = graphql`
   query ArticlePageQuery {
-    tags: allMarkdownRemark(
-      filter: { frontmatter: { dataKey: { eq: "tags" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            id
-            name
-          }
-        }
-      }
-    }
     articles: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { dataKey: { eq: "articles" } } }

@@ -4,11 +4,13 @@ import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
 import ArticleItems from '../components/ArticleItems'
+import useTags from '../staticQuerys/useTags'
 import { findByArray, joinTagArticle } from '../helper/helper'
 
 export default function ArticlePage({
-  data: { article, tags, articles, affiliateLinks, pageData },
+  data: { article, articles, affiliateLinks, pageData },
 }) {
+  const tags = useTags()
   const { frontmatter: articleData } = article
 
   let relatedArticles = []
@@ -22,7 +24,7 @@ export default function ArticlePage({
     })
   }
 
-  const joinedRelatedArticles = joinTagArticle(tags.edges, relatedArticles)
+  const joinedRelatedArticles = joinTagArticle(tags, relatedArticles)
 
   const html = article.html
     .replace(/<data-chart[\s\n]+value="([^"]+)"[\s\n]*\/>/g, (_, value) => {
@@ -104,18 +106,6 @@ export const pageQuery = graphql`
         }
         relatedArticles {
           article
-        }
-      }
-    }
-    tags: allMarkdownRemark(
-      filter: { frontmatter: { dataKey: { eq: "tags" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            id
-            name
-          }
         }
       }
     }

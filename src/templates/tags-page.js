@@ -5,18 +5,18 @@ import { capitalize } from 'lodash'
 import Layout from '../components/Layout'
 import Cover from '../components/Cover'
 import ArticleItems from '../components/ArticleItems'
+import useTags from '../staticQuerys/useTags'
 import { joinTagArticle } from '../helper/helper'
 
-export default function TagPage({
-  data: { pageData, tags, articles },
-  pageContext,
-}) {
+export default function TagPage({ data: { pageData, articles }, pageContext }) {
+  const tags = useTags()
+
   const tagTitle = pageData.frontmatter.mainTitle.replace(
     /\{\{tag\}\}/g,
     capitalize(pageContext.tag)
   )
 
-  const joinedArticles = joinTagArticle(tags.edges, articles.edges)
+  const joinedArticles = joinTagArticle(tags, articles.edges)
 
   const tagArticles = joinedArticles
     .filter((article) =>
@@ -39,18 +39,6 @@ export default function TagPage({
 
 export const tagPageQuery = graphql`
   query TagPage {
-    tags: allMarkdownRemark(
-      filter: { frontmatter: { dataKey: { eq: "tags" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            id
-            name
-          }
-        }
-      }
-    }
     articles: allMarkdownRemark(
       filter: { frontmatter: { dataKey: { eq: "articles" } } }
     ) {

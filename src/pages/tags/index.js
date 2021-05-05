@@ -5,10 +5,12 @@ import Layout from '../../components/Layout'
 import Cover from '../../components/Cover'
 import CategoryItems from '../../components/CategoryItems'
 import ArticleItems from '../../components/ArticleItems'
+import useTags from '../../staticQuerys/useTags'
 import { joinTagArticle } from '../../helper/helper'
 
-export default function TagsPage({ data: { tags, articles, pageData } }) {
-  const joinedArticles = joinTagArticle(tags.edges, articles.edges)
+export default function TagsPage({ data: { articles, pageData } }) {
+  const tags = useTags()
+  const joinedArticles = joinTagArticle(tags, articles.edges)
 
   return (
     <Layout title="Category" description={pageData.frontmatter.description}>
@@ -34,25 +36,6 @@ export default function TagsPage({ data: { tags, articles, pageData } }) {
 
 export const tagPageQuery = graphql`
   query TagsQuery {
-    tags: allMarkdownRemark(
-      filter: { frontmatter: { dataKey: { eq: "tags" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            id
-            name
-            image {
-              childImageSharp {
-                fixed(width: 150, height: 150) {
-                  ...GatsbyImageSharpFixed
-                }
-              }
-            }
-          }
-        }
-      }
-    }
     articles: allMarkdownRemark(
       limit: 6
       sort: { fields: [frontmatter___date], order: DESC }

@@ -1,35 +1,20 @@
 import React from 'react'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { kebabCase, capitalize } from 'lodash'
 
 import useNavbar from '../staticQuerys/useNavbar'
+import useTags from '../staticQuerys/useTags'
 import { MenuIcon } from './Icons'
 import { mapTags, resolveLink } from '../helper/helper'
 
 export default function Navbar() {
   const [open, setOpen] = React.useState(false)
 
-  const data = useStaticQuery(graphql`
-    query NavbarQuery {
-      tags: allMarkdownRemark(
-        filter: { frontmatter: { dataKey: { eq: "tags" } } }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              id
-              name
-            }
-          }
-        }
-      }
-    }
-  `)
-
   const { logo, menuitems } = useNavbar()
+  const tags = useTags()
 
-  const tagsMap = mapTags(data.tags.edges)
+  const tagsMap = mapTags(tags)
 
   const joinedMenuitems = menuitems
     .map(({ item }) => tagsMap[item])
