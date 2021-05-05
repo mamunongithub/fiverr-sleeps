@@ -6,13 +6,13 @@ import Layout from '../components/Layout'
 import ArticleItems from '../components/ArticleItems'
 import useTags from '../staticQuerys/useTags'
 import useArticles from '../staticQuerys/useArticles'
+import useAffiliateLinks from '../staticQuerys/useAffiliateLinks'
 import { findByArray, joinTagArticle } from '../helper/helper'
 
-export default function ArticlePage({
-  data: { article, affiliateLinks, pageData },
-}) {
+export default function ArticlePage({ data: { article, pageData } }) {
   const tags = useTags()
   const articles = useArticles()
+  const affiliateLinks = useAffiliateLinks()
   const { frontmatter: articleData } = article
 
   let relatedArticles = []
@@ -49,7 +49,7 @@ export default function ArticlePage({
     `
     })
     .replace(/data-href="([^"]+)"/g, (match, id) => {
-      const affiliate = affiliateLinks.edges.find(
+      const affiliate = affiliateLinks.find(
         (edge) => edge.node.frontmatter.id === id
       )
       if (affiliate) {
@@ -108,18 +108,6 @@ export const pageQuery = graphql`
         }
         relatedArticles {
           article
-        }
-      }
-    }
-    affiliateLinks: allMarkdownRemark(
-      filter: { frontmatter: { dataKey: { eq: "affiliateLinks" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            id
-            link
-          }
         }
       }
     }
