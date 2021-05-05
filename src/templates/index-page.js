@@ -1,11 +1,12 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import marked from 'marked'
 import { capitalize, kebabCase } from 'lodash'
 
 import Layout from '../components/Layout'
 import FeatureArticleItem from '../components/FeatureArticleItem'
+import useIndexPageData from '../staticQuerys/useIndexPageData'
 import useTags from '../staticQuerys/useTags'
 import useArticles from '../staticQuerys/useArticles'
 import {
@@ -15,7 +16,7 @@ import {
   mapTags,
 } from '../helper/helper'
 
-export default function IndexPage({ data: { pageData } }) {
+export default function IndexPage() {
   const {
     title,
     description,
@@ -26,8 +27,7 @@ export default function IndexPage({ data: { pageData } }) {
     featureArticles,
     section3,
     section4,
-  } = pageData.frontmatter
-
+  } = useIndexPageData()
   const tags = useTags()
   const articles = useArticles()
 
@@ -149,63 +149,3 @@ export default function IndexPage({ data: { pageData } }) {
     </Layout>
   )
 }
-
-export const indexPageQuery = graphql`
-  query IndexPageQuery {
-    pageData: markdownRemark(
-      frontmatter: { templateKey: { eq: "index-page" } }
-    ) {
-      frontmatter {
-        title
-        description
-        subtitle
-        tagline
-        featureTags {
-          tag
-        }
-        section2 {
-          image {
-            childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-          tagline
-          title
-          description
-          buttonText
-          buttonLink
-        }
-        featureArticles {
-          articles {
-            article
-          }
-          buttonText
-        }
-        section3 {
-          tagline
-          title
-          contentList {
-            title
-            description
-          }
-          image {
-            childImageSharp {
-              fluid(maxWidth: 500) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-        section4 {
-          tagline
-          title
-          categoryList {
-            tag
-          }
-        }
-      }
-    }
-  }
-`
